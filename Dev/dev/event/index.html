@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.r4n2fqtm.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.98q55p_5.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -733,11 +733,7 @@ it updates the event based on the additional parameters provided.</p>
 </details>
 <details class="quote">
 <summary>Source code in <code>bbot/core/event/base.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1576</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1577</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1578</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1579</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1580</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1580</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1581</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1582</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1583</span>
@@ -860,7 +856,11 @@ it updates the event based on the additional parameters provided.</p>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1700</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1701</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1702</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1703</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">make_event</span><span style="color: #e6edf3">(</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1703</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1704</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1705</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1706</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1707</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">make_event</span><span style="color: #e6edf3">(</span>
     <span style="color: #e6edf3">data,</span>
     <span style="color: #e6edf3">event_type</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #79c0ff">None</span><span style="color: #e6edf3">,</span>
     <span style="color: #e6edf3">parent</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #79c0ff">None</span><span style="color: #e6edf3">,</span>
@@ -926,23 +926,23 @@ it updates the event based on the additional parameters provided.</p>
     <span style="color: #e6edf3">tags</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">set(tags)</span>
 
     <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">is_event(data):</span>
-        <span style="color: #e6edf3">data</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">copy(data)</span>
-        <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">scan</span> <span style="color: #ff7b72; font-weight: bold">is</span> <span style="color: #ff7b72; font-weight: bold">not</span> <span style="color: #79c0ff">None</span> <span style="color: #ff7b72; font-weight: bold">and</span> <span style="color: #ff7b72; font-weight: bold">not</span> <span style="color: #e6edf3">data</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">scan:</span>
-            <span style="color: #e6edf3">data</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">scan</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">scan</span>
-        <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">scans</span> <span style="color: #ff7b72; font-weight: bold">is</span> <span style="color: #ff7b72; font-weight: bold">not</span> <span style="color: #79c0ff">None</span> <span style="color: #ff7b72; font-weight: bold">and</span> <span style="color: #ff7b72; font-weight: bold">not</span> <span style="color: #e6edf3">data</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">scans:</span>
-            <span style="color: #e6edf3">data</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">scans</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">scans</span>
+        <span style="color: #e6edf3">event</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">copy(data)</span>
+        <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">scan</span> <span style="color: #ff7b72; font-weight: bold">is</span> <span style="color: #ff7b72; font-weight: bold">not</span> <span style="color: #79c0ff">None</span> <span style="color: #ff7b72; font-weight: bold">and</span> <span style="color: #ff7b72; font-weight: bold">not</span> <span style="color: #e6edf3">event</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">scan:</span>
+            <span style="color: #e6edf3">event</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">scan</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">scan</span>
+        <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">scans</span> <span style="color: #ff7b72; font-weight: bold">is</span> <span style="color: #ff7b72; font-weight: bold">not</span> <span style="color: #79c0ff">None</span> <span style="color: #ff7b72; font-weight: bold">and</span> <span style="color: #ff7b72; font-weight: bold">not</span> <span style="color: #e6edf3">event</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">scans:</span>
+            <span style="color: #e6edf3">event</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">scans</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">scans</span>
         <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">module</span> <span style="color: #ff7b72; font-weight: bold">is</span> <span style="color: #ff7b72; font-weight: bold">not</span> <span style="color: #79c0ff">None</span><span style="color: #e6edf3">:</span>
-            <span style="color: #e6edf3">data</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">module</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">module</span>
+            <span style="color: #e6edf3">event</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">module</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">module</span>
         <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">parent</span> <span style="color: #ff7b72; font-weight: bold">is</span> <span style="color: #ff7b72; font-weight: bold">not</span> <span style="color: #79c0ff">None</span><span style="color: #e6edf3">:</span>
-            <span style="color: #e6edf3">data</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">parent</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">parent</span>
+            <span style="color: #e6edf3">event</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">parent</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">parent</span>
         <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">context</span> <span style="color: #ff7b72; font-weight: bold">is</span> <span style="color: #ff7b72; font-weight: bold">not</span> <span style="color: #79c0ff">None</span><span style="color: #e6edf3">:</span>
-            <span style="color: #e6edf3">data</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">discovery_context</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">context</span>
+            <span style="color: #e6edf3">event</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">discovery_context</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">context</span>
         <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">internal</span> <span style="color: #ff7b72; font-weight: bold">==</span> <span style="color: #79c0ff">True</span><span style="color: #e6edf3">:</span>
-            <span style="color: #e6edf3">data</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">internal</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #79c0ff">True</span>
+            <span style="color: #e6edf3">event</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">internal</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #79c0ff">True</span>
         <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">tags:</span>
-            <span style="color: #e6edf3">data</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">tags</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">tags</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">union(data</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">tags)</span>
+            <span style="color: #e6edf3">event</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">tags</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">tags</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">union(event</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">tags)</span>
         <span style="color: #e6edf3">event_type</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">data</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">type</span>
-        <span style="color: #ff7b72">return</span> <span style="color: #e6edf3">data</span>
+        <span style="color: #ff7b72">return</span> <span style="color: #e6edf3">event</span>
     <span style="color: #ff7b72">else</span><span style="color: #e6edf3">:</span>
         <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">event_type</span> <span style="color: #ff7b72; font-weight: bold">is</span> <span style="color: #79c0ff">None</span><span style="color: #e6edf3">:</span>
             <span style="color: #e6edf3">event_type,</span> <span style="color: #e6edf3">data</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">get_event_type(data)</span>
@@ -1041,11 +1041,7 @@ if required keys are missing. Make sure to validate the JSON input beforehand.</
 </details>
 <details class="quote">
 <summary>Source code in <code>bbot/core/event/base.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1706</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1707</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1708</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1709</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1710</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1710</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1711</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1712</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1713</span>
@@ -1097,7 +1093,11 @@ if required keys are missing. Make sure to validate the JSON input beforehand.</
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1759</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1760</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1761</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1762</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">event_from_json</span><span style="color: #e6edf3">(j,</span> <span style="color: #e6edf3">siem_friendly</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #79c0ff">False</span><span style="color: #e6edf3">):</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1762</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1763</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1764</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1765</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1766</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">event_from_json</span><span style="color: #e6edf3">(j,</span> <span style="color: #e6edf3">siem_friendly</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #79c0ff">False</span><span style="color: #e6edf3">):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    Creates an event object from a JSON dictionary.</span>
 
