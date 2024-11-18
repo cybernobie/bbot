@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.1cxlzjom.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.y2bi2frj.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -732,10 +732,10 @@ bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>
 bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-f<span style="color: #6e7681"> </span>subdomain-enum<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>spider.yml
 </code></pre></div>
 <h3 id="ingesting-bbot-data-into-siem-elastic-splunk">Ingesting BBOT Data Into SIEM (Elastic, Splunk)</h3>
-<p>If your goal is to feed BBOT data into a SIEM such as Elastic, be sure to enable this option when scanning:</p>
+<p>If your goal is to run a BBOT scan and later feed its data into a SIEM such as Elastic, be sure to enable this option when scanning:</p>
 <div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.json.siem_friendly<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #e6edf3">true</span>
 </code></pre></div>
-<p>This nests the event's <code>.data</code> beneath its event type like so:
+<p>This ensures the <code>.data</code> event attribute is always the same type (a dictionary), by nesting it like so:
 <div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #e6edf3">{</span>
 <span style="color: #6e7681">  </span><span style="color: #7ee787">"type"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"DNS_NAME"</span><span style="color: #e6edf3">,</span>
 <span style="color: #6e7681">  </span><span style="color: #7ee787">"data"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">{</span>
