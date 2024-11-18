@@ -11,7 +11,7 @@
 <link href="../events/" rel="prev"/>
 <link href="../tips_and_tricks/" rel="next"/>
 <link href="../../favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.5.42" name="generator"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.5.44" name="generator"/>
 <title>Output - BBOT Docs</title>
 <link href="../../assets/stylesheets/main.0253249f.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.2ph2fj96.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.m2xalmjq.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -345,6 +345,13 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#sqlite">
+<span class="md-ellipsis">
+      SQLite
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#subdomains">
 <span class="md-ellipsis">
       Subdomains
@@ -424,6 +431,13 @@
 <a class="md-nav__link" href="../../modules/nuclei/">
 <span class="md-ellipsis">
     Nuclei
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../modules/custom_yara_rules/">
+<span class="md-ellipsis">
+    Custom YARA Rules
   </span>
 </a>
 </li>
@@ -896,6 +910,11 @@ bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>
 </tr>
 </tbody>
 </table>
+<h3 id="sqlite">SQLite</h3>
+<p>The <code>sqlite</code> output module produces a SQLite database containing all events, scans, and targets. By default, it will be saved in the scan directory as <code>output.sqlite</code>.</p>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># specifying a custom database path</span>
+bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-om<span style="color: #6e7681"> </span>sqlite<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.sqlite.database<span style="color: #ff7b72; font-weight: bold">=</span>/tmp/bbot.sqlite
+</code></pre></div>
 <h3 id="subdomains">Subdomains</h3>
 <p>The <code>subdomains</code> output module produces simple text file containing only in-scope and resolved subdomains:</p>
 <div class="highlight" style="background: #0d1117"><span class="filename">subdomains.txt</span><pre style="line-height: 125%;"><span></span><code>evilcorp.com

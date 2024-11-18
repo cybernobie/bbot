@@ -11,7 +11,7 @@
 <link href="../presets_list/" rel="prev"/>
 <link href="../output/" rel="next"/>
 <link href="../../favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.5.42" name="generator"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.5.44" name="generator"/>
 <title>Events - BBOT Docs</title>
 <link href="../../assets/stylesheets/main.0253249f.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.2ph2fj96.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.m2xalmjq.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -353,6 +353,13 @@
 <a class="md-nav__link" href="../../modules/nuclei/">
 <span class="md-ellipsis">
     Nuclei
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../modules/custom_yara_rules/">
+<span class="md-ellipsis">
+    Custom YARA Rules
   </span>
 </a>
 </li>
@@ -706,9 +713,9 @@ event type      event data          source module    tags
 <tbody>
 <tr>
 <td>*</td>
-<td>15</td>
+<td>16</td>
 <td>0</td>
-<td>affiliates, cloudcheck, csv, discord, dnsresolve, http, json, neo4j, python, slack, splunk, stdout, teams, txt, websocket</td>
+<td>affiliates, cloudcheck, csv, discord, dnsresolve, http, json, neo4j, python, slack, splunk, sqlite, stdout, teams, txt, websocket</td>
 <td></td>
 </tr>
 <tr>
@@ -734,9 +741,9 @@ event type      event data          source module    tags
 </tr>
 <tr>
 <td>DNS_NAME</td>
-<td>58</td>
+<td>59</td>
 <td>43</td>
-<td>anubisdb, asset_inventory, azure_realm, azure_tenant, baddns, baddns_zone, bevigil, binaryedge, bucket_amazon, bucket_azure, bucket_digitalocean, bucket_firebase, bucket_google, bufferoverrun, builtwith, c99, censys, certspotter, chaos, columbus, credshed, crt, dehashed, digitorus, dnsbrute, dnsbrute_mutations, dnscaa, dnscommonsrv, dnsdumpster, emailformat, fullhunt, github_codesearch, hackertarget, hunterio, internetdb, leakix, myssl, oauth, otx, passivetotal, pgp, portscan, rapiddns, securitytrails, securitytxt, shodan_dns, sitedossier, skymem, speculate, subdomaincenter, subdomainradar, subdomains, trickest, urlscan, viewdns, virustotal, wayback, zoomeye</td>
+<td>anubisdb, asset_inventory, azure_realm, azure_tenant, baddns, baddns_zone, bevigil, binaryedge, bucket_amazon, bucket_azure, bucket_digitalocean, bucket_firebase, bucket_google, bufferoverrun, builtwith, c99, censys, certspotter, chaos, columbus, credshed, crt, dehashed, digitorus, dnsbimi, dnsbrute, dnsbrute_mutations, dnscaa, dnscommonsrv, dnsdumpster, emailformat, fullhunt, github_codesearch, hackertarget, hunterio, internetdb, leakix, myssl, oauth, otx, passivetotal, pgp, portscan, rapiddns, securitytrails, securitytxt, shodan_dns, sitedossier, skymem, speculate, subdomaincenter, subdomainradar, subdomains, trickest, urlscan, viewdns, virustotal, wayback, zoomeye</td>
 <td>anubisdb, azure_tenant, bevigil, binaryedge, bufferoverrun, builtwith, c99, censys, certspotter, chaos, columbus, crt, digitorus, dnsbrute, dnsbrute_mutations, dnscaa, dnscommonsrv, dnsdumpster, fullhunt, hackertarget, hunterio, internetdb, leakix, myssl, ntlm, oauth, otx, passivetotal, rapiddns, securitytrails, shodan_dns, sitedossier, speculate, sslcert, subdomaincenter, subdomainradar, trickest, urlscan, vhost, viewdns, virustotal, wayback, zoomeye</td>
 </tr>
 <tr>
@@ -757,8 +764,8 @@ event type      event data          source module    tags
 <td>FILESYSTEM</td>
 <td>3</td>
 <td>7</td>
-<td>speculate, trufflehog, unstructured</td>
-<td>apkpure, docker_pull, filedownload, git_clone, github_workflows, postman_download, speculate</td>
+<td>extractous, jadx, trufflehog</td>
+<td>apkpure, docker_pull, filedownload, git_clone, github_workflows, jadx, postman_download</td>
 </tr>
 <tr>
 <td>FINDING</td>
@@ -838,11 +845,18 @@ event type      event data          source module    tags
 <td>fingerprintx</td>
 </tr>
 <tr>
+<td>RAW_DNS_RECORD</td>
+<td>0</td>
+<td>1</td>
+<td></td>
+<td>dnsbimi</td>
+</tr>
+<tr>
 <td>RAW_TEXT</td>
 <td>1</td>
 <td>1</td>
 <td>excavate</td>
-<td>unstructured</td>
+<td>extractous</td>
 </tr>
 <tr>
 <td>SOCIAL</td>
@@ -882,9 +896,9 @@ event type      event data          source module    tags
 <tr>
 <td>URL_UNVERIFIED</td>
 <td>6</td>
-<td>16</td>
+<td>17</td>
 <td>code_repository, filedownload, httpx, oauth, social, speculate</td>
-<td>azure_realm, bevigil, bucket_file_enum, dnscaa, dockerhub, excavate, ffuf, ffuf_shortnames, github_codesearch, gowitness, hunterio, robots, securitytxt, urlscan, wayback, wpscan</td>
+<td>azure_realm, bevigil, bucket_file_enum, dnsbimi, dnscaa, dockerhub, excavate, ffuf, ffuf_shortnames, github_codesearch, gowitness, hunterio, robots, securitytxt, urlscan, wayback, wpscan</td>
 </tr>
 <tr>
 <td>USERNAME</td>

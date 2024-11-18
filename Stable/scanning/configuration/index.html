@@ -11,7 +11,7 @@
 <link href="../advanced/" rel="prev"/>
 <link href="../../modules/list_of_modules/" rel="next"/>
 <link href="../../favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.5.42" name="generator"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.5.44" name="generator"/>
 <title>Configuration - BBOT Docs</title>
 <link href="../../assets/stylesheets/main.0253249f.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.2ph2fj96.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.m2xalmjq.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -360,6 +360,13 @@
 <a class="md-nav__link" href="../../modules/nuclei/">
 <span class="md-ellipsis">
     Nuclei
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../modules/custom_yara_rules/">
+<span class="md-ellipsis">
+    Custom YARA Rules
   </span>
 </a>
 </li>
@@ -1618,6 +1625,24 @@ Is the same as:
 <td></td>
 </tr>
 <tr>
+<td>modules.dnsbimi.emit_raw_dns_records</td>
+<td>bool</td>
+<td>Emit RAW_DNS_RECORD events</td>
+<td>False</td>
+</tr>
+<tr>
+<td>modules.dnsbimi.emit_urls</td>
+<td>bool</td>
+<td>Emit URL_UNVERIFIED events</td>
+<td>True</td>
+</tr>
+<tr>
+<td>modules.dnsbimi.selectors</td>
+<td>str</td>
+<td>CSV list of BIMI selectors to check</td>
+<td>default,email,mail,bimi</td>
+</tr>
+<tr>
 <td>modules.dnscaa.dns_names</td>
 <td>bool</td>
 <td>emit DNS_NAME events</td>
@@ -1652,6 +1677,12 @@ Is the same as:
 <td>str</td>
 <td>Folder to download docker repositories to</td>
 <td></td>
+</tr>
+<tr>
+<td>modules.extractous.extensions</td>
+<td>list</td>
+<td>File extensions to parse</td>
+<td>['bak', 'bash', 'bashrc', 'conf', 'cfg', 'crt', 'csv', 'db', 'sqlite', 'doc', 'docx', 'ica', 'indd', 'ini', 'key', 'pub', 'log', 'markdown', 'md', 'odg', 'odp', 'ods', 'odt', 'pdf', 'pem', 'pps', 'ppsx', 'ppt', 'pptx', 'ps1', 'rdp', 'sh', 'sql', 'swp', 'sxw', 'txt', 'vbs', 'wpd', 'xls', 'xlsx', 'xml', 'yml', 'yaml']</td>
 </tr>
 <tr>
 <td>modules.fullhunt.api_key</td>
@@ -1748,6 +1779,12 @@ Is the same as:
 <td>str</td>
 <td>IPStack GeoIP API Key</td>
 <td></td>
+</tr>
+<tr>
+<td>modules.jadx.threads</td>
+<td>int</td>
+<td>Maximum jadx threads for extracting apk's, default: 4</td>
+<td>4</td>
 </tr>
 <tr>
 <td>modules.leakix.api_key</td>
@@ -1849,13 +1886,7 @@ Is the same as:
 <td>modules.trufflehog.version</td>
 <td>str</td>
 <td>trufflehog version</td>
-<td>3.83.1</td>
-</tr>
-<tr>
-<td>modules.unstructured.extensions</td>
-<td>list</td>
-<td>File extensions to parse</td>
-<td>['bak', 'bash', 'bashrc', 'conf', 'cfg', 'crt', 'csv', 'db', 'sqlite', 'doc', 'docx', 'ica', 'indd', 'ini', 'key', 'pub', 'log', 'markdown', 'md', 'odg', 'odp', 'ods', 'odt', 'pdf', 'pem', 'pps', 'ppsx', 'ppt', 'pptx', 'ps1', 'rdp', 'sh', 'sql', 'swp', 'sxw', 'txt', 'vbs', 'wpd', 'xls', 'xlsx', 'xml', 'yml', 'yaml']</td>
+<td>3.83.7</td>
 </tr>
 <tr>
 <td>modules.urlscan.urls</td>
@@ -2074,6 +2105,12 @@ Is the same as:
 <td></td>
 </tr>
 <tr>
+<td>modules.sqlite.database</td>
+<td>str</td>
+<td>The path to the sqlite database file</td>
+<td></td>
+</tr>
+<tr>
 <td>modules.stdout.accept_dupes</td>
 <td>bool</td>
 <td>Whether to show duplicate events, default True</td>
@@ -2186,12 +2223,6 @@ Is the same as:
 <td>int</td>
 <td>Sets the maximum amount of text that can extracted from a YARA regex</td>
 <td>2000</td>
-</tr>
-<tr>
-<td>modules.speculate.ignore_folders</td>
-<td>list</td>
-<td>Subfolders to ignore when crawling downloaded folders</td>
-<td>['.git']</td>
 </tr>
 <tr>
 <td>modules.speculate.max_hosts</td>
