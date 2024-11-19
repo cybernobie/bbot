@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../assets/stylesheets/extra-style.y2bi2frj.min.css" rel="stylesheet"/></head>
+<link href="../assets/stylesheets/extra-style.29w4kgor.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -338,6 +338,31 @@
       Whitelists and Blacklists
     </span>
 </a>
+<nav aria-label="Whitelists and Blacklists" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#whitelists">
+<span class="md-ellipsis">
+      Whitelists
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#blacklists">
+<span class="md-ellipsis">
+      Blacklists
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#blacklist-by-regex">
+<span class="md-ellipsis">
+      Blacklist by Regex
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -954,13 +979,47 @@ bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>
 <p>Note that <code>--strict-scope</code> only applies to targets and whitelists, but not blacklists. This means that if you put <code>internal.evilcorp.com</code> in your blacklist, you can be sure none of its subdomains will be scanned, even when using <code>--strict-scope</code>.</p>
 <h3 id="whitelists-and-blacklists">Whitelists and Blacklists</h3>
 <p>BBOT allows precise control over scope with whitelists and blacklists. These both use the same syntax as <code>--target</code>, meaning they accept the same event types, and you can specify an unlimited number of them, via a file, the CLI, or both.</p>
+<h4 id="whitelists">Whitelists</h4>
 <p><code>--whitelist</code> enables you to override what's in scope. For example, if you want to run nuclei against <code>evilcorp.com</code>, but stay only inside their corporate IP range of <code>1.2.3.0/24</code>, you can accomplish this like so:</p>
 <div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># Seed scan with evilcorp.com, but restrict scope to 1.2.3.0/24</span>
 bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>--whitelist<span style="color: #6e7681"> </span><span style="color: #a5d6ff">1</span>.2.3.0/24<span style="color: #6e7681"> </span>-f<span style="color: #6e7681"> </span>subdomain-enum<span style="color: #6e7681"> </span>-m<span style="color: #6e7681"> </span>nmap<span style="color: #6e7681"> </span>nuclei<span style="color: #6e7681"> </span>--allow-deadly
 </code></pre></div>
+<h4 id="blacklists">Blacklists</h4>
 <p><code>--blacklist</code> takes ultimate precedence. Anything in the blacklist is completely excluded from the scan, even if it's in the whitelist.</p>
 <div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># Scan evilcorp.com, but exclude internal.evilcorp.com and its children</span>
 bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>--blacklist<span style="color: #6e7681"> </span>internal.evilcorp.com<span style="color: #6e7681"> </span>-f<span style="color: #6e7681"> </span>subdomain-enum<span style="color: #6e7681"> </span>-m<span style="color: #6e7681"> </span>nmap<span style="color: #6e7681"> </span>nuclei<span style="color: #6e7681"> </span>--allow-deadly
+</code></pre></div>
+<h4 id="blacklist-by-regex">Blacklist by Regex</h4>
+<p>Blacklists also accept regex patterns. These regexes are are checked against the full URL, including the host and path.</p>
+<p>To specify a regex, prefix the pattern with <code>RE:</code>. For example, to exclude all events containing "signout", you could do:</p>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>--blacklist<span style="color: #6e7681"> </span><span style="color: #a5d6ff">"RE:signout"</span>
+</code></pre></div>
+<p>Note that this would blacklist both of the following events:</p>
+<ul>
+<li><code>[URL]       http://evilcorp.com/signout.aspx</code></li>
+<li><code>[DNS_NAME]  signout.evilcorp.com</code></li>
+</ul>
+<p>If you only want to blacklist the URL, you could narrow the regex like so:</p>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>--blacklist<span style="color: #6e7681"> </span><span style="color: #a5d6ff">'RE:signout\.aspx$'</span>
+</code></pre></div>
+<p>Similar to targets and whitelists, blacklists can be specified in your preset. The <code>spider</code> preset makes use of this to prevent the spider from following logout links:</p>
+<div class="highlight" style="background: #0d1117"><span class="filename">spider.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">description</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">Recursive web spider</span>
+
+<span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">httpx</span>
+
+<span style="color: #7ee787">blacklist</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Prevent spider from invalidating sessions by logging out</span>
+<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"RE:/.*(sign|log)[_-]?out"</span>
+
+<span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681">  </span><span style="color: #7ee787">web</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681">    </span><span style="color: #8b949e; font-style: italic"># how many links to follow in a row</span>
+<span style="color: #6e7681">    </span><span style="color: #7ee787">spider_distance</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">2</span>
+<span style="color: #6e7681">    </span><span style="color: #8b949e; font-style: italic"># don't follow links whose directory depth is higher than 4</span>
+<span style="color: #6e7681">    </span><span style="color: #7ee787">spider_depth</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">4</span>
+<span style="color: #6e7681">    </span><span style="color: #8b949e; font-style: italic"># maximum number of links to follow per page</span>
+<span style="color: #6e7681">    </span><span style="color: #7ee787">spider_links_per_page</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">25</span>
 </code></pre></div>
 <h2 id="dns-wildcards">DNS Wildcards</h2>
 <p>BBOT has robust wildcard detection built-in. It can reliably detect wildcard domains, and will tag them accordingly:</p>
