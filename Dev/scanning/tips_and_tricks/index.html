@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.y782a5x9.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.8woakoe2.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -331,9 +331,16 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#ingesting-bbot-data-into-siem-elastic-splunk">
+<a class="md-nav__link" href="#exclude-cdns-from-port-scan">
 <span class="md-ellipsis">
-      Ingesting BBOT Data Into SIEM (Elastic, Splunk)
+      Exclude CDNs from Port Scan
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ingest-bbot-data-into-siem-elastic-splunk">
+<span class="md-ellipsis">
+      Ingest BBOT Data Into SIEM (Elastic, Splunk)
     </span>
 </a>
 </li>
@@ -731,7 +738,26 @@ bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>
 <div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># spider every subdomain of evilcorp.com</span>
 bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-f<span style="color: #6e7681"> </span>subdomain-enum<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>spider.yml
 </code></pre></div>
-<h3 id="ingesting-bbot-data-into-siem-elastic-splunk">Ingesting BBOT Data Into SIEM (Elastic, Splunk)</h3>
+<h3 id="exclude-cdns-from-port-scan">Exclude CDNs from Port Scan</h3>
+<p>If you want to exclude CDNs (e.g. Cloudflare) from port scanning, you can set the <code>allowed_cdn_ports</code> config option in the <code>portscan</code> module. For example, to allow only port 80 (HTTP) and 443 (HTTPS), you can do the following:</p>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-m<span style="color: #6e7681"> </span>portscan<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.portscan.allowed_cdn_ports<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #a5d6ff">80</span>,443
+</code></pre></div>
+<p>By default, if you set <code>allowed_cdn_ports</code>, it will skip only providers marked as CDNs. If you want to skip cloud providers as well, you can set <code>cdn_tags</code>, which is a comma-separated list of tags to skip (matched against the beginning of each tag).</p>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-m<span style="color: #6e7681"> </span>portscan<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.portscan.allowed_cdn_ports<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #a5d6ff">80</span>,443<span style="color: #6e7681"> </span>modules.portscan.cdn_tags<span style="color: #ff7b72; font-weight: bold">=</span>cdn-,cloud-
+</code></pre></div>
+<p>...or via a preset:</p>
+<div class="highlight" style="background: #0d1117"><span class="filename">skip_cdns.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">portscan</span>
+
+<span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681">  </span><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681">    </span><span style="color: #7ee787">portscan</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681">      </span><span style="color: #7ee787">allowed_cdn_ports</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">80,443</span>
+<span style="color: #6e7681">      </span><span style="color: #7ee787">cdn_tags</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">cdn-,cloud-</span>
+</code></pre></div>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-p<span style="color: #6e7681"> </span>skip_cdns.yml
+</code></pre></div>
+<h3 id="ingest-bbot-data-into-siem-elastic-splunk">Ingest BBOT Data Into SIEM (Elastic, Splunk)</h3>
 <p>If your goal is to run a BBOT scan and later feed its data into a SIEM such as Elastic, be sure to enable this option when scanning:</p>
 <div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.json.siem_friendly<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #e6edf3">true</span>
 </code></pre></div>
