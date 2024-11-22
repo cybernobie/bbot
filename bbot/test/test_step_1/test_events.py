@@ -494,7 +494,7 @@ async def test_events(events, helpers):
     assert db_event.parent_chain[0] == str(db_event.uuid)
     assert db_event.parent.uuid == scan.root_event.uuid
     assert db_event.parent_uuid == scan.root_event.uuid
-    timestamp = db_event.timestamp.isoformat()
+    timestamp = db_event.timestamp.timestamp()
     json_event = db_event.json()
     assert isinstance(json_event["uuid"], str)
     assert json_event["uuid"] == str(db_event.uuid)
@@ -515,7 +515,7 @@ async def test_events(events, helpers):
     assert reconstituted_event.uuid == db_event.uuid
     assert reconstituted_event.parent_uuid == scan.root_event.uuid
     assert reconstituted_event.scope_distance == 1
-    assert reconstituted_event.timestamp.isoformat() == timestamp
+    assert reconstituted_event.timestamp.timestamp() == timestamp
     assert reconstituted_event.data == "evilcorp.com:80"
     assert reconstituted_event.type == "OPEN_TCP_PORT"
     assert reconstituted_event.host == "evilcorp.com"
@@ -529,28 +529,17 @@ async def test_events(events, helpers):
     assert hostless_event_json["data"] == "asdf"
     assert not "host" in hostless_event_json
 
-    # SIEM-friendly serialize/deserialize
-    json_event_siemfriendly = db_event.json(siem_friendly=True)
-    assert json_event_siemfriendly["scope_distance"] == 1
-    assert json_event_siemfriendly["data"] == {"OPEN_TCP_PORT": "evilcorp.com:80"}
-    assert json_event_siemfriendly["type"] == "OPEN_TCP_PORT"
-    assert json_event_siemfriendly["host"] == "evilcorp.com"
-    assert json_event_siemfriendly["timestamp"] == timestamp
-    reconstituted_event2 = event_from_json(json_event_siemfriendly, siem_friendly=True)
-    assert reconstituted_event2.scope_distance == 1
-    assert reconstituted_event2.timestamp.isoformat() == timestamp
-    assert reconstituted_event2.data == "evilcorp.com:80"
-    assert reconstituted_event2.type == "OPEN_TCP_PORT"
-    assert reconstituted_event2.host == "evilcorp.com"
-    assert "127.0.0.1" in reconstituted_event2.resolved_hosts
-
     http_response = scan.make_event(httpx_response, "HTTP_RESPONSE", parent=scan.root_event)
     assert http_response.parent_id == scan.root_event.id
     assert http_response.data["input"] == "http://example.com:80"
     json_event = http_response.json(mode="graph")
+    assert "data" in json_event
+    assert "data_json" not in json_event
     assert isinstance(json_event["data"], str)
     json_event = http_response.json()
-    assert isinstance(json_event["data"], dict)
+    assert "data" not in json_event
+    assert "data_json" in json_event
+    assert isinstance(json_event["data_json"], dict)
     assert json_event["type"] == "HTTP_RESPONSE"
     assert json_event["host"] == "example.com"
     assert json_event["parent"] == scan.root_event.id

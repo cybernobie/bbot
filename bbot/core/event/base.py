@@ -12,6 +12,7 @@ import traceback
 from copy import copy
 from pathlib import Path
 from typing import Optional
+from zoneinfo import ZoneInfo
 from contextlib import suppress
 from radixtarget import RadixTarget
 from urllib.parse import urljoin, parse_qs
@@ -40,6 +41,7 @@ from bbot.core.helpers import (
     validators,
     get_file_extension,
 )
+from bbot.models.helpers import utc_datetime_validator
 
 
 log = logging.getLogger("bbot.core.event")
@@ -755,7 +757,7 @@ class BaseEvent:
             return bool(radixtarget.search(other.host))
         return False
 
-    def json(self, mode="json", siem_friendly=False):
+    def json(self, mode="json"):
         """
         Serializes the event object to a JSON-compatible dictionary.
 
@@ -764,7 +766,6 @@ class BaseEvent:
 
         Parameters:
             mode (str): Specifies the data serialization mode. Default is "json". Other options include "graph", "human", and "id".
-            siem_friendly (bool): Whether to format the JSON in a way that's friendly to SIEM ingestion by Elastic, Splunk, etc. This ensures the value of "data" is always the same type (a dictionary).
 
         Returns:
             dict: JSON-serializable dictionary representation of the event object.
@@ -781,10 +782,12 @@ class BaseEvent:
             data = data_attr
         else:
             data = smart_decode(self.data)
-        if siem_friendly:
-            j["data"] = {self.type: data}
-        else:
+        if isinstance(data, str):
             j["data"] = data
+        elif isinstance(data, dict):
+            j["data_json"] = data
+        else:
+            raise ValueError(f"Invalid data type: {type(data)}")
         # host, dns children
         if self.host:
             j["host"] = str(self.host)
@@ -802,7 +805,7 @@ class BaseEvent:
         if self.scan:
             j["scan"] = self.scan.id
         # timestamp
-        j["timestamp"] = self.timestamp.isoformat()
+        j["timestamp"] = utc_datetime_validator(self.timestamp).timestamp()
         # parent event
         parent_id = self.parent_id
         if parent_id:
@@ -811,8 +814,7 @@ class BaseEvent:
         if parent_uuid:
             j["parent_uuid"] = parent_uuid
         # tags
-        if self.tags:
-            j.update({"tags": list(self.tags)})
+        j.update({"tags": list(self.tags)})
         # parent module
         if self.module:
             j.update({"module": str(self.module)})
@@ -1728,7 +1730,7 @@ def make_event(
         )
 
 
-def event_from_json(j, siem_friendly=False):
+def event_from_json(j):
     """
     Creates an event object from a JSON dictionary.
 
@@ -1760,10 +1762,12 @@ def event_from_json(j, siem_friendly=False):
             "context": j.get("discovery_context", None),
             "dummy": True,
         }
-        if siem_friendly:
-            data = j["data"][event_type]
-        else:
-            data = j["data"]
+        data = j.get("data_json", None)
+        if data is None:
+            data = j.get("data", None)
+        if data is None:
+            json_pretty = json.dumps(j, indent=2)
+            raise ValueError(f"data or data_json must be provided. JSON: {json_pretty}")
         kwargs["data"] = data
         event = make_event(**kwargs)
         event_uuid = j.get("uuid", None)
@@ -1773,7 +1777,11 @@ def event_from_json(j, siem_friendly=False):
         resolved_hosts = j.get("resolved_hosts", [])
         event._resolved_hosts = set(resolved_hosts)
 
-        event.timestamp = datetime.datetime.fromisoformat(j["timestamp"])
+        # accept both isoformat and unix timestamp
+        try:
+            event.timestamp = datetime.datetime.fromtimestamp(j["timestamp"], ZoneInfo("UTC"))
+        except Exception:
+            event.timestamp = datetime.datetime.fromisoformat(j["timestamp"])
         event.scope_distance = j["scope_distance"]
         parent_id = j.get("parent", None)
         if parent_id is not None:

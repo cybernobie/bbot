@@ -23,13 +23,13 @@ class TestJSON(ModuleTestBase):
         assert len(dns_json) == 1
         dns_json = dns_json[0]
         scan = scan_json[0]
-        assert scan["data"]["name"] == module_test.scan.name
-        assert scan["data"]["id"] == module_test.scan.id
+        assert scan["data_json"]["name"] == module_test.scan.name
+        assert scan["data_json"]["id"] == module_test.scan.id
         assert scan["id"] == module_test.scan.id
         assert scan["uuid"] == str(module_test.scan.root_event.uuid)
         assert scan["parent_uuid"] == str(module_test.scan.root_event.uuid)
-        assert scan["data"]["target"]["seeds"] == ["blacklanternsecurity.com"]
-        assert scan["data"]["target"]["whitelist"] == ["blacklanternsecurity.com"]
+        assert scan["data_json"]["target"]["seeds"] == ["blacklanternsecurity.com"]
+        assert scan["data_json"]["target"]["whitelist"] == ["blacklanternsecurity.com"]
         assert dns_json["data"] == dns_data
         assert dns_json["id"] == str(dns_event.id)
         assert dns_json["uuid"] == str(dns_event.uuid)
@@ -53,18 +53,3 @@ class TestJSON(ModuleTestBase):
         assert dns_reconstructed.discovery_context == context_data
         assert dns_reconstructed.discovery_path == [context_data]
         assert dns_reconstructed.parent_chain == [dns_json["uuid"]]
-
-
-class TestJSONSIEMFriendly(ModuleTestBase):
-    modules_overrides = ["json"]
-    config_overrides = {"modules": {"json": {"siem_friendly": True}}}
-
-    def check(self, module_test, events):
-        txt_file = module_test.scan.home / "output.json"
-        lines = list(module_test.scan.helpers.read_file(txt_file))
-        passed = False
-        for line in lines:
-            e = json.loads(line)
-            if e["data"] == {"DNS_NAME": "blacklanternsecurity.com"}:
-                passed = True
-        assert passed

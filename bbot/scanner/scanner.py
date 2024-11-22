@@ -7,6 +7,7 @@ import regex as re
 from pathlib import Path
 from sys import exc_info
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from collections import OrderedDict
 
 from bbot import __version__
@@ -327,8 +328,8 @@ class Scanner:
 
     async def async_start(self):
         """ """
-        self.start_time = datetime.now()
-        self.root_event.data["started_at"] = self.start_time.isoformat()
+        self.start_time = datetime.now(ZoneInfo("UTC"))
+        self.root_event.data["started_at"] = self.start_time.timestamp()
         try:
             await self._prep()
 
@@ -436,7 +437,7 @@ class Scanner:
         else:
             status = "FINISHED"
 
-        self.end_time = datetime.now()
+        self.end_time = datetime.now(ZoneInfo("UTC"))
         self.duration = self.end_time - self.start_time
         self.duration_seconds = self.duration.total_seconds()
         self.duration_human = self.helpers.human_timedelta(self.duration)
@@ -500,7 +501,8 @@ class Scanner:
                 self.modules[module.name].set_error_state()
                 hard_failed.append(module.name)
             else:
-                self.info(f"Setup soft-failed for {module.name}: {msg}")
+                log_fn = self.warning if module._type == "output" else self.info
+                log_fn(f"Setup soft-failed for {module.name}: {msg}")
                 soft_failed.append(module.name)
             if (not status) and (module._intercept or remove_failed):
                 # if a intercept module fails setup, we always remove it
@@ -1129,9 +1131,9 @@ class Scanner:
         j["target"] = self.preset.target.json
         j["preset"] = self.preset.to_dict(redact_secrets=True)
         if self.start_time is not None:
-            j["started_at"] = self.start_time.isoformat()
+            j["started_at"] = self.start_time.timestamp()
         if self.end_time is not None:
-            j["finished_at"] = self.end_time.isoformat()
+            j["finished_at"] = self.end_time.timestamp()
         if self.duration is not None:
             j["duration_seconds"] = self.duration_seconds
         if self.duration_human is not None:
