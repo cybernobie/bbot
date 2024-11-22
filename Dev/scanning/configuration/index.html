@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.nlcrgxv0.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.hxa7mdsr.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -764,6 +764,13 @@ Is the same as:
 <span style="color: #7ee787">deps</span><span style="color: #e6edf3">:</span>
 <span style="color: #6e7681">  </span><span style="color: #7ee787">ffuf</span><span style="color: #e6edf3">:</span>
 <span style="color: #6e7681">    </span><span style="color: #7ee787">version</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"2.1.0"</span>
+<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># How to handle installation of module dependencies</span>
+<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Choices are:</span>
+<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic">#  - abort_on_failure (default) - if a module dependency fails to install, abort the scan</span>
+<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic">#  - retry_failed - try again to install failed dependencies</span>
+<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic">#  - ignore_failed - run the scan regardless of what happens with dependency installation</span>
+<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic">#  - disable - completely disable BBOT's dependency system (you are responsible for installing tools, pip packages, etc.)</span>
+<span style="color: #6e7681">  </span><span style="color: #7ee787">behavior</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">abort_on_failure</span>
 
 <span style="color: #8b949e; font-style: italic">### ADVANCED OPTIONS ###</span>
 
@@ -780,14 +787,6 @@ Is the same as:
 <span style="color: #7ee787">dnsresolve</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">True</span>
 <span style="color: #8b949e; font-style: italic"># Cloud provider tagging</span>
 <span style="color: #7ee787">cloudcheck</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">True</span>
-
-<span style="color: #8b949e; font-style: italic"># How to handle installation of module dependencies</span>
-<span style="color: #8b949e; font-style: italic"># Choices are:</span>
-<span style="color: #8b949e; font-style: italic">#  - abort_on_failure (default) - if a module dependency fails to install, abort the scan</span>
-<span style="color: #8b949e; font-style: italic">#  - retry_failed - try again to install failed dependencies</span>
-<span style="color: #8b949e; font-style: italic">#  - ignore_failed - run the scan regardless of what happens with dependency installation</span>
-<span style="color: #8b949e; font-style: italic">#  - disable - completely disable BBOT's dependency system (you are responsible for installing tools, pip packages, etc.)</span>
-<span style="color: #7ee787">deps_behavior</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">abort_on_failure</span>
 
 <span style="color: #8b949e; font-style: italic"># Strip querystring from URLs by default</span>
 <span style="color: #7ee787">url_querystring_remove</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">True</span>
@@ -1326,6 +1325,18 @@ Is the same as:
 <td>str</td>
 <td>Send packets using this as the source MAC address. Not needed unless masscan's autodetection fails</td>
 <td></td>
+</tr>
+<tr>
+<td>modules.portscan.allowed_cdn_ports</td>
+<td>NoneType</td>
+<td>Comma-separated list of ports that are allowed to be scanned for CDNs</td>
+<td>None</td>
+</tr>
+<tr>
+<td>modules.portscan.cdn_tags</td>
+<td>str</td>
+<td>Comma-separated list of tags to skip, e.g. 'cdn,cloud'</td>
+<td>cdn-</td>
 </tr>
 <tr>
 <td>modules.portscan.ping_first</td>
@@ -1877,7 +1888,7 @@ Is the same as:
 <td>modules.trufflehog.version</td>
 <td>str</td>
 <td>trufflehog version</td>
-<td>3.83.7</td>
+<td>3.84.0</td>
 </tr>
 <tr>
 <td>modules.urlscan.urls</td>
@@ -2028,6 +2039,36 @@ Is the same as:
 <td>bool</td>
 <td>Output JSON in a SIEM-friendly format for ingestion into Elastic, Splunk, etc.</td>
 <td>False</td>
+</tr>
+<tr>
+<td>modules.mysql.database</td>
+<td>str</td>
+<td>The database name to connect to</td>
+<td>bbot</td>
+</tr>
+<tr>
+<td>modules.mysql.host</td>
+<td>str</td>
+<td>The server running MySQL</td>
+<td>localhost</td>
+</tr>
+<tr>
+<td>modules.mysql.password</td>
+<td>str</td>
+<td>The password to connect to MySQL</td>
+<td>bbotislife</td>
+</tr>
+<tr>
+<td>modules.mysql.port</td>
+<td>int</td>
+<td>The port to connect to MySQL</td>
+<td>3306</td>
+</tr>
+<tr>
+<td>modules.mysql.username</td>
+<td>str</td>
+<td>The username to connect to MySQL</td>
+<td>root</td>
 </tr>
 <tr>
 <td>modules.neo4j.password</td>
