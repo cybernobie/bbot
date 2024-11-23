@@ -1,6 +1,5 @@
 import json
 import asyncio
-import nats
 from contextlib import suppress
 
 from .base import ModuleTestBase
@@ -27,6 +26,8 @@ class TestNats(ModuleTestBase):
         await self.wait_for_port_open(4222)
 
         # Connect to NATS
+        import nats
+
         try:
             self.nc = await nats.connect(["nats://localhost:4222"])
         except Exception as e:
