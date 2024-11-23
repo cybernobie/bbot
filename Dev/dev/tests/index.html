@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.k6vvxur7.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.b3naorzw.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -629,14 +629,14 @@
 <article class="md-content__inner md-typeset">
 <h1 id="unit-tests">Unit Tests</h1>
 <p>BBOT takes tests seriously. Every module <em>must</em> have a custom-written test that <em>actually tests</em> its functionality. Don't worry if you want to contribute but you aren't used to writing tests. If you open a draft PR, we will help write them :)</p>
-<p>We use <a href="https://github.com/psf/black">black</a> and <a href="https://flake8.pycqa.org/en/latest/">flake8</a> for linting, and <a href="https://docs.pytest.org/en/8.2.x/">pytest</a> for tests.</p>
+<p>We use <a href="https://docs.astral.sh/ruff/">ruff</a> for linting, and <a href="https://docs.pytest.org/en/8.2.x/">pytest</a> for tests.</p>
 <h2 id="running-tests-locally">Running tests locally</h2>
-<p>We have Github actions that automatically run tests whenever you open a Pull Request. However, you can also run the tests locally with <code>pytest</code>:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># format code with black</span>
-poetry<span style="color: #6e7681"> </span>run<span style="color: #6e7681"> </span>black<span style="color: #6e7681"> </span>.
+<p>We have GitHub Actions that automatically run tests whenever you open a Pull Request. However, you can also run the tests locally with <code>pytest</code>:</p>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># lint with ruff</span>
+poetry<span style="color: #6e7681"> </span>run<span style="color: #6e7681"> </span>ruff<span style="color: #6e7681"> </span>check
 
-<span style="color: #8b949e; font-style: italic"># lint with flake8</span>
-poetry<span style="color: #6e7681"> </span>run<span style="color: #6e7681"> </span>flake8
+<span style="color: #8b949e; font-style: italic"># format code with ruff</span>
+poetry<span style="color: #6e7681"> </span>run<span style="color: #6e7681"> </span>ruff<span style="color: #6e7681"> </span>format
 
 <span style="color: #8b949e; font-style: italic"># run all tests with pytest (takes rougly 30 minutes)</span>
 poetry<span style="color: #6e7681"> </span>run<span style="color: #6e7681"> </span>pytest
