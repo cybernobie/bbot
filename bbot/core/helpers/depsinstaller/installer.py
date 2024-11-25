@@ -360,6 +360,7 @@ class DepsInstaller:
             "gcc": "gcc",
             "bash": "bash",
             "which": "which",
+            "openssl": "openssl",
         }
         for command, package_name in core_deps.items():
             if not self.parent_helper.which(command):
