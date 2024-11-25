@@ -18,7 +18,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.nps3j3ie.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.5lib32bp.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -588,7 +588,7 @@ cloudcheck: True
 <h3 id="cloud">cloud</h3>
 <p>The cloud module looks at events and tries to determine if they are associated with a cloud provider and tags them as such, and can also identify certain cloud resources</p>
 <h3 id="dns">dns</h3>
-<p>The DNS internal module controls the basic DNS resoultion the BBOT performs, and all of the supporting machinery like wildcard detection, etc.</p>
+<p>The DNS internal module controls the basic DNS resolution the BBOT performs, and all of the supporting machinery like wildcard detection, etc.</p>
 <h3 id="excavate">excavate</h3>
 <p>The excavate internal module designed to passively extract valuable information from HTTP response data. It primarily uses YARA regexes to extract information, with various events being produced from the post-processing of the YARA results.</p>
 <p>Here is a summary of the data it produces:</p>
@@ -604,13 +604,13 @@ The parameter extraction functionality identifies and extracts key web parameter
 <h4 id="content-security-policy-csp-extraction">Content Security Policy (CSP) Extraction</h4>
 <p>The CSP extraction capability focuses on extracting domains from Content-Security-Policy headers. By analyzing these headers, BBOT can identify additional domains which can get fed back into the scan.</p>
 <h4 id="serialization-detection">Serialization Detection</h4>
-<p>Serialized objects are a common source of serious security vulnerablities. Excavate aims to detect those used in Java, .NET, and PHP applications. </p>
+<p>Serialized objects are a common source of serious security vulnerabilities. Excavate aims to detect those used in Java, .NET, and PHP applications. </p>
 <h4 id="functionality-detection">Functionality Detection</h4>
 <p>Looks for specific web functionalities such as file upload fields and WSDL URLs. By identifying these elements, BBOT can pinpoint areas of the application that may require further scrutiny for security vulnerabilities.</p>
 <h4 id="non-http-scheme-detection">Non-HTTP Scheme Detection</h4>
 <p>The non-HTTP scheme detection capability extracts URLs with non-HTTP schemes, such as ftp, mailto, and javascript. By identifying these URLs, BBOT can uncover additional vectors for attack or information leakage.</p>
 <h4 id="custom-yara-rules">Custom Yara Rules</h4>
-<p>Excavate supports the use of custom YARA rules, which wil be added to the other rules before the scan start. For more info, view this.</p>
+<p>Excavate supports the use of custom YARA rules, which will be added to the other rules before the scan start. For more info, view this.</p>
 <h3 id="speculate">speculate</h3>
 <p>Speculate is all about inferring one data type from another, particularly when certain tools like port scanners are not enabled. This is essential functionality for most BBOT scans, allowing for the discovery of web resources when starting with a DNS-only target list without a port scanner. It bridges gaps in the data, providing a more comprehensive view of the target by leveraging existing information.</p>
 <ul>
