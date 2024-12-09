@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.u2a81b3a.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.7lk5f523.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -741,10 +741,10 @@ event type      event data          source module    tags
 </tr>
 <tr>
 <td>DNS_NAME</td>
-<td>60</td>
-<td>43</td>
-<td>anubisdb, asset_inventory, azure_realm, azure_tenant, baddns, baddns_zone, bevigil, binaryedge, bucket_amazon, bucket_azure, bucket_digitalocean, bucket_firebase, bucket_google, bufferoverrun, builtwith, c99, censys, certspotter, chaos, columbus, credshed, crt, dehashed, digitorus, dnsbimi, dnsbrute, dnsbrute_mutations, dnscaa, dnscommonsrv, dnsdumpster, dnstlsrpt, emailformat, fullhunt, github_codesearch, hackertarget, hunterio, internetdb, leakix, myssl, oauth, otx, passivetotal, pgp, portscan, rapiddns, securitytrails, securitytxt, shodan_dns, sitedossier, skymem, speculate, subdomaincenter, subdomainradar, subdomains, trickest, urlscan, viewdns, virustotal, wayback, zoomeye</td>
-<td>anubisdb, azure_tenant, bevigil, binaryedge, bufferoverrun, builtwith, c99, censys, certspotter, chaos, columbus, crt, digitorus, dnsbrute, dnsbrute_mutations, dnscaa, dnscommonsrv, dnsdumpster, fullhunt, hackertarget, hunterio, internetdb, leakix, myssl, ntlm, oauth, otx, passivetotal, rapiddns, securitytrails, shodan_dns, sitedossier, speculate, sslcert, subdomaincenter, subdomainradar, trickest, urlscan, vhost, viewdns, virustotal, wayback, zoomeye</td>
+<td>61</td>
+<td>44</td>
+<td>anubisdb, asset_inventory, azure_realm, azure_tenant, baddns, baddns_zone, bevigil, binaryedge, bucket_amazon, bucket_azure, bucket_digitalocean, bucket_firebase, bucket_google, bufferoverrun, builtwith, c99, censys, certspotter, chaos, columbus, credshed, crt, dehashed, digitorus, dnsbimi, dnsbrute, dnsbrute_mutations, dnscaa, dnscommonsrv, dnsdumpster, dnstlsrpt, emailformat, fullhunt, github_codesearch, hackertarget, hunterio, internetdb, leakix, myssl, nmap_xml, oauth, otx, passivetotal, pgp, portscan, rapiddns, securitytrails, securitytxt, shodan_dns, sitedossier, skymem, speculate, subdomaincenter, subdomainradar, subdomains, trickest, urlscan, viewdns, virustotal, wayback, zoomeye</td>
+<td>anubisdb, azure_tenant, bevigil, binaryedge, bufferoverrun, builtwith, c99, censys, certspotter, chaos, columbus, crt, digitorus, dnsbrute, dnsbrute_mutations, dnscaa, dnscommonsrv, dnsdumpster, dnsresolve, fullhunt, hackertarget, hunterio, internetdb, leakix, myssl, ntlm, oauth, otx, passivetotal, rapiddns, securitytrails, shodan_dns, sitedossier, speculate, sslcert, subdomaincenter, subdomainradar, trickest, urlscan, vhost, viewdns, virustotal, wayback, zoomeye</td>
 </tr>
 <tr>
 <td>DNS_NAME_UNRESOLVED</td>
@@ -790,17 +790,17 @@ event type      event data          source module    tags
 </tr>
 <tr>
 <td>HTTP_RESPONSE</td>
-<td>19</td>
+<td>20</td>
 <td>1</td>
-<td>ajaxpro, asset_inventory, badsecrets, dastardly, dotnetnuke, excavate, filedownload, gitlab, host_header, newsletters, ntlm, paramminer_cookies, paramminer_getparams, paramminer_headers, secretsdb, speculate, telerik, wappalyzer, wpscan</td>
+<td>ajaxpro, asset_inventory, badsecrets, dastardly, dotnetnuke, excavate, filedownload, gitlab, host_header, newsletters, nmap_xml, ntlm, paramminer_cookies, paramminer_getparams, paramminer_headers, secretsdb, speculate, telerik, wappalyzer, wpscan</td>
 <td>httpx</td>
 </tr>
 <tr>
 <td>IP_ADDRESS</td>
-<td>8</td>
-<td>3</td>
-<td>asn, asset_inventory, internetdb, ip2location, ipneighbor, ipstack, portscan, speculate</td>
-<td>asset_inventory, ipneighbor, speculate</td>
+<td>9</td>
+<td>4</td>
+<td>asn, asset_inventory, internetdb, ip2location, ipneighbor, ipstack, nmap_xml, portscan, speculate</td>
+<td>asset_inventory, dnsresolve, ipneighbor, speculate</td>
 </tr>
 <tr>
 <td>IP_RANGE</td>
@@ -818,9 +818,9 @@ event type      event data          source module    tags
 </tr>
 <tr>
 <td>OPEN_TCP_PORT</td>
+<td>5</td>
 <td>4</td>
-<td>4</td>
-<td>asset_inventory, fingerprintx, httpx, sslcert</td>
+<td>asset_inventory, fingerprintx, httpx, nmap_xml, sslcert</td>
 <td>asset_inventory, internetdb, portscan, speculate</td>
 </tr>
 <tr>
@@ -839,17 +839,17 @@ event type      event data          source module    tags
 </tr>
 <tr>
 <td>PROTOCOL</td>
-<td>0</td>
 <td>1</td>
-<td></td>
+<td>1</td>
+<td>nmap_xml</td>
 <td>fingerprintx</td>
 </tr>
 <tr>
 <td>RAW_DNS_RECORD</td>
 <td>0</td>
-<td>2</td>
+<td>3</td>
 <td></td>
-<td>dnsbimi, dnstlsrpt</td>
+<td>dnsbimi, dnsresolve, dnstlsrpt</td>
 </tr>
 <tr>
 <td>RAW_TEXT</td>
