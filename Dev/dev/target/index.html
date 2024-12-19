@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.18g91k3i.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.yfo6szba.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -779,9 +779,9 @@
             <span style="color: #ff7b72">else</span><span style="color: #e6edf3">:</span>
                 <span style="color: #e6edf3">event</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">make_event(target)</span>
                 <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">event:</span>
+                    <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">inputs</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">add(target)</span>
                     <span style="color: #e6edf3">_events</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">[event]</span>
             <span style="color: #ff7b72">for</span> <span style="color: #e6edf3">event</span> <span style="color: #ff7b72; font-weight: bold">in</span> <span style="color: #e6edf3">_events:</span>
-                <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">inputs</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">add(event</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">data)</span>
                 <span style="color: #e6edf3">events</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">add(event)</span>
 
         <span style="color: #8b949e; font-style: italic"># sort by host size to ensure consistency</span>
@@ -914,7 +914,21 @@
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">162</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">163</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">164</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">165</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">ScanSeeds</span><span style="color: #e6edf3">(BaseTarget):</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">165</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">166</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">167</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">168</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">169</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">170</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">171</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">172</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">173</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">174</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">175</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">176</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">177</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">178</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">179</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">ScanSeeds</span><span style="color: #e6edf3">(BaseTarget):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    Initial events used to seed a scan.</span>
 
@@ -935,6 +949,20 @@
         <span style="color: #e6edf3">username_event</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">make_event(match</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">group(</span><span style="color: #a5d6ff">1</span><span style="color: #e6edf3">),</span> <span style="color: #e6edf3">event_type</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #a5d6ff">"USERNAME"</span><span style="color: #e6edf3">)</span>
         <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">username_event:</span>
             <span style="color: #ff7b72">return</span> <span style="color: #e6edf3">[username_event]</span>
+        <span style="color: #ff7b72">return</span> <span style="color: #e6edf3">[]</span>
+
+    <span style="color: #d2a8ff; font-weight: bold">@special_target_type</span><span style="color: #e6edf3">(</span><span style="color: #79c0ff">r</span><span style="color: #a5d6ff">"^(?:FILESYSTEM|FILE|FOLDER|DIR|PATH):(.*)"</span><span style="color: #e6edf3">)</span>
+    <span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">handle_filesystem</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">match):</span>
+        <span style="color: #e6edf3">filesystem_event</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">make_event({</span><span style="color: #a5d6ff">"path"</span><span style="color: #e6edf3">:</span> <span style="color: #e6edf3">match</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">group(</span><span style="color: #a5d6ff">1</span><span style="color: #e6edf3">)},</span> <span style="color: #e6edf3">event_type</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #a5d6ff">"FILESYSTEM"</span><span style="color: #e6edf3">)</span>
+        <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">filesystem_event:</span>
+            <span style="color: #ff7b72">return</span> <span style="color: #e6edf3">[filesystem_event]</span>
+        <span style="color: #ff7b72">return</span> <span style="color: #e6edf3">[]</span>
+
+    <span style="color: #d2a8ff; font-weight: bold">@special_target_type</span><span style="color: #e6edf3">(</span><span style="color: #79c0ff">r</span><span style="color: #a5d6ff">"^(?:MOBILE_APP|APK|IPA|APP):(.*)"</span><span style="color: #e6edf3">)</span>
+    <span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">handle_mobile_app</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">match):</span>
+        <span style="color: #e6edf3">mobile_app_event</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">make_event({</span><span style="color: #a5d6ff">"url"</span><span style="color: #e6edf3">:</span> <span style="color: #e6edf3">match</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">group(</span><span style="color: #a5d6ff">1</span><span style="color: #e6edf3">)},</span> <span style="color: #e6edf3">event_type</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #a5d6ff">"MOBILE_APP"</span><span style="color: #e6edf3">)</span>
+        <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">mobile_app_event:</span>
+            <span style="color: #ff7b72">return</span> <span style="color: #e6edf3">[mobile_app_event]</span>
         <span style="color: #ff7b72">return</span> <span style="color: #e6edf3">[]</span>
 
     <span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">get</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">event,</span> <span style="color: #e6edf3">single</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #79c0ff">True</span><span style="color: #e6edf3">,</span> <span style="color: #ff7b72; font-weight: bold">**</span><span style="color: #e6edf3">kwargs):</span>
@@ -976,12 +1004,12 @@
 <p>A collection of BBOT events that represent a scan's whitelist.</p>
 <details class="quote">
 <summary>Source code in <code>bbot/scanner/target.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">175</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">176</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">177</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">178</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">179</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">180</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">ScanWhitelist</span><span style="color: #e6edf3">(ACLTarget):</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">189</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">190</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">191</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">192</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">193</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">194</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">ScanWhitelist</span><span style="color: #e6edf3">(ACLTarget):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    A collection of BBOT events that represent a scan's whitelist.</span>
 <span style="color: #a5d6ff">    """</span>
@@ -1003,21 +1031,7 @@
 <p>A collection of BBOT events that represent a scan's blacklist.</p>
 <details class="quote">
 <summary>Source code in <code>bbot/scanner/target.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">183</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">184</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">185</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">186</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">187</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">188</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">189</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">190</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">191</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">192</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">193</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">194</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">195</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">196</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">197</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">197</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">198</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">199</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">200</span>
@@ -1051,7 +1065,21 @@
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">228</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">229</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">230</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">231</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">ScanBlacklist</span><span style="color: #e6edf3">(ACLTarget):</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">231</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">232</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">233</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">234</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">235</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">236</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">237</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">238</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">239</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">240</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">241</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">242</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">243</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">244</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">245</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">ScanBlacklist</span><span style="color: #e6edf3">(ACLTarget):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    A collection of BBOT events that represent a scan's blacklist.</span>
 <span style="color: #a5d6ff">    """</span>
@@ -1113,27 +1141,27 @@
 <p>Here, for the blacklist, we modify this method to also consider any special regex patterns specified by the user</p>
 <details class="quote">
 <summary>Source code in <code>bbot/scanner/target.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">199</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">200</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">201</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">202</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">203</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">204</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">205</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">206</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">207</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">208</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">209</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">210</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">211</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">212</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">213</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">213</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">214</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">215</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">216</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">217</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">218</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">219</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">get</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">event,</span> <span style="color: #ff7b72; font-weight: bold">**</span><span style="color: #e6edf3">kwargs):</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">219</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">220</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">221</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">222</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">223</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">224</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">225</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">226</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">227</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">228</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">229</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">230</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">231</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">232</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">233</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">get</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">event,</span> <span style="color: #ff7b72; font-weight: bold">**</span><span style="color: #e6edf3">kwargs):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    Here, for the blacklist, we modify this method to also consider any special regex patterns specified by the user</span>
 <span style="color: #a5d6ff">    """</span>
@@ -1176,21 +1204,7 @@
 </details> <p>Provides high-level functions like in_scope(), which includes both whitelist and blacklist checks.</p>
 <details class="quote">
 <summary>Source code in <code>bbot/scanner/target.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">234</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">235</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">236</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">237</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">238</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">239</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">240</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">241</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">242</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">243</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">244</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">245</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">246</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">247</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">248</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">248</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">249</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">250</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">251</span>
@@ -1292,7 +1306,21 @@
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">347</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">348</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">349</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">350</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">BBOTTarget</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">350</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">351</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">352</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">353</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">354</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">355</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">356</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">357</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">358</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">359</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">360</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">361</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">362</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">363</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">364</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">BBOTTarget</span><span style="color: #e6edf3">:</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    A convenient abstraction of a scan target that contains three subtargets:</span>
 <span style="color: #a5d6ff">        - seeds</span>
@@ -1453,21 +1481,21 @@
 </code></pre></div>
 <details class="quote">
 <summary>Source code in <code>bbot/scanner/target.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">304</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">305</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">306</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">307</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">308</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">309</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">310</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">311</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">312</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">313</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">314</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">315</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">316</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">317</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">318</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">blacklisted</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">host):</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">318</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">319</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">320</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">321</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">322</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">323</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">324</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">325</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">326</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">327</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">328</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">329</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">330</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">331</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">332</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">blacklisted</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">host):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    Check whether a hostname, url, IP, etc. is blacklisted.</span>
 
@@ -1504,25 +1532,25 @@ If <code>host</code> is an event and its scope distance is zero, it will automat
 </code></pre></div>
 <details class="quote">
 <summary>Source code in <code>bbot/scanner/target.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">284</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">285</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">286</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">287</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">288</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">289</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">290</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">291</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">292</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">293</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">294</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">295</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">296</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">297</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">298</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">298</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">299</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">300</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">301</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">302</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">in_scope</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">host):</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">302</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">303</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">304</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">305</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">306</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">307</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">308</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">309</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">310</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">311</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">312</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">313</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">314</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">315</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">316</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">in_scope</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">host):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    Check whether a hostname, url, IP, etc. is in scope.</span>
 <span style="color: #a5d6ff">    Accepts either events or string data.</span>
@@ -1572,21 +1600,21 @@ If <code>host</code> is an event and its scope distance is zero, it will automat
 </code></pre></div>
 <details class="quote">
 <summary>Source code in <code>bbot/scanner/target.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">320</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">321</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">322</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">323</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">324</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">325</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">326</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">327</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">328</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">329</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">330</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">331</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">332</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">333</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">334</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">whitelisted</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">host):</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">334</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">335</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">336</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">337</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">338</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">339</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">340</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">341</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">342</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">343</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">344</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">345</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">346</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">347</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">348</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">whitelisted</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">host):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    Check whether a hostname, url, IP, etc. is whitelisted.</span>
 
