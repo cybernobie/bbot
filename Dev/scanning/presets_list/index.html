@@ -20,13 +20,13 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.0tuk180f.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.pumaog10.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#baddns-thorough">
+<a class="md-skip" href="#baddns-intense">
           Skip to content
         </a>
 </div>
@@ -264,9 +264,9 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#baddns-thorough">
+<a class="md-nav__link" href="#baddns-intense">
 <span class="md-ellipsis">
-      baddns-thorough
+      baddns-intense
     </span>
 </a>
 </li>
@@ -334,6 +334,34 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#nuclei">
+<span class="md-ellipsis">
+      nuclei
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nuclei-budget">
+<span class="md-ellipsis">
+      nuclei-budget
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nuclei-intense">
+<span class="md-ellipsis">
+      nuclei-intense
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nuclei-technology">
+<span class="md-ellipsis">
+      nuclei-technology
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#paramminer">
 <span class="md-ellipsis">
       paramminer
@@ -344,6 +372,13 @@
 <a class="md-nav__link" href="#spider">
 <span class="md-ellipsis">
       spider
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#spider-intense">
+<span class="md-ellipsis">
+      spider-intense
     </span>
 </a>
 </li>
@@ -706,11 +741,11 @@
 <h1>List of Presets</h1>
 <p>Below is a list of every default BBOT preset, including its YAML.</p>
 <!-- BBOT PRESET YAML -->
-<h2 id="baddns-thorough"><strong>baddns-thorough</strong></h2>
+<h2 id="baddns-intense"><strong>baddns-intense</strong></h2>
 <p>Run all baddns modules and submodules.</p>
 <details class="note">
-<summary><code>baddns-thorough.yml</code></summary>
-<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/presets/baddns-thorough.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Run all baddns modules and submodules.</span>
+<summary><code>baddns-intense.yml</code></summary>
+<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/presets/baddns-intense.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Run all baddns modules and submodules.</span>
 
 
 <span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
@@ -918,7 +953,7 @@
 <span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">paramminer</span>
 <span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">dirbust-light</span>
 <span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">web-screenshots</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">baddns-thorough</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">baddns-intense</span>
 
 <span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
 <span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
@@ -927,6 +962,138 @@
 </code></pre></div>
 </details>
 <p>Modules: <a href="" title="anubisdb, apkpure, asn, azure_realm, azure_tenant, baddns_direct, baddns_zone, baddns, badsecrets, bevigil, binaryedge, bucket_amazon, bucket_azure, bucket_digitalocean, bucket_file_enum, bucket_firebase, bucket_google, bufferoverrun, builtwith, c99, censys, certspotter, chaos, code_repository, crt, dehashed, digitorus, dnsbimi, dnsbrute_mutations, dnsbrute, dnscaa, dnscommonsrv, dnsdumpster, dnstlsrpt, docker_pull, dockerhub, emailformat, ffuf_shortnames, ffuf, filedownload, fullhunt, git_clone, git, github_codesearch, github_org, github_workflows, gitlab, google_playstore, gowitness, hackertarget, httpx, hunterio, iis_shortnames, internetdb, ipneighbor, jadx, leakix, myssl, ntlm, oauth, otx, paramminer_cookies, paramminer_getparams, paramminer_headers, passivetotal, pgp, postman_download, postman, rapiddns, robots, securitytrails, securitytxt, shodan_dns, sitedossier, skymem, social, sslcert, subdomaincenter, subdomainradar, trickest, trufflehog, urlscan, virustotal, wappalyzer, wayback, zoomeye">86</a></p>
+<h2 id="nuclei"><strong>nuclei</strong></h2>
+<p>Run nuclei scans against all discovered targets</p>
+<details class="note">
+<summary><code>nuclei.yml</code></summary>
+<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/presets/nuclei/nuclei.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Run nuclei scans against all discovered targets</span>
+
+<span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">httpx</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">nuclei</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">portfilter</span>
+
+<span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">nuclei</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">directory_only</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">True</span><span style="color: #6E7681"> </span><span style="color: #8B949E; font-style: italic"># Do not run nuclei on individual non-directory URLs</span>
+
+
+<span style="color: #7EE787">conditions</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">|</span>
+<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% if config.web.spider_distance != 0 %}</span>
+<span style="color: #6E7681">      </span><span style="color: #79C0FF; font-weight: bold">{{ warn("Running nuclei with spider enabled is generally not recommended. Consider removing 'spider' preset.") }}</span>
+<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% endif %}</span>
+
+
+
+<span style="color: #8B949E; font-style: italic"># Additional Examples:</span>
+
+<span style="color: #8B949E; font-style: italic"># Slowing Down Scan</span>
+
+<span style="color: #8B949E; font-style: italic">#config:</span>
+<span style="color: #8B949E; font-style: italic">#  modules:</span>
+<span style="color: #8B949E; font-style: italic">#    nuclei:</span>
+<span style="color: #8B949E; font-style: italic">#      ratelimit: 10</span>
+<span style="color: #8B949E; font-style: italic">#      concurrency: 5</span>
+</code></pre></div>
+</details>
+<p>Category: nuclei</p>
+<p>Modules: <a href="" title="httpx, nuclei, portfilter">3</a></p>
+<h2 id="nuclei-budget"><strong>nuclei-budget</strong></h2>
+<p>Run nuclei scans against all discovered targets, using budget mode to look for low hanging fruit with greatly reduced number of requests</p>
+<details class="note">
+<summary><code>nuclei-budget.yml</code></summary>
+<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/presets/nuclei/nuclei-budget.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Run nuclei scans against all discovered targets, using budget mode to look for low hanging fruit with greatly reduced number of requests</span>
+
+<span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">httpx</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">nuclei</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">portfilter</span>
+
+<span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">nuclei</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">mode</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">budget</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">budget</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">10</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">directory_only</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">true</span><span style="color: #6E7681"> </span><span style="color: #8B949E; font-style: italic"># Do not run nuclei on individual non-directory URLs</span>
+
+<span style="color: #7EE787">conditions</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">|</span>
+<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% if config.web.spider_distance != 0 %}</span>
+<span style="color: #6E7681">      </span><span style="color: #79C0FF; font-weight: bold">{{ warn("Running nuclei with spider enabled is generally not recommended. Consider removing 'spider' preset.") }}</span>
+<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% endif %}</span>
+</code></pre></div>
+</details>
+<p>Category: nuclei</p>
+<p>Modules: <a href="" title="httpx, nuclei, portfilter">3</a></p>
+<h2 id="nuclei-intense"><strong>nuclei-intense</strong></h2>
+<p>Run nuclei scans against all discovered targets, allowing for spidering, against ALL URLs, and with additional discovery modules.</p>
+<details class="note">
+<summary><code>nuclei-intense.yml</code></summary>
+<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/presets/nuclei/nuclei-intense.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Run nuclei scans against all discovered targets, allowing for spidering, against ALL URLs, and with additional discovery modules.</span>
+
+<span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">httpx</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">nuclei</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">robots</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">urlscan</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">portfilter</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">wayback</span>
+
+<span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">nuclei</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">directory_only</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">False</span><span style="color: #6E7681"> </span><span style="color: #8B949E; font-style: italic"># Will run nuclei on ALL discovered URLs - Be careful!</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">wayback</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">urls</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">true</span>
+
+<span style="color: #7EE787">conditions</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">|</span>
+<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% if config.web.spider_distance == 0 and config.modules.nuclei.directory_only == False %}</span>
+<span style="color: #6E7681">      </span><span style="color: #79C0FF; font-weight: bold">{{ warn("The 'nuclei-intense' preset turns the 'directory_only' limitation off on the nuclei module. To make the best use of this, you may want to enable spidering with 'spider' or 'spider-intense' preset.") }}</span>
+<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% endif %}</span>
+
+
+<span style="color: #8B949E; font-style: italic"># Example for also running a dirbust</span>
+
+<span style="color: #8B949E; font-style: italic">#include:</span>
+<span style="color: #8B949E; font-style: italic">#  - dirbust-light</span>
+</code></pre></div>
+</details>
+<p>Category: nuclei</p>
+<p>Modules: <a href="" title="httpx, nuclei, portfilter, robots, urlscan, wayback">6</a></p>
+<h2 id="nuclei-technology"><strong>nuclei-technology</strong></h2>
+<p>Run nuclei scans against all discovered targets, running templates which match discovered technologies</p>
+<details class="note">
+<summary><code>nuclei-technology.yml</code></summary>
+<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/presets/nuclei/nuclei-technology.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Run nuclei scans against all discovered targets, running templates which match discovered technologies</span>
+
+<span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">httpx</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">nuclei</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">portfilter</span>
+
+<span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">nuclei</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">mode</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">technology</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">directory_only</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">True</span><span style="color: #6E7681"> </span><span style="color: #8B949E; font-style: italic"># Do not run nuclei on individual non-directory URLs. This is less unsafe to disable with technology mode.</span>
+
+<span style="color: #7EE787">conditions</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">|</span>
+<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% if config.web.spider_distance != 0 %}</span>
+<span style="color: #6E7681">      </span><span style="color: #79C0FF; font-weight: bold">{{ warn("Running nuclei with spider enabled is generally not recommended. Consider removing 'spider' preset.") }}</span>
+<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% endif %}</span>
+
+<span style="color: #8B949E; font-style: italic"># Example for also running a dirbust</span>
+
+<span style="color: #8B949E; font-style: italic">#include:</span>
+<span style="color: #8B949E; font-style: italic">#  - dirbust-light</span>
+</code></pre></div>
+</details>
+<p>Category: nuclei</p>
+<p>Modules: <a href="" title="httpx, nuclei, portfilter">3</a></p>
 <h2 id="paramminer"><strong>paramminer</strong></h2>
 <p>Discover new web parameters via brute-force</p>
 <details class="note">
@@ -968,6 +1135,26 @@
 <span style="color: #6E7681">    </span><span style="color: #7EE787">spider_depth</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">4</span>
 <span style="color: #6E7681">    </span><span style="color: #8B949E; font-style: italic"># maximum number of links to follow per page</span>
 <span style="color: #6E7681">    </span><span style="color: #7EE787">spider_links_per_page</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">25</span>
+</code></pre></div>
+</details>
+<p>Modules: <a href="" title="httpx">1</a></p>
+<h2 id="spider-intense"><strong>spider-intense</strong></h2>
+<p>Recursive web spider with more aggressive settings</p>
+<details class="note">
+<summary><code>spider-intense.yml</code></summary>
+<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/presets/spider-intense.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Recursive web spider with more aggressive settings</span>
+
+<span style="color: #7EE787">include</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">spider</span>
+
+<span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">web</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #8B949E; font-style: italic"># how many links to follow in a row</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">spider_distance</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">4</span>
+<span style="color: #6E7681">    </span><span style="color: #8B949E; font-style: italic"># don't follow links whose directory depth is higher than 6</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">spider_depth</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">6</span>
+<span style="color: #6E7681">    </span><span style="color: #8B949E; font-style: italic"># maximum number of links to follow per page</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">spider_links_per_page</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">50</span>
 </code></pre></div>
 </details>
 <p>Modules: <a href="" title="httpx">1</a></p>
@@ -1066,7 +1253,7 @@
 </thead>
 <tbody>
 <tr>
-<td>baddns-thorough</td>
+<td>baddns-intense</td>
 <td></td>
 <td>Run all baddns modules and submodules.</td>
 <td>4</td>
@@ -1136,6 +1323,34 @@
 <td>anubisdb, apkpure, asn, azure_realm, azure_tenant, baddns, baddns_direct, baddns_zone, badsecrets, bevigil, binaryedge, bucket_amazon, bucket_azure, bucket_digitalocean, bucket_file_enum, bucket_firebase, bucket_google, bufferoverrun, builtwith, c99, censys, certspotter, chaos, code_repository, crt, dehashed, digitorus, dnsbimi, dnsbrute, dnsbrute_mutations, dnscaa, dnscommonsrv, dnsdumpster, dnstlsrpt, docker_pull, dockerhub, emailformat, ffuf, ffuf_shortnames, filedownload, fullhunt, git, git_clone, github_codesearch, github_org, github_workflows, gitlab, google_playstore, gowitness, hackertarget, httpx, hunterio, iis_shortnames, internetdb, ipneighbor, jadx, leakix, myssl, ntlm, oauth, otx, paramminer_cookies, paramminer_getparams, paramminer_headers, passivetotal, pgp, postman, postman_download, rapiddns, robots, securitytrails, securitytxt, shodan_dns, sitedossier, skymem, social, sslcert, subdomaincenter, subdomainradar, trickest, trufflehog, urlscan, virustotal, wappalyzer, wayback, zoomeye</td>
 </tr>
 <tr>
+<td>nuclei</td>
+<td>nuclei</td>
+<td>Run nuclei scans against all discovered targets</td>
+<td>3</td>
+<td>httpx, nuclei, portfilter</td>
+</tr>
+<tr>
+<td>nuclei-budget</td>
+<td>nuclei</td>
+<td>Run nuclei scans against all discovered targets, using budget mode to look for low hanging fruit with greatly reduced number of requests</td>
+<td>3</td>
+<td>httpx, nuclei, portfilter</td>
+</tr>
+<tr>
+<td>nuclei-intense</td>
+<td>nuclei</td>
+<td>Run nuclei scans against all discovered targets, allowing for spidering, against ALL URLs, and with additional discovery modules.</td>
+<td>6</td>
+<td>httpx, nuclei, portfilter, robots, urlscan, wayback</td>
+</tr>
+<tr>
+<td>nuclei-technology</td>
+<td>nuclei</td>
+<td>Run nuclei scans against all discovered targets, running templates which match discovered technologies</td>
+<td>3</td>
+<td>httpx, nuclei, portfilter</td>
+</tr>
+<tr>
 <td>paramminer</td>
 <td>web</td>
 <td>Discover new web parameters via brute-force</td>
@@ -1146,6 +1361,13 @@
 <td>spider</td>
 <td></td>
 <td>Recursive web spider</td>
+<td>1</td>
+<td>httpx</td>
+</tr>
+<tr>
+<td>spider-intense</td>
+<td></td>
+<td>Recursive web spider with more aggressive settings</td>
 <td>1</td>
 <td>httpx</td>
 </tr>
