@@ -117,17 +117,24 @@ class dom_excavate(BaseModule):
     def create_response_event(self, url, content, status=200, parent_event=None):
         """Create properly formatted HTTP_RESPONSE event"""
         try:
+            # Create raw header string
+            raw_header = f"HTTP/1.1 {status}\r\n"
+            raw_header += "Content-Type: text/html\r\n"
+            raw_header += f"Content-Length: {len(content)}\r\n"
+            raw_header += "X-DOM-Excavate: true\r\n\r\n"
+
             event_data = {
                 "host": urlparse(url).netloc,
                 "url": url,
                 "status": status,
                 "body": content,
-                "method": "GET",  # Add required method field
+                "method": "GET",
                 "header-dict": {
                     "content-type": ["text/html"],
                     "x-dom-excavate": ["true"],
                     "x-dom-length": [str(len(content))],
                 },
+                "raw_header": raw_header,
                 "rendered_dom": True
             }
             
