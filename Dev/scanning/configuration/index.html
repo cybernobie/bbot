@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.otydbfv9.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.psiofb14.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -1052,6 +1052,12 @@ Is the same as:
 <td></td>
 </tr>
 <tr>
+<td>modules.ffuf.ignore_case</td>
+<td>bool</td>
+<td>Only put lowercase words into the wordlist</td>
+<td>False</td>
+</tr>
+<tr>
 <td>modules.ffuf.lines</td>
 <td>int</td>
 <td>take only the first N lines from the wordlist when finding directories</td>
@@ -1088,6 +1094,12 @@ Is the same as:
 <td>True</td>
 </tr>
 <tr>
+<td>modules.ffuf_shortnames.find_subwords</td>
+<td>bool</td>
+<td>Attempt to detect subwords and make additional ffuf runs against them</td>
+<td>False</td>
+</tr>
+<tr>
 <td>modules.ffuf_shortnames.ignore_redirects</td>
 <td>bool</td>
 <td>Explicitly ignore redirects (301,302)</td>
@@ -1110,12 +1122,6 @@ Is the same as:
 <td>str</td>
 <td>ffuf version</td>
 <td>2.0.0</td>
-</tr>
-<tr>
-<td>modules.ffuf_shortnames.wordlist</td>
-<td>str</td>
-<td>Specify wordlist to use when finding directories</td>
-<td></td>
 </tr>
 <tr>
 <td>modules.ffuf_shortnames.wordlist_extensions</td>
@@ -1152,6 +1158,12 @@ Is the same as:
 <td>str</td>
 <td>fingerprintx version</td>
 <td>1.1.4</td>
+</tr>
+<tr>
+<td>modules.generic_ssrf.skip_dns_interaction</td>
+<td>bool</td>
+<td>Do not report DNS interactions (only HTTP interaction)</td>
+<td>False</td>
 </tr>
 <tr>
 <td>modules.gitlab.api_key</td>
@@ -1343,7 +1355,7 @@ Is the same as:
 <td>modules.nuclei.version</td>
 <td>str</td>
 <td>nuclei version</td>
-<td>3.3.8</td>
+<td>3.3.9</td>
 </tr>
 <tr>
 <td>modules.oauth.try_all</td>
@@ -2009,7 +2021,7 @@ Is the same as:
 <td>modules.trufflehog.version</td>
 <td>str</td>
 <td>trufflehog version</td>
-<td>3.88.2</td>
+<td>3.88.9</td>
 </tr>
 <tr>
 <td>modules.urlscan.urls</td>
