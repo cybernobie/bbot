@@ -27,7 +27,7 @@ class codeql(BaseModule):
 
     deps_ansible = [
         {
-            "name": "Create codeql directory",
+            "name": "Create CodeQL directory",
             "file": {"path": "#{BBOT_TOOLS}/codeql", "state": "directory", "mode": "0755"},
         },
         {
@@ -35,19 +35,32 @@ class codeql(BaseModule):
             "file": {"path": "#{BBOT_TOOLS}/codeql/databases", "state": "directory", "mode": "0755"},
         },
         {
-            "name": "Download codeql",
+            "name": "Create packages directory",
+            "file": {"path": "#{BBOT_TOOLS}/codeql/packages", "state": "directory", "mode": "0755"},
+        },
+        {
+            "name": "Download CodeQL CLI",
             "unarchive": {
                 "src": "https://github.com/github/codeql-cli-binaries/releases/download/v2.20.6/codeql-linux64.zip",
                 "dest": "#{BBOT_TOOLS}/",
                 "remote_src": True,
             },
         },
-        {"name": "Make codeql executable", "file": {"path": "#{BBOT_TOOLS}/codeql/codeql", "mode": "u+x,g+x,o+x"}},
         {
-            "name": "Install JavaScript query pack",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/javascript-queries",
+            "name": "Make CodeQL executable",
+            "file": {"path": "#{BBOT_TOOLS}/codeql/codeql", "mode": "u+x,g+x,o+x"},
+        },
+        {
+            "name": "Download JavaScript Query Pack to Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/javascript-queries --dir=#{BBOT_TOOLS}/codeql/packages",
+        },
+        {
+            "name": "Install JavaScript Query Pack from Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/javascript-queries --common-caches=#{BBOT_TOOLS}/codeql/packages",
         },
     ]
+
+    
 
     in_scope_only = True
     _module_threads = 4
@@ -62,6 +75,31 @@ class codeql(BaseModule):
                 False,
                 f"Invalid severity level '{self.min_severity}'. Valid options are: {', '.join(self.severity_levels.keys())}",
             )
+
+        # Build the query list during setup
+        self.queries = [
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/ExceptionXss.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/XssThroughDom.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/StoredXss.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/UnsafeJQueryPlugin.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/UnsafeHtmlConstruction.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/Xss.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/ReflectedXss.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-601/ClientSideUrlRedirect.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-201/PostMessageStar.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-094/CodeInjection.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-094/ExpressionInjection.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/AngularJS/InsecureUrlWhitelist.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/AngularJS/DisablingSce.ql",
+        ]
+
+        # # Add custom queries from wordlists directory
+        # custom_queries_dir = os.path.join(self.scan.helpers.wordlist_dir, "codeql_queries")
+        # if os.path.exists(custom_queries_dir):
+        #     for file in os.listdir(custom_queries_dir):
+        #         if file.endswith('.ql'):
+        #             self.queries.append(os.path.join(custom_queries_dir, file))
+        #             self.debug(f"Added custom query: {file}")
 
         # Clean up any stale database files
         database_dir = os.path.join(self.scan.helpers.tools_dir, "codeql", "databases")
@@ -100,19 +138,7 @@ class codeql(BaseModule):
             "analyze",
             database_path,
             "--format=csv",
-            "codeql/javascript-queries:Security/CWE-079/ExceptionXss.ql",
-            "codeql/javascript-queries:Security/CWE-079/XssThroughDom.ql",
-            "codeql/javascript-queries:Security/CWE-079/StoredXss.ql",
-            "codeql/javascript-queries:Security/CWE-079/UnsafeJQueryPlugin.ql",
-            "codeql/javascript-queries:Security/CWE-079/UnsafeHtmlConstruction.ql",
-            "codeql/javascript-queries:Security/CWE-079/Xss.ql",
-            "codeql/javascript-queries:Security/CWE-079/ReflectedXss.ql",
-            "codeql/javascript-queries:Security/CWE-601/ClientSideUrlRedirect.ql",
-            "codeql/javascript-queries:Security/CWE-201/PostMessageStar.ql",
-            "codeql/javascript-queries:Security/CWE-094/CodeInjection.ql",
-            "codeql/javascript-queries:Security/CWE-094/ExpressionInjection.ql",
-            "codeql/javascript-queries:AngularJS/InsecureUrlWhitelist.ql",
-            "codeql/javascript-queries:AngularJS/DisablingSce.ql",
+            *self.queries,
             f"--output={output_path}",
         ]
 
