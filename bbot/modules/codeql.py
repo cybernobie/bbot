@@ -1,3 +1,4 @@
+from pathlib import Path
 from bbot.modules.base import BaseModule
 from webcap.browser import Browser
 from webcap import defaults
@@ -29,14 +30,25 @@ class codeql(BaseModule):
         {
             "name": "Create CodeQL directory",
             "file": {"path": "#{BBOT_TOOLS}/codeql", "state": "directory", "mode": "0755"},
+            "register": "codeql_dir_created",
         },
         {
             "name": "Create databases directory",
-            "file": {"path": "#{BBOT_TOOLS}/codeql/databases", "state": "directory", "mode": "0755"},
+            "file": {
+                "path": "#{BBOT_TOOLS}/codeql/databases",
+                "state": "directory",
+                "mode": "0755",
+            },
+            "when": "codeql_dir_created is success",
         },
         {
             "name": "Create packages directory",
-            "file": {"path": "#{BBOT_TOOLS}/codeql/packages", "state": "directory", "mode": "0755"},
+            "file": {
+                "path": "#{BBOT_TOOLS}/codeql/packages",
+                "state": "directory",
+                "mode": "0755",
+            },
+            "when": "codeql_dir_created is success",
         },
         {
             "name": "Download CodeQL CLI",
@@ -45,22 +57,89 @@ class codeql(BaseModule):
                 "dest": "#{BBOT_TOOLS}/",
                 "remote_src": True,
             },
+            "register": "codeql_downloaded",
+            "when": "codeql_dir_created is success",
         },
         {
             "name": "Make CodeQL executable",
             "file": {"path": "#{BBOT_TOOLS}/codeql/codeql", "mode": "u+x,g+x,o+x"},
+            "when": "codeql_downloaded is success",
         },
         {
-            "name": "Download JavaScript Query Pack to Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/javascript-queries --dir=#{BBOT_TOOLS}/codeql/packages",
+            "name": "Download JavaScript-all Query Pack to Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/javascript-all --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
+            "register": "query_pack_all_downloaded",
         },
         {
-            "name": "Install JavaScript Query Pack from Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/javascript-queries --common-caches=#{BBOT_TOOLS}/codeql/packages",
+            "name": "Install JavaScript-all Query Pack from Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/javascript-all/2.5.0 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
+            "when": "query_pack_all_downloaded is success",
+            "register": "query_pack_all_installed",
+        },
+        {
+            "name": "Download suite-helpers Query Pack to Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/suite-helpers --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
+            "when": "query_pack_all_installed is success",
+            "register": "suite_helpers_downloaded",
+        },
+        {
+            "name": "Install suite-helpers Query Pack from Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/suite-helpers/1.0.18 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
+            "when": "suite_helpers_downloaded is success",
+            "register": "suite_helpers_installed",
+        },
+        {
+            "name": "Download typos Query Pack to Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/typos --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
+            "when": "suite_helpers_installed is success",
+            "register": "typos_downloaded",
+        },
+        {
+            "name": "Install typos Query Pack from Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/typos/1.0.18 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
+            "when": "typos_downloaded is success",
+            "register": "typos_installed",
+        },
+        {
+            "name": "Download util Query Pack to Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/util --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
+            "when": "typos_installed is success",
+            "register": "util_downloaded",
+        },
+        {
+            "name": "Install util Query Pack from Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/util/2.0.5 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
+            "when": "util_downloaded is success",
+            "register": "util_installed",
+        },
+        {
+            "name": "Download JavaScript-queries Query Pack to Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/javascript-queries --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
+            "when": "util_installed is success",
+            "register": "query_pack_downloaded",
+        },
+        {
+            "name": "Install JavaScript-queries Query Pack from Custom Directory",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/javascript-queries/1.5.0 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
+            "when": "query_pack_downloaded is success",
+        },
+        {
+            "name": "Create CodeQL custom queries directory",
+            "file": {
+                "path": "#{BBOT_TOOLS}/codeql/packages/codeql/javascript-queries/1.5.0/custom",
+                "state": "directory",
+                "mode": "0755",
+            },
+        },
+        {
+            "name": "Copy custom queries to CodeQL Custom Query Pack directory",
+            "copy": {
+                "src": "#{BBOT_WORDLISTS}/codeql_queries/",
+                "dest": "#{BBOT_TOOLS}/codeql/packages/codeql/javascript-queries/1.5.0/custom/",
+                "remote_src": False,
+            },
         },
     ]
-
-    
 
     in_scope_only = True
     _module_threads = 4
@@ -91,6 +170,7 @@ class codeql(BaseModule):
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-094/ExpressionInjection.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/AngularJS/InsecureUrlWhitelist.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/AngularJS/DisablingSce.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/custom/dom-xss-jquery-contains.ql",
         ]
 
         # # Add custom queries from wordlists directory
@@ -121,6 +201,7 @@ class codeql(BaseModule):
             "create",
             database_path,
             "--language=javascript",
+            f"--common-caches={self.scan.helpers.tools_dir}/codeql/",
             f"--source-root={source_root}",
         ]
         self.verbose(f"Executing CodeQL command to create db")
@@ -138,6 +219,8 @@ class codeql(BaseModule):
             "analyze",
             database_path,
             "--format=csv",
+            f"--common-caches={self.scan.helpers.tools_dir}/codeql",
+            f"--additional-packs={self.scan.helpers.tools_dir}/codeql/packages",
             *self.queries,
             f"--output={output_path}",
         ]
