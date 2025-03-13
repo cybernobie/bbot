@@ -142,7 +142,7 @@ class codeql(BaseModule):
     ]
 
     in_scope_only = True
-    _module_threads = 4
+    _module_threads = 2
 
     async def setup(self):
         self.ignore_scope = self.config.get("ignore_scope", False)
