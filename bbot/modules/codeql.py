@@ -18,11 +18,11 @@ class codeql(BaseModule):
         "created_date": "2025-03-05",
         "author": "@liquidsec",
     }
-    deps_pip = ["numpy", "webcap"]
+    deps_pip = ["webcap"]
 
-    options = {"ignore_scope": False, "min_severity": "error"}
+    options = {"mode": "all", "min_severity": "error"}
     options_desc = {
-        "ignore_scope": "Ignore scope and process all scripts",
+        "mode": "Script processing mode: 'all' (process all scripts), 'in_scope' (only process in-scope scripts), or 'dom_only' (only process DOM)",
         "min_severity": "Minimum severity level to report (error, warning, recommendation, note)",
     }
 
@@ -145,9 +145,12 @@ class codeql(BaseModule):
     _module_threads = 2
 
     async def setup(self):
-        self.ignore_scope = self.config.get("ignore_scope", False)
-        self.severity_levels = {"error": 4, "warning": 3, "recommendation": 2, "note": 1}
+        self.mode = self.config.get("mode", "in_scope").lower()
+        valid_modes = {"all", "in_scope", "dom_only"}
+        if self.mode not in valid_modes:
+            return False, f"Invalid mode '{self.mode}'. Valid options are: {', '.join(valid_modes)}"
 
+        self.severity_levels = {"error": 4, "warning": 3, "recommendation": 2, "note": 1}
         self.min_severity = self.config.get("min_severity", "error").lower()
         if self.min_severity not in self.severity_levels:
             return (
@@ -204,7 +207,7 @@ class codeql(BaseModule):
             f"--common-caches={self.scan.helpers.tools_dir}/codeql/",
             f"--source-root={source_root}",
         ]
-        self.verbose(f"Executing CodeQL command to create db")
+        self.verbose("Executing CodeQL command to create db")
         async for line in self.run_process_live(command):
             pass
 
@@ -225,7 +228,7 @@ class codeql(BaseModule):
             f"--output={output_path}",
         ]
 
-        self.verbose(f"Executing CodeQL command to analyze db")
+        self.verbose("Executing CodeQL command to analyze db")
 
         # Run the command and capture the output
         async for line in self.run_process_live(command):
@@ -261,7 +264,6 @@ class codeql(BaseModule):
 
         # Create a temporary directory
         with tempfile.TemporaryDirectory() as temp_dir:
-            # Initialize script_urls dictionary
             script_urls = {}
 
             b = Browser(
@@ -286,28 +288,31 @@ class codeql(BaseModule):
                     dom_file.write(dom)
 
                 self.debug(f"DOM file: {dom_file_path} written to temp directory")
-                scripts = webscreenshot.scripts
-                for i, js in enumerate(scripts):
-                    script_url = js.json.get("url", "unknown_url")
 
-                    # Skip out-of-scope scripts if configured
-                    if not self.ignore_scope:
-                        try:
-                            parsed_url = self.helpers.urlparse(script_url)
-                            script_domain = parsed_url.netloc
-                            if not self.scan.in_scope(script_domain):
-                                self.debug(f"Skipping out-of-scope script: {script_url}")
+                # Only process scripts if not in dom_only mode
+                if self.mode != "dom_only":
+                    scripts = webscreenshot.scripts
+                    for i, js in enumerate(scripts):
+                        script_url = js.json.get("url", "unknown_url")
+
+                        # Skip out-of-scope scripts in in_scope mode
+                        if self.mode == "in_scope":
+                            try:
+                                parsed_url = self.helpers.urlparse(script_url)
+                                script_domain = parsed_url.netloc
+                                if not self.scan.in_scope(script_domain):
+                                    self.debug(f"Skipping out-of-scope script: {script_url}")
+                                    continue
+                            except Exception as e:
+                                self.debug(f"Error parsing script URL {script_url}: {e}")
                                 continue
-                        except Exception as e:
-                            self.debug(f"Error parsing script URL {script_url}: {e}")
-                            continue
 
-                    loaded_js = js.json["script"]
-                    script_urls[i] = script_url
-                    js_file_path = os.path.join(temp_dir, f"script_{i}.js")
-                    with open(js_file_path, "w") as js_file:
-                        js_file.write(loaded_js)
-                    self.debug(f"JS file: {js_file_path} written to temp directory. Source: [{script_url}]")
+                        loaded_js = js.json["script"]
+                        script_urls[i] = script_url
+                        js_file_path = os.path.join(temp_dir, f"script_{i}.js")
+                        with open(js_file_path, "w") as js_file:
+                            js_file.write(loaded_js)
+                        self.debug(f"JS file: {js_file_path} written to temp directory. Source: [{script_url}]")
 
             # Generate a unique GUID for the database
             guid = str(uuid.uuid4())

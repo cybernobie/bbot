@@ -1,4 +1,4 @@
-description: Discover client-side web vulnerabilities using CodeQL. Limit to "error" level findings, and skip out of scope JS files.
+description: Discover client-side web vulnerabilities using CodeQL. Limit to "error" level findings, and only analyze the DOM itself.
 
 modules:
   - httpx
@@ -11,5 +11,5 @@ config:
     excavate:
       retain_querystring: True
     codeql:
-      mode: in_scope
+      mode: dom_only
       min_severity: error
