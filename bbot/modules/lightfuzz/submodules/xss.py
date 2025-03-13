@@ -4,6 +4,23 @@ import regex as re
 
 
 class xss(BaseLightfuzz):
+    """
+    Detects Reflected Cross-Site Scripting vulnerabilities across multiple contexts and techniques
+
+    * Context Detection:
+       - Between HTML Tags: <tag>injection</tag>
+       - Within Tag Attributes: <tag attribute="injection">
+       - Inside JavaScript: <script>var x = 'injection'</script>
+
+    * Context-Specific Testing:
+       - Between Tags: Tests basic HTML injection and tag creation
+       - Tag Attributes: Tests quote escaping and JavaScript event handlers
+       - JavaScript Context: Tests string delimiter breaking and script tag termination
+       - Handles both single and double quote contexts in JavaScript
+
+    Can often detect through WAFs, since it does not attempt to construct an exploitation payload
+    """
+
     friendly_name = "Cross-Site Scripting"
 
     async def determine_context(self, cookies, html, random_string):
@@ -126,10 +143,16 @@ class xss(BaseLightfuzz):
 
         if in_tag_attribute:
             in_tag_attribute_probe = f'{random_string}"'
-            in_tag_attribute_match = f'"{random_string}""'
+            in_tag_attribute_match = f'{random_string}"'
             await self.check_probe(
                 cookies, in_tag_attribute_probe, in_tag_attribute_match, "Tag Attribute"
             )  # After reflection in the HTTP response, did the quote survive without url-encoding or other sanitization/escaping?
+
+            in_tag_attribute_probe = f'{random_string}"'
+            in_tag_attribute_match = f'"{random_string}""'
+            await self.check_probe(
+                cookies, in_tag_attribute_probe, in_tag_attribute_match, "Tag Attribute (autoquote)"
+            )  # After reflection in the HTTP response, did the quote survive without url-encoding or other sanitization/escaping (and account for auto-quoting)
 
             in_tag_attribute_probe = f"javascript:{random_string}"
             in_tag_attribute_match = f'action="javascript:{random_string}'
