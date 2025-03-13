@@ -157,6 +157,22 @@ class codeql(BaseModule):
                 False,
                 f"Invalid severity level '{self.min_severity}'. Valid options are: {', '.join(self.severity_levels.keys())}",
             )
+        
+        self.b = Browser(
+                threads=defaults.threads,
+                resolution=defaults.resolution,
+                user_agent=defaults.user_agent,
+                proxy=None,
+                delay=3,
+                full_page=False,
+                dom=True,
+                javascript=True,
+                requests=False,
+                responses=False,
+                base64=False,
+                ocr=False,
+            )
+        await self.b.start()
 
         # Build the query list during setup
         self.queries = [
@@ -176,13 +192,6 @@ class codeql(BaseModule):
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/custom/dom-xss-jquery-contains.ql",
         ]
 
-        # # Add custom queries from wordlists directory
-        # custom_queries_dir = os.path.join(self.scan.helpers.wordlist_dir, "codeql_queries")
-        # if os.path.exists(custom_queries_dir):
-        #     for file in os.listdir(custom_queries_dir):
-        #         if file.endswith('.ql'):
-        #             self.queries.append(os.path.join(custom_queries_dir, file))
-        #             self.debug(f"Added custom query: {file}")
 
         # Clean up any stale database files
         database_dir = os.path.join(self.scan.helpers.tools_dir, "codeql", "databases")
@@ -266,22 +275,8 @@ class codeql(BaseModule):
         with tempfile.TemporaryDirectory() as temp_dir:
             script_urls = {}
 
-            b = Browser(
-                threads=defaults.threads,
-                resolution=defaults.resolution,
-                user_agent=defaults.user_agent,
-                proxy=None,
-                delay=3,
-                full_page=False,
-                dom=True,
-                javascript=True,
-                requests=False,
-                responses=False,
-                base64=False,
-                ocr=False,
-            )
-            await b.start()
-            async for url, webscreenshot in b.screenshot_urls([event.data]):
+
+            async for url, webscreenshot in self.b.screenshot_urls([event.data]):
                 dom = webscreenshot.dom
                 dom_file_path = os.path.join(temp_dir, "dom.html")
                 with open(dom_file_path, "w") as dom_file:
