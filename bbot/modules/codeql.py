@@ -350,13 +350,12 @@ class codeql(BaseModule):
                     scripts = webscreenshot.scripts
                     for i, js in enumerate(scripts):
                         script_url = js.json.get("url", "unknown_url")
-                        
+
                         # Skip scripts that are from the same URL as the page
                         if script_url == str(event.data):
-                            self.critical(f"Skipping script with same URL as page: {script_url}")
+                            self.debug(f"Skipping script with same URL as page: {script_url}")
                             continue
-                        else:
-                            self.critical(f"Processing script: {script_url}")
+
                         # Skip out-of-scope scripts in in_scope mode
                         if self.mode == "in_scope":
                             try:
