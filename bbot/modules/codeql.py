@@ -7,6 +7,7 @@ import os
 import uuid
 import csv
 import shutil
+import time
 
 
 class codeql(BaseModule):
@@ -157,26 +158,28 @@ class codeql(BaseModule):
                 False,
                 f"Invalid severity level '{self.min_severity}'. Valid options are: {', '.join(self.severity_levels.keys())}",
             )
-        
+
         self.b = Browser(
-                threads=defaults.threads,
-                resolution=defaults.resolution,
-                user_agent=defaults.user_agent,
-                proxy=None,
-                delay=3,
-                full_page=False,
-                dom=True,
-                javascript=True,
-                requests=False,
-                responses=False,
-                base64=False,
-                ocr=False,
-            )
+            threads=defaults.threads,
+            resolution=defaults.resolution,
+            user_agent=defaults.user_agent,
+            proxy=None,
+            delay=3,
+            full_page=False,
+            dom=True,
+            javascript=True,
+            requests=False,
+            responses=False,
+            base64=False,
+            ocr=False,
+        )
         await self.b.start()
 
         # Build the query list during setup
         self.queries = [
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-020/MissingOriginCheck.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/ExceptionXss.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-346/CorsMisconfigurationForCredentials.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/XssThroughDom.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/StoredXss.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/UnsafeJQueryPlugin.ql",
@@ -190,19 +193,28 @@ class codeql(BaseModule):
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/AngularJS/InsecureUrlWhitelist.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/AngularJS/DisablingSce.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/custom/dom-xss-jquery-contains.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/custom/xmlhttprequest-to-eval.ql",
         ]
 
-
-        # Clean up any stale database files
+        # Clean up any stale database files older than 3 days
         database_dir = os.path.join(self.scan.helpers.tools_dir, "codeql", "databases")
         if os.path.exists(database_dir):
+            current_time = time.time()
+            three_days_in_seconds = 3 * 24 * 60 * 60
+
             for item in os.listdir(database_dir):
                 item_path = os.path.join(database_dir, item)
-                if os.path.isfile(item_path):
-                    os.unlink(item_path)
-                elif os.path.isdir(item_path):
-                    shutil.rmtree(item_path)
-            self.debug(f"Cleaned up stale CodeQL databases in {database_dir}")
+                # Get the last modification time of the file/directory
+                try:
+                    mtime = os.path.getmtime(item_path)
+                    if (current_time - mtime) > three_days_in_seconds:
+                        if os.path.isfile(item_path):
+                            os.unlink(item_path)
+                        elif os.path.isdir(item_path):
+                            shutil.rmtree(item_path)
+                        self.debug(f"Cleaned up stale CodeQL database: {item_path}")
+                except Exception as e:
+                    self.debug(f"Error checking/removing {item_path}: {e}")
 
         return True
 
@@ -274,7 +286,6 @@ class codeql(BaseModule):
         # Create a temporary directory
         with tempfile.TemporaryDirectory() as temp_dir:
             script_urls = {}
-
 
             async for url, webscreenshot in self.b.screenshot_urls([event.data]):
                 dom = webscreenshot.dom
