@@ -58,13 +58,9 @@ rule strings_match
             for match in matches:
                 for string_match in match.strings:
                     for instance in string_match.instances:
-                        matched_string = instance.matched_data.decode('utf-8')
+                        matched_string = instance.matched_data.decode("utf-8")
                         if full_result:
-                            results.append({
-                                'matched_string': matched_string,
-                                'rule': match.rule,
-                                'meta': match.meta
-                            })
+                            results.append({"matched_string": matched_string, "rule": match.rule, "meta": match.meta})
                         else:
                             results.append(matched_string)
         return results

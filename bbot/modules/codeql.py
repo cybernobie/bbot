@@ -145,34 +145,23 @@ class codeql(BaseModule):
     in_scope_only = True
     _module_threads = 2
 
-    # Define YARA rule at class level
     yara_rules = r"""
-    rule dom_xss_innerHTML {
+    rule sourcevarassign {
         meta:
-            name = "DOM XSS via innerHTML"
-            description = "Detected potential DOM XSS vulnerability where URL parameters are used in innerHTML assignments"
-            confidence = "high"
+            name = "Source to Variable Assignment"
+            description = "Variable assignment tainted by user input source"
+            confidence = "possible"
         strings:
-            $vuln1 = /\.innerHTML\s*=.*getUrlParameter\([^;\n]{0,100}/ nocase
-            $vuln2 = /\.innerHTML\s*=.*URLSearchParams\(.*\)\.get\([^;\n]{0,100}/ nocase
-            $vuln3 = /\.innerHTML\s*=.*location\.search.*split[\('\[]&[^;\n]{0,100}/ nocase
-            $vuln4 = /\.innerHTML\s*=.*location\.search.*match[^;\n]{0,100}/ nocase
-            $vuln5 = /\.innerHTML\s*=.*params\.get\([^;\n]{0,100}/ nocase
-            $vuln6 = /\.innerHTML\s*=.*searchParams\.get\([^;\n]{0,100}/ nocase
-            $vuln7 = /\.innerHTML\s*=.*querySelector[\('\[]\?[^;\n]{0,100}/ nocase
-            $vuln8 = /\.innerHTML\s*=.*RegExp\([^\)]+location[^;\n]{0,100}/ nocase
-            $vuln9 = /\.innerHTML\s*=.*parse_str\([^;\n]{0,100}/ nocase
-            $vuln10 = /\.innerHTML\s*=.*parseQueryString\([^;\n]{0,100}/ nocase
-            $vuln11 = /\.innerHTML\s*=.*getParameter\([^;\n]{0,100}/ nocase
+            $varassign = /var\s+[^=]+=[^;]*(location\.(href|hash|pathname|search)|document\.(URL|documentURI|baseURI))[^;\n]*(;|\n|$)/ nocase
         condition:
-            any of them
+            $varassign
     }
     """
 
     async def setup(self):
         # Compile YARA rules during setup
         self.compiled_yara_rules = self.helpers.yara.compile(source=self.yara_rules)
-        
+
         self.mode = self.config.get("mode", "in_scope").lower()
         valid_modes = {"all", "in_scope", "dom_only"}
         if self.mode not in valid_modes:
@@ -312,12 +301,12 @@ class codeql(BaseModule):
 
     def format_location(self, file_name, script_urls, event_data):
         """Format the location string based on the file name.
-        
+
         Args:
             file_name (str): The name of the file being processed
             script_urls (dict): Mapping of script numbers to their URLs
             event_data (str): The event data (typically URL) being processed
-            
+
         Returns:
             str: Formatted location string
         """
@@ -379,31 +368,30 @@ class codeql(BaseModule):
             for root, _, files in os.walk(temp_dir):
                 for file in files:
                     file_path = os.path.join(root, file)
-                    with open(file_path, 'r') as f:
+                    with open(file_path, "r") as f:
                         content = f.read()
                         results = await self.helpers.yara.match(self.compiled_yara_rules, content, full_result=True)
                         for result in results:
-
                             # Get rule metadata and name from the match
-                            yara_description = result['meta'].get('description', '')
-                            confidence = result['meta'].get('confidence', '')
-                            rule_name = result['meta'].get('name', result['rule'])
+                            yara_description = result["meta"].get("description", "")
+                            confidence = result["meta"].get("confidence", "")
+                            rule_name = result["meta"].get("name", result["rule"])
 
                             # Build description components
                             description = f"{rule_name}: {yara_description}."
-                            
+
                             if confidence:
                                 description += f" Confidence: [{confidence}]"
-                            
-                            matched_text = result['matched_string']
+
+                            matched_text = result["matched_string"]
                             if len(matched_text) > 150:
                                 matched_text = matched_text[:147] + "..."
                             description += f" Matched Text: [{matched_text}]"
-                                
+
                             # Format the location using the same helper function
                             location = self.format_location(os.path.basename(file_path), script_urls, event.data)
                             description += f" Location: [{location}]"
-                            
+
                             await self.emit_event(
                                 {
                                     "description": f"POSSIBLE Client-side Vulnerability (YARA Match). {description})",
@@ -411,7 +399,7 @@ class codeql(BaseModule):
                                 },
                                 "FINDING",
                                 event,
-                                context=f"{{module}} module found a YARA match for rule '{rule_name}' in {location}"
+                                context=f"{{module}} module found a YARA match for rule '{rule_name}' in {location}",
                             )
 
             # Generate a unique GUID for the database
