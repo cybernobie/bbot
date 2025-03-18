@@ -208,6 +208,9 @@ class codeql(BaseModule):
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-094/ExpressionInjection.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/AngularJS/InsecureUrlWhitelist.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/AngularJS/DisablingSce.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-915/PrototypePollutingAssignment.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-915/PrototypePollutingFunction.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-915/PrototypePollutingMergeCall.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/custom/dom-xss-jquery-contains.ql",
             f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/custom/xmlhttprequest-to-eval.ql",
         ]
