@@ -332,8 +332,6 @@ class codeql(BaseModule):
     async def store_and_emit_finding(self, finding_data, event, files_hash=None):
         """Store finding in cache and emit event."""
         if files_hash:
-            if files_hash not in self.processed_hashes:
-                self.processed_hashes[files_hash] = []
             # Store everything except URL and host
             cache_data = finding_data.copy()
             cache_data["data"] = finding_data["data"].copy()
@@ -341,6 +339,7 @@ class codeql(BaseModule):
             cache_data["data"].pop("host", None)  # Remove host from cached data
             self.processed_hashes[files_hash].append(cache_data)
             self.verbose(f"Storing finding in cache for hash: {files_hash}")
+        
         await self.emit_event(
             finding_data["data"],
             "FINDING",
@@ -422,7 +421,11 @@ class codeql(BaseModule):
                 await self.emit_cached_findings(files_hash, event)
                 return
 
-            # Scan files with YARA before CodeQL analysis
+            # Initialize empty list for this hash before processing
+            self.processed_hashes[files_hash] = []
+
+            # Now proceed with analysis
+            # YARA scanning
             for root, _, files in os.walk(temp_dir):
                 for file in files:
                     file_path = os.path.join(root, file)
