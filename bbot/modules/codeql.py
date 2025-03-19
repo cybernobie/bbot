@@ -9,7 +9,6 @@ import csv
 import shutil
 import time
 
-
 class codeql(BaseModule):
     watched_events = ["URL"]
     produced_events = ["HTTP_RESPONSE_DOM"]
@@ -21,13 +20,21 @@ class codeql(BaseModule):
     }
     deps_pip = ["webcap"]
 
-    options = {"mode": "all", "min_severity": "error"}
+    options = {"mode": "all", "min_severity": "error", "suppress_duplicates": False}
     options_desc = {
         "mode": "Script processing mode: 'all' (process all scripts), 'in_scope' (only process in-scope scripts), or 'dom_only' (only process DOM)",
         "min_severity": "Minimum severity level to report (error, warning, recommendation, note)",
+        "suppress_duplicates": "Skip findings when identical files are analyzed on the same host (default: False)"
     }
 
     deps_ansible = [
+        {
+            "name": "Remove existing CodeQL directory",
+            "file": {
+                "path": "#{BBOT_TOOLS}/codeql",
+                "state": "absent"
+            }
+        },
         {
             "name": "Create CodeQL directory",
             "file": {"path": "#{BBOT_TOOLS}/codeql", "state": "directory", "mode": "0755"},
@@ -68,66 +75,66 @@ class codeql(BaseModule):
         },
         {
             "name": "Download JavaScript-all Query Pack to Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/javascript-all --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/javascript-all@2.5.1 --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
             "register": "query_pack_all_downloaded",
         },
         {
             "name": "Install JavaScript-all Query Pack from Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/javascript-all/2.5.0 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/javascript-all/2.5.1 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
             "when": "query_pack_all_downloaded is success",
             "register": "query_pack_all_installed",
         },
         {
             "name": "Download suite-helpers Query Pack to Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/suite-helpers --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/suite-helpers@1.0.19 --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
             "when": "query_pack_all_installed is success",
             "register": "suite_helpers_downloaded",
         },
         {
             "name": "Install suite-helpers Query Pack from Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/suite-helpers/1.0.18 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/suite-helpers/1.0.19 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
             "when": "suite_helpers_downloaded is success",
             "register": "suite_helpers_installed",
         },
         {
             "name": "Download typos Query Pack to Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/typos --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/typos@1.0.19 --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
             "when": "suite_helpers_installed is success",
             "register": "typos_downloaded",
         },
         {
             "name": "Install typos Query Pack from Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/typos/1.0.18 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/typos/1.0.19 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
             "when": "typos_downloaded is success",
             "register": "typos_installed",
         },
         {
             "name": "Download util Query Pack to Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/util --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/util@2.0.6 --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
             "when": "typos_installed is success",
             "register": "util_downloaded",
         },
         {
             "name": "Install util Query Pack from Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/util/2.0.5 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/util/2.0.6 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
             "when": "util_downloaded is success",
             "register": "util_installed",
         },
         {
             "name": "Download JavaScript-queries Query Pack to Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/javascript-queries --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack download codeql/javascript-queries@1.5.1 --dir=#{BBOT_TOOLS}/codeql/packages --common-caches=#{BBOT_TOOLS}/codeql",
             "when": "util_installed is success",
             "register": "query_pack_downloaded",
         },
         {
             "name": "Install JavaScript-queries Query Pack from Custom Directory",
-            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/javascript-queries/1.5.0 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
+            "command": "#{BBOT_TOOLS}/codeql/codeql pack install #{BBOT_TOOLS}/codeql/packages/codeql/javascript-queries/1.5.1 --no-strict-mode --common-caches=#{BBOT_TOOLS}/codeql",
             "when": "query_pack_downloaded is success",
         },
         {
             "name": "Create CodeQL custom queries directory",
             "file": {
-                "path": "#{BBOT_TOOLS}/codeql/packages/codeql/javascript-queries/1.5.0/custom",
+                "path": "#{BBOT_TOOLS}/codeql/packages/codeql/javascript-queries/1.5.1/custom",
                 "state": "directory",
                 "mode": "0755",
             },
@@ -136,14 +143,14 @@ class codeql(BaseModule):
             "name": "Copy custom queries to CodeQL Custom Query Pack directory",
             "copy": {
                 "src": "#{BBOT_WORDLISTS}/codeql_queries/",
-                "dest": "#{BBOT_TOOLS}/codeql/packages/codeql/javascript-queries/1.5.0/custom/",
+                "dest": "#{BBOT_TOOLS}/codeql/packages/codeql/javascript-queries/1.5.1/custom/",
                 "remote_src": False,
             },
         },
     ]
 
     in_scope_only = True
-    _module_threads = 2
+    _module_threads = 1
 
     yara_rules = r"""
     rule source_decode {
@@ -159,6 +166,9 @@ class codeql(BaseModule):
     """
 
     async def setup(self):
+        # Modify the cache to store findings
+        self.processed_hashes = {}  # hash -> list of findings
+
         # Compile YARA rules during setup
         self.compiled_yara_rules = self.helpers.yara.compile(source=self.yara_rules)
 
@@ -193,26 +203,26 @@ class codeql(BaseModule):
 
         # Build the query list during setup
         self.queries = [
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-020/MissingOriginCheck.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/ExceptionXss.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-346/CorsMisconfigurationForCredentials.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/XssThroughDom.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/StoredXss.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/UnsafeJQueryPlugin.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/UnsafeHtmlConstruction.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/Xss.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-079/ReflectedXss.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-601/ClientSideUrlRedirect.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-201/PostMessageStar.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-094/CodeInjection.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-094/ExpressionInjection.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/AngularJS/InsecureUrlWhitelist.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/AngularJS/DisablingSce.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-915/PrototypePollutingAssignment.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-915/PrototypePollutingFunction.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/Security/CWE-915/PrototypePollutingMergeCall.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/custom/dom-xss-jquery-contains.ql",
-            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.0/custom/xmlhttprequest-to-eval.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-020/MissingOriginCheck.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-079/ExceptionXss.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-346/CorsMisconfigurationForCredentials.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-079/XssThroughDom.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-079/StoredXss.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-079/UnsafeJQueryPlugin.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-079/UnsafeHtmlConstruction.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-079/Xss.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-079/ReflectedXss.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-601/ClientSideUrlRedirect.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-201/PostMessageStar.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-094/CodeInjection.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-094/ExpressionInjection.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/AngularJS/InsecureUrlWhitelist.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/AngularJS/DisablingSce.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-915/PrototypePollutingAssignment.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-915/PrototypePollutingFunction.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/Security/CWE-915/PrototypePollutingMergeCall.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/custom/dom-xss-jquery-contains.ql",
+            f"{self.helpers.tools_dir}/codeql/packages/codeql/javascript-queries/1.5.1/custom/xmlhttprequest-to-eval.ql",
         ]
 
         # Clean up any stale database files older than 3 days
@@ -234,9 +244,6 @@ class codeql(BaseModule):
                         self.debug(f"Cleaned up stale CodeQL database: {item_path}")
                 except Exception as e:
                     self.debug(f"Error checking/removing {item_path}: {e}")
-
-        # Compile YARA rules during setup
-        self.compiled_yara_rules = self.helpers.yara.compile(source=self.yara_rules)
 
         return True
 
@@ -322,10 +329,44 @@ class codeql(BaseModule):
             return f"{event_data} (DOM)"
         return file_name
 
+    async def store_and_emit_finding(self, finding_data, event, files_hash=None):
+        """Store finding in cache and emit event."""
+        if files_hash:
+            if files_hash not in self.processed_hashes:
+                self.processed_hashes[files_hash] = []
+            # Store everything except URL and host
+            cache_data = finding_data.copy()
+            cache_data["data"] = finding_data["data"].copy()
+            cache_data["data"].pop("url", None)  # Remove URL from cached data
+            cache_data["data"].pop("host", None)  # Remove host from cached data
+            self.processed_hashes[files_hash].append(cache_data)
+            self.verbose(f"Storing finding in cache for hash: {files_hash}")
+        await self.emit_event(
+            finding_data["data"],
+            "FINDING",
+            event,
+            context=finding_data["context"]
+        )
+
+    async def emit_cached_findings(self, files_hash, event):
+        """Emit all findings from cache for a given hash."""
+        for cached_finding in self.processed_hashes[files_hash]:
+            # Create new finding data with current URL and host
+            finding_data = cached_finding.copy()
+            finding_data["data"] = cached_finding["data"].copy()
+            finding_data["data"]["url"] = str(event.data)  # Add current URL
+            finding_data["data"]["host"] = str(event.host)  # Add current host
+            
+            await self.emit_event(
+                finding_data["data"],
+                "FINDING",
+                event,
+                context=finding_data["context"]
+            )
+
     async def handle_event(self, event):
         findings = set()  # Track unique findings
 
-        # Create a temporary directory
         with tempfile.TemporaryDirectory() as temp_dir:
             script_urls = {}
 
@@ -367,6 +408,20 @@ class codeql(BaseModule):
                             js_file.write(loaded_js)
                         self.debug(f"JS file: {js_file_path} written to temp directory. Source: [{script_url}]")
 
+            
+
+            # Calculate hash of all files in temp directory
+            files_hash = await self.get_directory_hash(temp_dir)
+            
+            # Check cache before proceeding with analysis
+            if files_hash in self.processed_hashes:
+                if self.config.get("suppress_duplicates", False):
+                    self.verbose(f"Suppressing duplicate findings for hash: {files_hash} on host {event.host}")
+                    return
+                self.verbose(f"Cache hit - reemitting findings for hash: {files_hash}")
+                await self.emit_cached_findings(files_hash, event)
+                return
+
             # Scan files with YARA before CodeQL analysis
             for root, _, files in os.walk(temp_dir):
                 for file in files:
@@ -395,16 +450,16 @@ class codeql(BaseModule):
                             location = self.format_location(os.path.basename(file_path), script_urls, event.data)
                             description += f" Location: [{location}]"
 
-                            await self.emit_event(
-                                {
+                            finding_data = {
+                                "data": {
                                     "description": f"POSSIBLE Client-side Vulnerability (YARA Match). {description})",
                                     "host": str(event.host),
                                     "url": str(event.data)
                                 },
-                                "FINDING",
-                                event,
-                                context=f"{{module}} module found a YARA match for rule '{rule_name}' in {location}",
-                            )
+                                "context": f"{{module}} module found a YARA match for rule '{rule_name}' in {location}"
+                            }
+                            
+                            await self.store_and_emit_finding(finding_data, event, files_hash)
 
             # Generate a unique GUID for the database
             guid = str(uuid.uuid4())
@@ -475,21 +530,16 @@ class codeql(BaseModule):
 
                     findings.add(finding_hash)
 
-                    # Prepare data for the event
-                    data = {
-                        "description": f"POSSIBLE Client-side Vulnerability: {details_string}",
-                        "host": str(event.host),
-                        "url": str(event.data)
-
+                    finding_data = {
+                        "data": {
+                            "description": f"POSSIBLE Client-side Vulnerability: {details_string}",
+                            "host": str(event.host),
+                            "url": str(event.data)
+                        },
+                        "context": f"{{module}} module found POSSIBLE Client-side Vulnerability: {details_string}"
                     }
 
-                    # Emit event with the extracted information
-                    await self.emit_event(
-                        data,
-                        "FINDING",
-                        event,
-                        context=f"{{module}} module found POSSIBLE Client-side Vulnerability: {details_string}",
-                    )
+                    await self.store_and_emit_finding(finding_data, event, files_hash)
 
             # Clean up the database directory
             shutil.rmtree(database_path)
@@ -500,3 +550,28 @@ class codeql(BaseModule):
         min_level = self.severity_levels.get(self.min_severity, 4)  # Default to error if invalid
         current_level = self.severity_levels.get(severity, 0)  # Default to 0 if unknown severity
         return current_level >= min_level
+
+    async def get_directory_hash(self, directory):
+        """Calculate a fast hash of all files in a directory using built-in hash function."""
+        # Get all files and sort them for deterministic ordering
+        all_files = []
+        for root, _, files in os.walk(directory):
+            for filename in files:
+                file_path = os.path.join(root, filename)
+                rel_path = os.path.relpath(file_path, directory)
+                all_files.append((rel_path, file_path))
+        
+        all_files.sort()
+        
+        hash_value = 0
+        for rel_path, file_path in all_files:
+            try:
+                with open(file_path, 'rb') as f:
+                    hash_value = ((hash_value * 31) + hash(rel_path)) & 0xFFFFFFFF
+                    while chunk := f.read(8192):
+                        hash_value = ((hash_value * 31) + hash(chunk)) & 0xFFFFFFFF
+            except Exception as e:
+                self.debug(f"Error hashing file {file_path}: {e}")
+                continue
+        
+        return str(hash_value)
