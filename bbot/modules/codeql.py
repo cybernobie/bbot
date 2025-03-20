@@ -8,6 +8,7 @@ import uuid
 import csv
 import shutil
 import time
+import re
 
 class codeql(BaseModule):
     watched_events = ["URL"]
@@ -339,6 +340,29 @@ class codeql(BaseModule):
                 context=finding_data["context"]
             )
 
+    def extract_code_snippet(self, file_path, start_line, start_col, end_line, end_col):
+        """Extract a code snippet from a file given line and column numbers."""
+        try:
+            with open(file_path, "r") as f:
+                lines = f.readlines()
+                code_snippet = None
+
+                if isinstance(start_line, int):
+                    start_line -= 1  # Adjust for zero-based index
+                    full_line = lines[start_line].strip().encode("ascii", "replace").decode()
+
+                    if len(full_line) <= 150:
+                        code_snippet = full_line
+                    elif all(isinstance(x, int) for x in [start_col, end_col]):
+                        code_snippet = full_line[start_col-1:end_col]
+                    else:
+                        code_snippet = full_line[:147] + "..."
+
+                return code_snippet
+        except Exception as e:
+            self.debug(f"Error extracting code snippet from {file_path}: {e}")
+            return "N/A"
+
     async def handle_event(self, event):
         with tempfile.TemporaryDirectory() as temp_dir:
             files_to_process = {}  # hash -> (file_path, script_url, original_url)
@@ -400,15 +424,34 @@ class codeql(BaseModule):
                     shutil.rmtree(database_path)
                     self.debug(f"Cleaned up database directory: {database_path}")
 
-    async def process_findings(self, batch_files, findings_map, event):
+    async def process_findings(self, files_to_process, findings_map, event):
         """Process and emit findings for a batch of files."""
         for file_hash, findings in findings_map.items():
-            _, script_url, original_url = batch_files[file_hash]
+            _, script_url, original_url = files_to_process[file_hash]
             for finding in findings:
                 # Update finding with correct URLs
                 finding["data"]["url"] = original_url
                 finding["data"]["script_url"] = script_url
                 await self.store_and_emit_finding(finding, event, file_hash)
+
+    async def process_message(self, message, file_path):
+        """Process the message to replace double-bracketed sections with detailed information."""
+
+        def replace_brackets(match):
+            details = match.group(1)
+            parts = details.split("|")
+            description = parts[0].strip().strip('"')
+            location = parts[1].replace("relative:///","").strip().strip('"').split(":")
+            start_line, start_col, end_line, end_col = map(int, location[1:])
+            code_snippet = self.extract_code_snippet(file_path, start_line, start_col, end_line, end_col)
+            if len(code_snippet) > 150:
+                code_snippet = code_snippet[:197] + "..."
+            return f"{description}: [{code_snippet}]"
+
+        # Use regex to find and replace double-bracketed sections
+        pattern = r'\[\[(.*?)\]\]'
+        processed_message = re.sub(pattern, replace_brackets, message)
+        return processed_message.replace("\n", " ")
 
     async def codeql_process_files(self, temp_dir, files_to_process, database_path):
         """Process multiple files in a single CodeQL database."""
@@ -469,43 +512,33 @@ class codeql(BaseModule):
 
             # Extract code snippet and process finding
             try:
-                with open(file_path, "r") as f:
-                    lines = f.readlines()
-                    start_line = result.get("start_line")
-                    code_snippet = None
-                    
-                    if isinstance(start_line, int):
-                        start_line -= 1
-                        full_line = lines[start_line].strip().encode("ascii", "replace").decode()
-                        
-                        if len(full_line) <= 150:
-                            code_snippet = full_line
-                        elif all(isinstance(x, int) for x in [result.get("start_column"), result.get("end_column")]):
-                            code_snippet = full_line[result["start_column"]-1:result["end_column"]]
-                        else:
-                            code_snippet = full_line[:147] + "..."
+                start_line = result.get("start_line")
+                code_snippet = self.extract_code_snippet(file_path, start_line, result.get("start_column"), result.get("end_line"), result.get("end_column")  )
 
-                    if not self.severity_threshold(result["severity"]):
-                        continue
+                if not self.severity_threshold(result["severity"]):
+                    continue
 
-                    location_details = f"Line: {start_line + 1}"
-                    if isinstance(result.get("start_column"), int) and isinstance(result.get("end_column"), int):
-                        location_details += f" Cols: {result['start_column']}-{result['end_column']}"
+                location_details = f"Line: {start_line + 1}"
+                if isinstance(result.get("start_column"), int) and isinstance(result.get("end_column"), int):
+                    location_details += f" Cols: {result['start_column']}-{result['end_column']}"
 
-                    details_string = (
-                        f"{result['title']}. Description: [{result['full_description']}] "
-                        f"Severity: [{result['severity']}] Location: [{script_url} ({location_details})] "
-                        f"Code Snippet: [{code_snippet}]"
-                    )
+                details_string = (
+                    f"{result['title']}. Description: {result['full_description']} "
+                    f"Severity: [{result['severity']}] Location: [{script_url} ({location_details})] "
+                    f"Code Snippet: [{code_snippet}]"
+                )
+                if result.get("message"):
+                    processed_message = await self.process_message(result['message'], file_path)
+                    details_string += f" Details: {processed_message}"
 
-                    finding_data = {
-                        "data": {
-                            "description": f"POSSIBLE Client-side Vulnerability: {details_string}",
-                            "script_url": script_url
-                        },
-                        "context": f"{{module}} module found POSSIBLE Client-side Vulnerability: {details_string}"
-                    }
-                    findings_map[file_hash].append(finding_data)
+                finding_data = {
+                    "data": {
+                        "description": f"POSSIBLE Client-side Vulnerability: {details_string}",
+                        "script_url": script_url
+                    },
+                    "context": f"{{module}} module found POSSIBLE Client-side Vulnerability: {details_string}"
+                }
+                findings_map[file_hash].append(finding_data)
 
             except Exception as e:
                 self.debug(f"Error processing finding for {file_path}: {e}")
