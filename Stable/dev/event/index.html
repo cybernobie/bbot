@@ -11,16 +11,16 @@
 <link href="../presets/" rel="prev"/>
 <link href="../target/" rel="next"/>
 <link href="../../favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.6.5" name="generator"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.11" name="generator"/>
 <title>Event - BBOT Docs</title>
-<link href="../../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/main.4af4bdda.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.o59wyh8v.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.g7d83uiw.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -112,6 +112,7 @@
 <a class="md-tabs__link" href="../..">
           
   
+  
   User Manual
 
         </a>
@@ -119,6 +120,7 @@
 <li class="md-tabs__item md-tabs__item--active">
 <a class="md-tabs__link" href="../">
           
+  
   
   Developer Manual
 
@@ -621,7 +623,7 @@
 <h1 class="doc doc-heading" id="bbot.core.event.base.make_event">
 <span class="doc doc-object-name doc-function-name">make_event</span>
 </h1>
-<div class="doc-signature highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #E6EDF3">make_event(data,</span> <span style="color: #E6EDF3">event_type</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">parent</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">context</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">module</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">scan</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">scans</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">tags</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">confidence</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">100</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">dummy</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">False</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">internal</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">)</span>
+<div class="doc-signature highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #E6EDF3">make_event(data,</span> <span style="color: #E6EDF3">event_type</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">parent</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">context</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">module</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">scan</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">tags</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">confidence</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">100</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">dummy</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">False</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">internal</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">)</span>
 </code></pre></div>
 <div class="doc doc-contents first">
 <p>Creates and returns a new event object or modifies an existing one.</p>
@@ -632,7 +634,7 @@ it updates the event based on the additional parameters provided.</p>
 <ul>
 <li class="doc-section-item field-body">
 <b><code>data</code></b>
-              (<code>Union[<a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/stdtypes.html#dict">dict</a>, <a class="autorefs autorefs-internal" title="bbot.core.event.base.BaseEvent" href="#bbot.core.event.base.BaseEvent">BaseEvent</a>]</code>)
+              (<code><span title="Union">Union</span>[<a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/stdtypes.html#dict">dict</a>, <a class="autorefs autorefs-internal" href="#bbot.core.event.base.BaseEvent" title="&lt;code&gt;bbot.core.event.base.BaseEvent&lt;/code&gt;">BaseEvent</a>]</code>)
           –
           <div class="doc-md-description">
 <p>The primary data for the event or an existing event object.</p>
@@ -650,7 +652,7 @@ it updates the event based on the additional parameters provided.</p>
 </li>
 <li class="doc-section-item field-body">
 <b><code>parent</code></b>
-              (<code><a class="autorefs autorefs-internal" title="bbot.core.event.base.BaseEvent" href="#bbot.core.event.base.BaseEvent">BaseEvent</a></code>, default:
+              (<code><a class="autorefs autorefs-internal" href="#bbot.core.event.base.BaseEvent" title="&lt;code&gt;bbot.core.event.base.BaseEvent&lt;/code&gt;">BaseEvent</a></code>, default:
                   <code>None</code>
 )
           –
@@ -680,7 +682,7 @@ it updates the event based on the additional parameters provided.</p>
 </li>
 <li class="doc-section-item field-body">
 <b><code>scan</code></b>
-              (<code>Scan</code>, default:
+              (<code><span title="Scan">Scan</span></code>, default:
                   <code>None</code>
 )
           –
@@ -690,9 +692,7 @@ it updates the event based on the additional parameters provided.</p>
 </li>
 <li class="doc-section-item field-body">
 <b><code>scans</code></b>
-              (<code>List[Scan]</code>, default:
-                  <code>None</code>
-)
+              (<code><span title="List">List</span>[<span title="Scan">Scan</span>]</code>)
           –
           <div class="doc-md-description">
 <p>Multiple BBOT Scan objects, primarily used for unserialization.</p>
@@ -700,7 +700,7 @@ it updates the event based on the additional parameters provided.</p>
 </li>
 <li class="doc-section-item field-body">
 <b><code>tags</code></b>
-              (<code>Union[<a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/stdtypes.html#str">str</a>, List[<a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/stdtypes.html#str">str</a>]]</code>, default:
+              (<code><span title="Union">Union</span>[<a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/stdtypes.html#str">str</a>, <span title="List">List</span>[<a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/stdtypes.html#str">str</a>]]</code>, default:
                   <code>None</code>
 )
           –
@@ -730,7 +730,7 @@ it updates the event based on the additional parameters provided.</p>
 </li>
 <li class="doc-section-item field-body">
 <b><code>internal</code></b>
-              (<code>Any</code>, default:
+              (<code><span title="Any">Any</span></code>, default:
                   <code>None</code>
 )
           –
@@ -779,48 +779,7 @@ it updates the event based on the additional parameters provided.</p>
 </details>
 <details class="quote">
 <summary>Source code in <code>bbot/core/event/base.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1648</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1649</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1650</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1651</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1652</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1653</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1654</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1655</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1656</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1657</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1658</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1659</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1660</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1661</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1662</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1663</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1664</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1665</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1666</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1667</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1668</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1669</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1670</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1671</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1672</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1673</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1674</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1675</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1676</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1677</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1678</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1679</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1680</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1681</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1682</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1683</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1684</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1685</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1686</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1687</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1688</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1689</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1689</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1690</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1691</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1692</span>
@@ -915,14 +874,54 @@ it updates the event based on the additional parameters provided.</p>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1781</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1782</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1783</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1784</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">make_event</span><span style="color: #E6EDF3">(</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1784</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1785</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1786</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1787</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1788</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1789</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1790</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1791</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1792</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1793</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1794</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1795</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1796</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1797</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1798</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1799</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1800</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1801</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1802</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1803</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1804</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1805</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1806</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1807</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1808</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1809</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1810</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1811</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1812</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1813</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1814</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1815</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1816</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1817</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1818</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1819</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1820</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1821</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1822</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1823</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1824</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1825</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">make_event</span><span style="color: #E6EDF3">(</span>
     <span style="color: #E6EDF3">data,</span>
     <span style="color: #E6EDF3">event_type</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">parent</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">context</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">module</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">scan</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
-    <span style="color: #E6EDF3">scans</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">tags</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">confidence</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">100</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">dummy</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">False</span><span style="color: #E6EDF3">,</span>
@@ -982,12 +981,11 @@ it updates the event based on the additional parameters provided.</p>
         <span style="color: #E6EDF3">tags</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">[tags]</span>
     <span style="color: #E6EDF3">tags</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">set(tags)</span>
 
+    <span style="color: #8B949E; font-style: italic"># if data is already an event, update it with the user's kwargs</span>
     <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">is_event(data):</span>
         <span style="color: #E6EDF3">event</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">copy(data)</span>
         <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">scan</span> <span style="color: #FF7B72; font-weight: bold">is</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #79C0FF">None</span> <span style="color: #FF7B72; font-weight: bold">and</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #E6EDF3">event</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scan:</span>
             <span style="color: #E6EDF3">event</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scan</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">scan</span>
-        <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">scans</span> <span style="color: #FF7B72; font-weight: bold">is</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #79C0FF">None</span> <span style="color: #FF7B72; font-weight: bold">and</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #E6EDF3">event</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scans:</span>
-            <span style="color: #E6EDF3">event</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scans</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">scans</span>
         <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">module</span> <span style="color: #FF7B72; font-weight: bold">is</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #79C0FF">None</span><span style="color: #E6EDF3">:</span>
             <span style="color: #E6EDF3">event</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">module</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">module</span>
         <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">parent</span> <span style="color: #FF7B72; font-weight: bold">is</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #79C0FF">None</span><span style="color: #E6EDF3">:</span>
@@ -1001,8 +999,11 @@ it updates the event based on the additional parameters provided.</p>
         <span style="color: #E6EDF3">event_type</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">data</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">type</span>
         <span style="color: #FF7B72">return</span> <span style="color: #E6EDF3">event</span>
     <span style="color: #FF7B72">else</span><span style="color: #E6EDF3">:</span>
+        <span style="color: #8B949E; font-style: italic"># if event_type is not provided, autodetect it</span>
         <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">event_type</span> <span style="color: #FF7B72; font-weight: bold">is</span> <span style="color: #79C0FF">None</span><span style="color: #E6EDF3">:</span>
-            <span style="color: #E6EDF3">event_type,</span> <span style="color: #E6EDF3">data</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">get_event_type(data)</span>
+            <span style="color: #E6EDF3">event_seed</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">EventSeed(data)</span>
+            <span style="color: #E6EDF3">event_type</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">event_seed</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">type</span>
+            <span style="color: #E6EDF3">data</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">event_seed</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">data</span>
             <span style="color: #FF7B72">if</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #E6EDF3">dummy:</span>
                 <span style="color: #E6EDF3">log</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">debug(</span><span style="color: #79C0FF">f</span><span style="color: #A5D6FF">'Autodetected event type "{</span><span style="color: #E6EDF3">event_type</span><span style="color: #A5D6FF">}" based on data: "{</span><span style="color: #E6EDF3">data</span><span style="color: #A5D6FF">}"'</span><span style="color: #E6EDF3">)</span>
 
@@ -1046,7 +1047,6 @@ it updates the event based on the additional parameters provided.</p>
             <span style="color: #E6EDF3">context</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #E6EDF3">context,</span>
             <span style="color: #E6EDF3">module</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #E6EDF3">module,</span>
             <span style="color: #E6EDF3">scan</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #E6EDF3">scan,</span>
-            <span style="color: #E6EDF3">scans</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #E6EDF3">scans,</span>
             <span style="color: #E6EDF3">tags</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #E6EDF3">tags,</span>
             <span style="color: #E6EDF3">confidence</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #E6EDF3">confidence,</span>
             <span style="color: #E6EDF3">_dummy</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #E6EDF3">dummy,</span>
@@ -1071,7 +1071,7 @@ based on the input JSON.</p>
 <ul>
 <li class="doc-section-item field-body">
 <b><code>j</code></b>
-              (<code>Dict</code>)
+              (<code><span title="Dict">Dict</span></code>)
           –
           <div class="doc-md-description">
 <p>JSON dictionary containing the event attributes.
@@ -1105,48 +1105,7 @@ if required keys are missing. Make sure to validate the JSON input beforehand.</
 </details>
 <details class="quote">
 <summary>Source code in <code>bbot/core/event/base.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1787</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1788</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1789</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1790</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1791</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1792</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1793</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1794</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1795</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1796</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1797</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1798</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1799</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1800</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1801</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1802</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1803</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1804</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1805</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1806</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1807</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1808</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1809</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1810</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1811</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1812</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1813</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1814</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1815</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1816</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1817</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1818</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1819</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1820</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1821</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1822</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1823</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1824</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1825</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1826</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1827</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1828</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1828</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1829</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1830</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1831</span>
@@ -1161,7 +1120,47 @@ if required keys are missing. Make sure to validate the JSON input beforehand.</
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1840</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1841</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1842</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1843</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">event_from_json</span><span style="color: #E6EDF3">(j,</span> <span style="color: #E6EDF3">siem_friendly</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">False</span><span style="color: #E6EDF3">):</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1843</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1844</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1845</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1846</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1847</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1848</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1849</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1850</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1851</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1852</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1853</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1854</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1855</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1856</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1857</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1858</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1859</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1860</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1861</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1862</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1863</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1864</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1865</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1866</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1867</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1868</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1869</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1870</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1871</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1872</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1873</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1874</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1875</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1876</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1877</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1878</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1879</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1880</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1881</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1882</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1883</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">event_from_json</span><span style="color: #E6EDF3">(j,</span> <span style="color: #E6EDF3">siem_friendly</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">False</span><span style="color: #E6EDF3">):</span>
 <span style="color: #6E7681">    </span><span style="color: #A5D6FF">"""</span>
 <span style="color: #A5D6FF">    Creates an event object from a JSON dictionary.</span>
 
@@ -1187,7 +1186,6 @@ if required keys are missing. Make sure to validate the JSON input beforehand.</
         <span style="color: #E6EDF3">event_type</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">j[</span><span style="color: #A5D6FF">"type"</span><span style="color: #E6EDF3">]</span>
         <span style="color: #E6EDF3">kwargs</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">{</span>
             <span style="color: #A5D6FF">"event_type"</span><span style="color: #E6EDF3">:</span> <span style="color: #E6EDF3">event_type,</span>
-            <span style="color: #A5D6FF">"scans"</span><span style="color: #E6EDF3">:</span> <span style="color: #E6EDF3">j</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">get(</span><span style="color: #A5D6FF">"scans"</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">[]),</span>
             <span style="color: #A5D6FF">"tags"</span><span style="color: #E6EDF3">:</span> <span style="color: #E6EDF3">j</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">get(</span><span style="color: #A5D6FF">"tags"</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">[]),</span>
             <span style="color: #A5D6FF">"confidence"</span><span style="color: #E6EDF3">:</span> <span style="color: #E6EDF3">j</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">get(</span><span style="color: #A5D6FF">"confidence"</span><span style="color: #E6EDF3">,</span> <span style="color: #A5D6FF">100</span><span style="color: #E6EDF3">),</span>
             <span style="color: #A5D6FF">"context"</span><span style="color: #E6EDF3">:</span> <span style="color: #E6EDF3">j</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">get(</span><span style="color: #A5D6FF">"discovery_context"</span><span style="color: #E6EDF3">,</span> <span style="color: #79C0FF">None</span><span style="color: #E6EDF3">),</span>
@@ -1255,7 +1253,7 @@ top of the base class.</p>
 </li>
 <li class="doc-section-item field-body">
 <b><code><span title="bbot.core.event.base.BaseEvent.uuid">uuid</span></code></b>
-              (<code>UUID</code>)
+              (<code><span title="UUID">UUID</span></code>)
           –
           <div class="doc-md-description">
 <p>A universally unique identifier for the event.</p>
@@ -1351,7 +1349,7 @@ top of the base class.</p>
 </li>
 <li class="doc-section-item field-body">
 <b><code><span title="bbot.core.event.base.BaseEvent.scan">scan</span></code></b>
-              (<code><a class="autorefs autorefs-internal" title="bbot.scanner.Scanner" href="../scanner/#bbot.scanner.Scanner">Scanner</a></code>)
+              (<code><a class="autorefs autorefs-internal" href="../scanner/#bbot.scanner.Scanner" title="&lt;code&gt;bbot.scanner.Scanner&lt;/code&gt;">Scanner</a></code>)
           –
           <div class="doc-md-description">
 <p>The scan object that generated the event.</p>
@@ -1359,7 +1357,7 @@ top of the base class.</p>
 </li>
 <li class="doc-section-item field-body">
 <b><code><span title="bbot.core.event.base.BaseEvent.timestamp">timestamp</span></code></b>
-              (<code><a class="autorefs autorefs-external" title="datetime.datetime" href="https://docs.python.org/3.11/library/datetime.html#datetime.datetime">datetime</a></code>)
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/datetime.html#datetime.datetime" title="&lt;code&gt;datetime.datetime&lt;/code&gt;">datetime</a></code>)
           –
           <div class="doc-md-description">
 <p>The time at which the data was discovered.</p>
@@ -1375,7 +1373,7 @@ top of the base class.</p>
 </li>
 <li class="doc-section-item field-body">
 <b><code><span title="bbot.core.event.base.BaseEvent.parent">parent</span></code></b>
-              (<code><a class="autorefs autorefs-internal" title="bbot.core.event.base.BaseEvent" href="#bbot.core.event.base.BaseEvent">BaseEvent</a></code>)
+              (<code><a class="autorefs autorefs-internal" href="#bbot.core.event.base.BaseEvent" title="&lt;code&gt;bbot.core.event.base.BaseEvent&lt;/code&gt;">BaseEvent</a></code>)
           –
           <div class="doc-md-description">
 <p>The parent event that led to the discovery of this event.</p>
@@ -1407,14 +1405,14 @@ top of the base class.</p>
 </li>
 <li class="doc-section-item field-body">
 <b><code><span title="bbot.core.event.base.BaseEvent.module">module</span></code></b>
-              (<code>BaseModule</code>)
+              (<code><span title="BaseModule">BaseModule</span></code>)
           –
           <div class="doc-md-description">
 <p>The module that discovered the event.</p>
 </div>
 </li>
 <li class="doc-section-item field-body">
-<b><code><a class="autorefs autorefs-internal" title="bbot.core.event.base.BaseEvent.module_sequence" href="#bbot.core.event.base.BaseEvent.module_sequence">module_sequence</a></code></b>
+<b><code><a class="autorefs autorefs-internal" href="#bbot.core.event.base.BaseEvent.module_sequence" title="&lt;code&gt;bbot.core.event.base.BaseEvent.module_sequence&lt;/code&gt;">module_sequence</a></code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/stdtypes.html#str">str</a></code>)
           –
           <div class="doc-md-description">
@@ -2349,7 +2347,48 @@ top of the base class.</p>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">954</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">955</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">956</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">957</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">class</span><span style="color: #6E7681"> </span><span style="color: #F0883E; font-weight: bold">BaseEvent</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">957</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">958</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">959</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">960</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">961</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">962</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">963</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">964</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">965</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">966</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">967</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">968</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">969</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">970</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">971</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">972</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">973</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">974</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">975</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">976</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">977</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">978</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">979</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">980</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">981</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">982</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">983</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">984</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">985</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">986</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">987</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">988</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">989</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">990</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">991</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">992</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">993</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">994</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">995</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">996</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">997</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">998</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">class</span><span style="color: #6E7681"> </span><span style="color: #F0883E; font-weight: bold">BaseEvent</span><span style="color: #E6EDF3">:</span>
 <span style="color: #6E7681">    </span><span style="color: #A5D6FF">"""</span>
 <span style="color: #A5D6FF">    Represents a piece of data discovered during a BBOT scan.</span>
 
@@ -2413,17 +2452,65 @@ top of the base class.</p>
     <span style="color: #8B949E; font-style: italic"># Bypass scope checking and dns resolution, distribute immediately to modules</span>
     <span style="color: #8B949E; font-style: italic"># This is useful for "end-of-line" events like FINDING and VULNERABILITY</span>
     <span style="color: #E6EDF3">_quick_emit</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">False</span>
-    <span style="color: #8B949E; font-style: italic"># Whether this event has been retroactively marked as part of an important discovery chain</span>
-    <span style="color: #E6EDF3">_graph_important</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">False</span>
-    <span style="color: #8B949E; font-style: italic"># Disables certain data validations</span>
-    <span style="color: #E6EDF3">_dummy</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">False</span>
     <span style="color: #8B949E; font-style: italic"># Data validation, if data is a dictionary</span>
     <span style="color: #E6EDF3">_data_validator</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">None</span>
     <span style="color: #8B949E; font-style: italic"># Whether to increment scope distance if the child and parent hosts are the same</span>
+    <span style="color: #8B949E; font-style: italic"># Normally we don't want this, since scope distance only increases if the host changes</span>
+    <span style="color: #8B949E; font-style: italic"># But for some events like SOCIAL media profiles, this is required to prevent spidering all of facebook.com</span>
     <span style="color: #E6EDF3">_scope_distance_increment_same_host</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">False</span>
     <span style="color: #8B949E; font-style: italic"># Don't allow duplicates to occur within a parent chain</span>
     <span style="color: #8B949E; font-style: italic"># In other words, don't emit the event if the same one already exists in its discovery context</span>
     <span style="color: #E6EDF3">_suppress_chain_dupes</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">False</span>
+
+    <span style="color: #8B949E; font-style: italic"># using __slots__ dramatically reduces memory usage in large scans</span>
+    <span style="color: #79C0FF">__slots__</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">[</span>
+        <span style="color: #8B949E; font-style: italic"># Core identification attributes</span>
+        <span style="color: #A5D6FF">"_uuid"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_id"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_hash"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_data"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_data_hash"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #8B949E; font-style: italic"># Host-related attributes</span>
+        <span style="color: #A5D6FF">"__host"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_host_original"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_port"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #8B949E; font-style: italic"># Parent-related attributes</span>
+        <span style="color: #A5D6FF">"_parent"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_parent_id"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_parent_uuid"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #8B949E; font-style: italic"># Event metadata</span>
+        <span style="color: #A5D6FF">"_type"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_tags"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_omit"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"__words"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_priority"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_scope_distance"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_module_priority"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_graph_important"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_resolved_hosts"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_discovery_context"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_discovery_context_regex"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_stats_recorded"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_internal"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_confidence"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_dummy"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"_module"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #8B949E; font-style: italic"># DNS-related attributes</span>
+        <span style="color: #A5D6FF">"dns_children"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"raw_dns_records"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"dns_resolve_distance"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #8B949E; font-style: italic"># Web-related attributes</span>
+        <span style="color: #A5D6FF">"web_spider_distance"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"parsed_url"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"url_extension"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"num_redirects"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #8B949E; font-style: italic"># File-related attributes</span>
+        <span style="color: #A5D6FF">"_data_path"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #8B949E; font-style: italic"># Public attributes</span>
+        <span style="color: #A5D6FF">"module"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"scan"</span><span style="color: #E6EDF3">,</span>
+        <span style="color: #A5D6FF">"timestamp"</span><span style="color: #E6EDF3">,</span>
+    <span style="color: #E6EDF3">]</span>
 
     <span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">__init__</span><span style="color: #E6EDF3">(</span>
         <span style="color: #E6EDF3">self,</span>
@@ -2433,7 +2520,6 @@ top of the base class.</p>
         <span style="color: #E6EDF3">context</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
         <span style="color: #E6EDF3">module</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
         <span style="color: #E6EDF3">scan</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
-        <span style="color: #E6EDF3">scans</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
         <span style="color: #E6EDF3">tags</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
         <span style="color: #E6EDF3">confidence</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">100</span><span style="color: #E6EDF3">,</span>
         <span style="color: #E6EDF3">timestamp</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
@@ -2452,7 +2538,6 @@ top of the base class.</p>
 <span style="color: #A5D6FF">            parent (BaseEvent, optional): Parent event that led to this event's discovery. Defaults to None.</span>
 <span style="color: #A5D6FF">            module (str, optional): Module that discovered the event. Defaults to None.</span>
 <span style="color: #A5D6FF">            scan (Scan, optional): BBOT Scan object. Required unless _dummy is True. Defaults to None.</span>
-<span style="color: #A5D6FF">            scans (list of Scan, optional): BBOT Scan objects, used primarily when unserializing an Event from the database. Defaults to None.</span>
 <span style="color: #A5D6FF">            tags (list of str, optional): Descriptive tags for the event. Defaults to None.</span>
 <span style="color: #A5D6FF">            confidence (int, optional): Confidence level for the event, on a scale of 1-100. Defaults to 100.</span>
 <span style="color: #A5D6FF">            timestamp (datetime, optional): Time of event discovery. Defaults to current UTC time.</span>
@@ -2478,6 +2563,7 @@ top of the base class.</p>
         <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_host_original</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">None</span>
         <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_scope_distance</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">None</span>
         <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_module_priority</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">None</span>
+        <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_graph_important</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">False</span>
         <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_resolved_hosts</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">set()</span>
         <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">dns_children</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">{}</span>
         <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">raw_dns_records</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">{}</span>
@@ -2508,12 +2594,6 @@ top of the base class.</p>
         <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scan</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">scan</span>
         <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">(</span><span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scan)</span> <span style="color: #FF7B72; font-weight: bold">and</span> <span style="color: #E6EDF3">(</span><span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_dummy):</span>
             <span style="color: #FF7B72">raise</span> <span style="color: #E6EDF3">ValidationError(</span><span style="color: #A5D6FF">"Must specify scan"</span><span style="color: #E6EDF3">)</span>
-        <span style="color: #8B949E; font-style: italic"># self.scans holds a list of scan IDs from scans that encountered this event</span>
-        <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scans</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">[]</span>
-        <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">scans</span> <span style="color: #FF7B72; font-weight: bold">is</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #79C0FF">None</span><span style="color: #E6EDF3">:</span>
-            <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scans</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">scans</span>
-        <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scan:</span>
-            <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scans</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">list(set([self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scan</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">id]</span> <span style="color: #FF7B72; font-weight: bold">+</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scans))</span>
 
         <span style="color: #FF7B72">try</span><span style="color: #E6EDF3">:</span>
             <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">data</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_sanitize_data(data)</span>
@@ -3314,7 +3394,7 @@ Otherwise, it will use smart_decode to convert the data into a string representa
 <h2 class="doc doc-heading" id="bbot.core.event.base.BaseEvent.__init__">
 <span class="doc doc-object-name doc-function-name">__init__</span>
 </h2>
-<div class="doc-signature highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #D2A8FF; font-weight: bold">__init__</span><span style="color: #E6EDF3">(data,</span> <span style="color: #E6EDF3">event_type,</span> <span style="color: #E6EDF3">parent</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">context</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">module</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">scan</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">scans</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">tags</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">confidence</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">100</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">timestamp</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">_dummy</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">False</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">_internal</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">)</span>
+<div class="doc-signature highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #D2A8FF; font-weight: bold">__init__</span><span style="color: #E6EDF3">(data,</span> <span style="color: #E6EDF3">event_type,</span> <span style="color: #E6EDF3">parent</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">context</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">module</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">scan</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">tags</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">confidence</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">100</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">timestamp</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">_dummy</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">False</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">_internal</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">)</span>
 </code></pre></div>
 <div class="doc doc-contents">
 <p>Initializes an Event object with the given parameters.</p>
@@ -3340,7 +3420,7 @@ Otherwise, it will use smart_decode to convert the data into a string representa
 </li>
 <li class="doc-section-item field-body">
 <b><code><span title="bbot.core.event.base.BaseEvent.__init__.parent">parent</span></code></b>
-              (<code><a class="autorefs autorefs-internal" title="bbot.core.event.base.BaseEvent" href="#bbot.core.event.base.BaseEvent">BaseEvent</a></code>)
+              (<code><a class="autorefs autorefs-internal" href="#bbot.core.event.base.BaseEvent" title="&lt;code&gt;bbot.core.event.base.BaseEvent&lt;/code&gt;">BaseEvent</a></code>)
           –
           <div class="doc-md-description">
 <p>Parent event that led to this event's discovery. Defaults to None.</p>
@@ -3356,18 +3436,10 @@ Otherwise, it will use smart_decode to convert the data into a string representa
 </li>
 <li class="doc-section-item field-body">
 <b><code><span title="bbot.core.event.base.BaseEvent.__init__.scan">scan</span></code></b>
-              (<code>Scan</code>)
+              (<code><span title="Scan">Scan</span></code>)
           –
           <div class="doc-md-description">
 <p>BBOT Scan object. Required unless _dummy is True. Defaults to None.</p>
-</div>
-</li>
-<li class="doc-section-item field-body">
-<b><code><span title="bbot.core.event.base.BaseEvent.__init__.scans">scans</span></code></b>
-              (<code>list of Scan</code>)
-          –
-          <div class="doc-md-description">
-<p>BBOT Scan objects, used primarily when unserializing an Event from the database. Defaults to None.</p>
 </div>
 </li>
 <li class="doc-section-item field-body">
@@ -3404,7 +3476,7 @@ Otherwise, it will use smart_decode to convert the data into a string representa
 </li>
 <li class="doc-section-item field-body">
 <b><code><span title="bbot.core.event.base.BaseEvent.__init__._internal">_internal</span></code></b>
-              (<code>Any</code>)
+              (<code><span title="Any">Any</span></code>)
           –
           <div class="doc-md-description">
 <p>If specified, makes the event internal. Defaults to None.</p>
@@ -3423,55 +3495,7 @@ Otherwise, it will use smart_decode to convert the data into a string representa
 </ul>
 <details class="quote">
 <summary>Source code in <code>bbot/core/event/base.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">124</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">125</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">126</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">127</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">128</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">129</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">130</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">131</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">132</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">133</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">134</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">135</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">136</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">137</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">138</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">139</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">140</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">141</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">142</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">143</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">144</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">145</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">146</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">147</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">148</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">149</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">150</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">151</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">152</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">153</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">154</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">155</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">156</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">157</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">158</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">159</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">160</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">161</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">162</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">163</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">164</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">165</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">166</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">167</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">168</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">169</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">170</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">171</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">172</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">172</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">173</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">174</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">175</span>
@@ -3539,7 +3563,48 @@ Otherwise, it will use smart_decode to convert the data into a string representa
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">237</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">238</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">239</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">240</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">__init__</span><span style="color: #E6EDF3">(</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">240</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">241</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">242</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">243</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">244</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">245</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">246</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">247</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">248</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">249</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">250</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">251</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">252</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">253</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">254</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">255</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">256</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">257</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">258</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">259</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">260</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">261</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">262</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">263</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">264</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">265</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">266</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">267</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">268</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">269</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">270</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">271</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">272</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">273</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">274</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">275</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">276</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">277</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">278</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">279</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">280</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">281</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">__init__</span><span style="color: #E6EDF3">(</span>
     <span style="color: #E6EDF3">self,</span>
     <span style="color: #E6EDF3">data,</span>
     <span style="color: #E6EDF3">event_type,</span>
@@ -3547,7 +3612,6 @@ Otherwise, it will use smart_decode to convert the data into a string representa
     <span style="color: #E6EDF3">context</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">module</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">scan</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
-    <span style="color: #E6EDF3">scans</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">tags</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">confidence</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">100</span><span style="color: #E6EDF3">,</span>
     <span style="color: #E6EDF3">timestamp</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">None</span><span style="color: #E6EDF3">,</span>
@@ -3566,7 +3630,6 @@ Otherwise, it will use smart_decode to convert the data into a string representa
 <span style="color: #A5D6FF">        parent (BaseEvent, optional): Parent event that led to this event's discovery. Defaults to None.</span>
 <span style="color: #A5D6FF">        module (str, optional): Module that discovered the event. Defaults to None.</span>
 <span style="color: #A5D6FF">        scan (Scan, optional): BBOT Scan object. Required unless _dummy is True. Defaults to None.</span>
-<span style="color: #A5D6FF">        scans (list of Scan, optional): BBOT Scan objects, used primarily when unserializing an Event from the database. Defaults to None.</span>
 <span style="color: #A5D6FF">        tags (list of str, optional): Descriptive tags for the event. Defaults to None.</span>
 <span style="color: #A5D6FF">        confidence (int, optional): Confidence level for the event, on a scale of 1-100. Defaults to 100.</span>
 <span style="color: #A5D6FF">        timestamp (datetime, optional): Time of event discovery. Defaults to current UTC time.</span>
@@ -3592,6 +3655,7 @@ Otherwise, it will use smart_decode to convert the data into a string representa
     <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_host_original</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">None</span>
     <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_scope_distance</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">None</span>
     <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_module_priority</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">None</span>
+    <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_graph_important</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #79C0FF">False</span>
     <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_resolved_hosts</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">set()</span>
     <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">dns_children</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">{}</span>
     <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">raw_dns_records</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">{}</span>
@@ -3622,12 +3686,6 @@ Otherwise, it will use smart_decode to convert the data into a string representa
     <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scan</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">scan</span>
     <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">(</span><span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scan)</span> <span style="color: #FF7B72; font-weight: bold">and</span> <span style="color: #E6EDF3">(</span><span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_dummy):</span>
         <span style="color: #FF7B72">raise</span> <span style="color: #E6EDF3">ValidationError(</span><span style="color: #A5D6FF">"Must specify scan"</span><span style="color: #E6EDF3">)</span>
-    <span style="color: #8B949E; font-style: italic"># self.scans holds a list of scan IDs from scans that encountered this event</span>
-    <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scans</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">[]</span>
-    <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">scans</span> <span style="color: #FF7B72; font-weight: bold">is</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #79C0FF">None</span><span style="color: #E6EDF3">:</span>
-        <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scans</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">scans</span>
-    <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scan:</span>
-        <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scans</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">list(set([self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scan</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">id]</span> <span style="color: #FF7B72; font-weight: bold">+</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">scans))</span>
 
     <span style="color: #FF7B72">try</span><span style="color: #E6EDF3">:</span>
         <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">data</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">_sanitize_data(data)</span>
@@ -3704,48 +3762,7 @@ Additional specific attributes can be serialized based on the mode specified.</p
 </ul>
 <details class="quote">
 <summary>Source code in <code>bbot/core/event/base.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">761</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">762</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">763</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">764</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">765</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">766</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">767</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">768</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">769</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">770</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">771</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">772</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">773</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">774</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">775</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">776</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">777</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">778</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">779</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">780</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">781</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">782</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">783</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">784</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">785</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">786</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">787</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">788</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">789</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">790</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">791</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">792</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">793</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">794</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">795</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">796</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">797</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">798</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">799</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">800</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">801</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">802</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">802</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">803</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">804</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">805</span>
@@ -3782,7 +3799,48 @@ Additional specific attributes can be serialized based on the mode specified.</p
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">836</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">837</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">838</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">839</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">json</span><span style="color: #E6EDF3">(self,</span> <span style="color: #E6EDF3">mode</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">"json"</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">siem_friendly</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">False</span><span style="color: #E6EDF3">):</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">839</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">840</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">841</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">842</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">843</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">844</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">845</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">846</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">847</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">848</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">849</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">850</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">851</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">852</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">853</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">854</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">855</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">856</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">857</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">858</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">859</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">860</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">861</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">862</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">863</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">864</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">865</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">866</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">867</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">868</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">869</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">870</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">871</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">872</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">873</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">874</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">875</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">876</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">877</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">878</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">879</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">880</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">json</span><span style="color: #E6EDF3">(self,</span> <span style="color: #E6EDF3">mode</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">"json"</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">siem_friendly</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #79C0FF">False</span><span style="color: #E6EDF3">):</span>
 <span style="color: #6E7681">    </span><span style="color: #A5D6FF">"""</span>
 <span style="color: #A5D6FF">    Serializes the event object to a JSON-compatible dictionary.</span>
 
@@ -3899,20 +3957,20 @@ Additional specific attributes can be serialized based on the mode specified.</p
 </ul>
 <details class="quote">
 <summary>Source code in <code>bbot/core/event/base.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">841</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">842</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">843</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">844</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">845</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">846</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">847</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">848</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">849</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">850</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">851</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">852</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">853</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">854</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #D2A8FF; font-weight: bold">@staticmethod</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">882</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">883</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">884</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">885</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">886</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">887</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">888</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">889</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">890</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">891</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">892</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">893</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">894</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">895</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #D2A8FF; font-weight: bold">@staticmethod</span>
 <span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">from_json</span><span style="color: #E6EDF3">(j):</span>
 <span style="color: #6E7681">    </span><span style="color: #A5D6FF">"""</span>
 <span style="color: #A5D6FF">    Convenience shortcut to create an Event object from a JSON-compatible dictionary.</span>
@@ -3956,8 +4014,8 @@ Additional specific attributes can be serialized based on the mode specified.</p
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tooltips", "navigation.tabs", "navigation.sections", "navigation.expand", "toc.integrate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "Stable", "provider": "mike"}}</script>
-<script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tooltips", "navigation.tabs", "navigation.sections", "navigation.expand", "toc.integrate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "Stable", "provider": "mike"}}</script>
+<script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
 <script src="../../javascripts/tablesort.js"></script>
 <script src="../../javascripts/tablesort.min.js"></script>
 <script src="../../javascripts/vega@5.js"></script>
