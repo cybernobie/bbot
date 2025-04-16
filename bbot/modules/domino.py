@@ -81,3 +81,10 @@ class domino(BaseModule):
         await self.browser_instance.close()
         await self.playwright.stop()
         await asyncio.sleep(0.5)
+
+
+    async def filter_event(self, event):
+        if "status-200" not in event.tags:
+            self.debug(f"Rejecting URL {event.data} due to lack of 200 status code. Tags: {event.tags}")
+            return False
+        return True
