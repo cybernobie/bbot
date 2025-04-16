@@ -562,7 +562,7 @@ class Preset(metaclass=BasePreset):
 
     @property
     def strict_dns_scope(self):
-        return self.scope_config.get("strict_dns", False)
+        return self.scope_config.get("strict", False)
 
     def apply_log_level(self, apply_core=False):
         # silent takes precedence

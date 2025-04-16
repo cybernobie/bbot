@@ -198,7 +198,7 @@ class BBOTArgs:
 
         # strict scope
         if self.parsed.strict_scope:
-            args_preset.core.merge_custom({"scope": {"strict_dns": True}})
+            args_preset.core.merge_custom({"scope": {"strict": True}})
 
         return args_preset
 

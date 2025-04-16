@@ -214,7 +214,7 @@ def test_preset_scope():
         "evilcorp.org",
         whitelist=["evilcorp.de"],
         blacklist=["test.www.evilcorp.de"],
-        config={"scope": {"strict_dns": True}},
+        config={"scope": {"strict": True}},
     )
 
     preset1.merge(preset3)
