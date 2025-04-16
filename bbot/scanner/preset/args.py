@@ -197,7 +197,7 @@ class BBOTArgs:
                 raise BBOTArgumentError(f'Error parsing command-line config option: "{config_arg}": {e}')
 
         # strict scope
-        if self.parsed.strict_dns_scope:
+        if self.parsed.strict_scope:
             args_preset.core.merge_custom({"scope": {"strict_dns": True}})
 
         return args_preset
@@ -227,7 +227,7 @@ class BBOTArgs:
         target.add_argument(
             "--strict-scope",
             action="store_true",
-            help="Don't consider subdomains of target/whitelist to be in-scope",
+            help="Don't consider subdomains of target/whitelist to be in-scope - exact matches only",
         )
         presets = p.add_argument_group(title="Presets")
         presets.add_argument(
