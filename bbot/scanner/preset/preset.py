@@ -483,7 +483,7 @@ class Preset(metaclass=BasePreset):
         from bbot.scanner.target import BBOTTarget
 
         baked_preset._target = BBOTTarget(
-            *list(self._seeds), whitelist=self._whitelist, blacklist=self._blacklist, strict_scope=self.strict_scope
+            *list(self._seeds), whitelist=self._whitelist, blacklist=self._blacklist, strict_dns_scope=self.strict_dns_scope
         )
 
         # evaluate conditions
@@ -558,8 +558,8 @@ class Preset(metaclass=BasePreset):
         return self.config.get("scope", {})
 
     @property
-    def strict_scope(self):
-        return self.scope_config.get("strict", False)
+    def strict_dns_scope(self):
+        return self.scope_config.get("strict_dns", False)
 
     def apply_log_level(self, apply_core=False):
         # silent takes precedence

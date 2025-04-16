@@ -180,7 +180,7 @@ def test_preset_scope():
     blank_preset = blank_preset.bake()
     assert not blank_preset.target.seeds
     assert not blank_preset.target.whitelist
-    assert blank_preset.strict_scope is False
+    assert blank_preset.strict_dns_scope is False
 
     preset1 = Preset(
         "evilcorp.com",

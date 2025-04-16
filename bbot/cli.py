@@ -198,7 +198,7 @@ async def _main():
 
             if sys.stdin.isatty():
                 # warn if any targets belong directly to a cloud provider
-                if not scan.preset.strict_scope:
+                if not scan.preset.strict_dns_scope:
                     for event in scan.target.seeds.event_seeds:
                         if event.type == "DNS_NAME":
                             cloudcheck_result = scan.helpers.cloudcheck(event.host)

@@ -197,8 +197,8 @@ class BBOTArgs:
                 raise BBOTArgumentError(f'Error parsing command-line config option: "{config_arg}": {e}')
 
         # strict scope
-        if self.parsed.strict_scope:
-            args_preset.core.merge_custom({"scope": {"strict": True}})
+        if self.parsed.strict_dns_scope:
+            args_preset.core.merge_custom({"scope": {"strict_dns": True}})
 
         return args_preset
 
