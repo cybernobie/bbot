@@ -698,7 +698,7 @@ config:
     stdout_preset.pop("description")
     assert stdout_preset == {
         "config": {
-            "scope": {"strict": True},
+            "scope": {"strict_dns": True},
             "dns": {"minimal": True},
             "modules": {"speculate": {"essential_only": True}},
         },
