@@ -637,7 +637,7 @@ class Scanner:
             total += len(q._queue)
         return total
 
-    def modules_status(self, _log=False):
+    def modules_status(self, _log=False, detailed=False):
         finished = True
         status = {"modules": {}}
 
@@ -707,7 +707,7 @@ class Scanner:
                     f"{self.name}: No events in queue ({self.stats.speedometer.speed:,} processed in the past {self.status_frequency} seconds)"
                 )
 
-            if self.log_level <= logging.DEBUG:
+            if detailed or self.log_level <= logging.DEBUG:
                 # status debugging
                 scan_active_status = []
                 scan_active_status.append(f"scan._finished_init: {self._finished_init}")
