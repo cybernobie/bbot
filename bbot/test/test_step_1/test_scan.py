@@ -35,9 +35,9 @@ async def test_scan(
     assert not scan0.in_scope("www.evilcorp.co.uk")
     j = scan0.json
     assert set(j["target"]["seeds"]) == {"1.1.1.0", "1.1.1.0/31", "evilcorp.com", "test.evilcorp.com"}
-    # we preserve the original whitelist inputs
-    assert set(j["target"]["whitelist"]) == {"1.1.1.0/32", "1.1.1.0/31", "evilcorp.com", "test.evilcorp.com"}
-    # but in the background they are collapsed
+    # no whitelist was set
+    assert j["target"]["whitelist"] is None
+    # but functionally it was copied from the seeds, and collapsed
     assert scan0.target.whitelist.hosts == {ip_network("1.1.1.0/31"), "evilcorp.com"}
     assert set(j["target"]["blacklist"]) == {"1.1.1.0/28", "www.evilcorp.com"}
     assert "ipneighbor" in j["preset"]["modules"]
