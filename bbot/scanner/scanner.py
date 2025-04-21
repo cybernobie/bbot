@@ -965,26 +965,27 @@ class Scanner:
         """
         status = str(status).strip().upper()
         if status in self._status_codes:
-            if self.status == "ABORTING" and not status == "ABORTED":
-                self.debug(f'Attempt to set invalid status "{status}" on aborted scan')
-            else:
-                if status != self._status:
-                    self._status = status
-                    self._status_code = self._status_codes[status]
-                    # clean out old dispatcher tasks
-                    for task in list(self.dispatcher_tasks):
-                        if task.done():
-                            self.dispatcher_tasks.remove(task)
-                    self.dispatcher_tasks.append(
-                        asyncio.create_task(
-                            self.dispatcher.catch(self.dispatcher.on_status, self._status, self.id),
-                            name=f"{self.name}.dispatcher.on_status({status})",
-                        )
-                    )
-                else:
-                    self.debug(f'Scan status is already "{status}"')
+            # if the scan has already been marked as ABORTED/FAILED/FINISHED, don't allow setting status again
+            if self._status_codes[status] >= self.status_codes["ABORTED"]:
+                self.debug(f'Attempt to set invalid status "{status}" on already finished scan')
+                return
+            if status == self._status:
+                self.debug(f'Scan status is already "{status}"')
+                return
+            self._status = status
+            self._status_code = self._status_codes[status]
+            # clean out old dispatcher tasks
+            for task in list(self.dispatcher_tasks):
+                if task.done():
+                    self.dispatcher_tasks.remove(task)
+            self.dispatcher_tasks.append(
+                asyncio.create_task(
+                    self.dispatcher.catch(self.dispatcher.on_status, self._status, self.id),
+                    name=f"{self.name}.dispatcher.on_status({status})",
+                )
+            )
         else:
-            self.debug(f'Attempt to set invalid status "{status}" on scan')
+            self.warning(f'Attempt to set invalid status "{status}" on scan')
 
     def make_event(self, *args, **kwargs):
         kwargs["scan"] = self
