@@ -127,6 +127,7 @@ class Scanner:
 
         self._success = False
         self._scan_finish_status_message = None
+        self._marked_finished = False
 
         if scan_id is not None:
             self.id = str(scan_id)
@@ -390,8 +391,6 @@ class Scanner:
                     new_activity = await self.finish()
                     if not new_activity:
                         self._success = True
-                        scan_finish_event = await self._mark_finished()
-                        yield scan_finish_event
                         break
 
                 await asyncio.sleep(0.1)
@@ -415,6 +414,8 @@ class Scanner:
                     self.critical(f"Unexpected error during scan:\n{traceback.format_exc()}")
 
         finally:
+            scan_finish_event = await self._mark_finished()
+            yield scan_finish_event
             tasks = self._cancel_tasks()
             self.debug(f"Awaiting {len(tasks):,} tasks")
             for task in tasks:
@@ -439,6 +440,11 @@ class Scanner:
                 log_fn(self._scan_finish_status_message)
 
     async def _mark_finished(self):
+        if self._marked_finished:
+            return
+
+        self._marked_finished = True
+
         if self.status == "ABORTING":
             status = "ABORTED"
         elif not self._success:
@@ -759,6 +765,7 @@ class Scanner:
             self._drain_queues()
             self.helpers.kill_children()
             self.debug("Finished aborting scan")
+            self.status = "ABORTED"
 
     async def finish(self):
         """Finalizes the scan by invoking the `finished()` method on all active modules if new activity is detected.
@@ -966,7 +973,7 @@ class Scanner:
         status = str(status).strip().upper()
         if status in self._status_codes:
             # if the scan has already been marked as ABORTED/FAILED/FINISHED, don't allow setting status again
-            if self._status_codes[status] >= self.status_codes["ABORTED"]:
+            if self._status_codes[status] >= self._status_codes["ABORTED"]:
                 self.debug(f'Attempt to set invalid status "{status}" on already finished scan')
                 return
             if status == self._status:
