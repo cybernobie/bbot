@@ -11,16 +11,16 @@
 <link href="../misc/" rel="prev"/>
 <link href="../wordcloud/" rel="next"/>
 <link href="../../../favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.6.11" name="generator"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.12" name="generator"/>
 <title>Web - BBOT Docs</title>
-<link href="../../../assets/stylesheets/main.4af4bdda.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/main.2afb09e1.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../../assets/stylesheets/extra-style.rvn4lmkt.min.css" rel="stylesheet"/></head>
+<link href="../../../assets/stylesheets/extra-style.zmbsdh30.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -1227,7 +1227,7 @@
 <span style="color: #A5D6FF">            files (dict, optional): Dictionary of 'name': file-like-objects for multipart encoding upload.</span>
 <span style="color: #A5D6FF">            auth (tuple, optional): Auth tuple to enable Basic/Digest/Custom HTTP auth.</span>
 <span style="color: #A5D6FF">            timeout (float, optional): The maximum time to wait for the request to complete.</span>
-<span style="color: #A5D6FF">            proxies (dict, optional): Dictionary mapping protocol schemes to proxy URLs.</span>
+<span style="color: #A5D6FF">            proxy (str, optional): HTTP proxy URL.</span>
 <span style="color: #A5D6FF">            allow_redirects (bool, optional): Enables or disables redirection. Defaults to None.</span>
 <span style="color: #A5D6FF">            stream (bool, optional): Enables or disables response streaming.</span>
 <span style="color: #A5D6FF">            raise_error (bool, optional): Whether to raise exceptions for HTTP connect, timeout errors. Defaults to False.</span>
@@ -2598,11 +2598,11 @@ meaning you can override the scan's values if you want.</p>
 </div>
 </li>
 <li class="doc-section-item field-body">
-<b><code>proxies</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/stdtypes.html#dict">dict</a></code>)
+<b><code>proxy</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.11/library/stdtypes.html#str">str</a></code>)
           –
           <div class="doc-md-description">
-<p>Dictionary mapping protocol schemes to proxy URLs.</p>
+<p>HTTP proxy URL.</p>
 </div>
 </li>
 <li class="doc-section-item field-body">
@@ -2764,7 +2764,7 @@ meaning you can override the scan's values if you want.</p>
 <span style="color: #A5D6FF">        files (dict, optional): Dictionary of 'name': file-like-objects for multipart encoding upload.</span>
 <span style="color: #A5D6FF">        auth (tuple, optional): Auth tuple to enable Basic/Digest/Custom HTTP auth.</span>
 <span style="color: #A5D6FF">        timeout (float, optional): The maximum time to wait for the request to complete.</span>
-<span style="color: #A5D6FF">        proxies (dict, optional): Dictionary mapping protocol schemes to proxy URLs.</span>
+<span style="color: #A5D6FF">        proxy (str, optional): HTTP proxy URL.</span>
 <span style="color: #A5D6FF">        allow_redirects (bool, optional): Enables or disables redirection. Defaults to None.</span>
 <span style="color: #A5D6FF">        stream (bool, optional): Enables or disables response streaming.</span>
 <span style="color: #A5D6FF">        raise_error (bool, optional): Whether to raise exceptions for HTTP connect, timeout errors. Defaults to False.</span>
