@@ -486,7 +486,7 @@ class Preset(metaclass=BasePreset):
             *list(self._seeds),
             whitelist=self._whitelist,
             blacklist=self._blacklist,
-            strict_dns_scope=self.strict_dns_scope,
+            strict_dns_scope=self.strict_scope,
         )
 
         # evaluate conditions
