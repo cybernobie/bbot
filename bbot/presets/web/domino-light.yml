@@ -2,10 +2,20 @@ description: Run domino with a minimal set of rules to only alert on confirmed v
 
 
 modules:
+  - httpx
   - domino
 
 config:
   modules:
     domino:
       rules:
-        - xss-basic,xss-onclick-getparam,xss-onclick-hash,xss-referer,xss-windowname,xss-interaction,xss-postmessage,xss-js,prototype-pollution,remote-include
+        - xss-basic
+        - xss-onclick-getparam
+        - xss-onclick-hash
+        - xss-referer
+        - xss-windowname
+        - xss-interaction
+        - xss-postmessage
+        - xss-js
+        - prototype-pollution
+        - remote-include

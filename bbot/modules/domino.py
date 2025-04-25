@@ -37,7 +37,7 @@ class domino(BaseModule):
         # Process rules
         rules = self.config.get("rules")
         if rules is not None:
-            self.rules = [r.strip() for r in rules.split(",")]
+            self.rules = rules
         else:
             self.rules = None
 

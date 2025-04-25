@@ -4,10 +4,24 @@ include:
   - spider
 
 modules:
+  - httpx
   - domino
 
 config:
   modules:
     domino:
       rules:
-        - xss-basic,xss-onclick-getparam,xss-onclick-hash,xss-referer,xss-windowname,xss-interaction,xss-postmessage,xss-js,get-parameter-discovery,prototype-pollution,remote-include,remote-include-get-parameters,jquery,eval
+        - xss-basic
+        - xss-onclick-getparam
+        - xss-onclick-hash
+        - xss-referer
+        - xss-windowname
+        - xss-interaction
+        - xss-postmessage
+        - xss-js
+        - get-parameter-discovery
+        - prototype-pollution
+        - remote-include
+        - remote-include-get-parameters
+        - jquery
+        - eval
