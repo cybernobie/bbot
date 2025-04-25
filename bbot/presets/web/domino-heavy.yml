@@ -1,0 +1,16 @@
+description: Run domino with all rules on a target, and use spider and wayback to find as many endpoints as possible
+
+include:
+  - spider
+
+modules:
+  - domino
+  - wayback
+
+config:
+  modules:
+    domino:
+      rules:
+        - reflection,xss-basic,xss-onclick-getparam,xss-onclick-hash,xss-referer,xss-windowname,xss-interaction,xss-postmessage,xss-js,get-parameter-discovery,get-parameter-reflection,hash-decode,postmessage,prototype-pollution,remote-include,remote-include-get-parameters,jquery,eval
+    wayback:
+      urls: True
