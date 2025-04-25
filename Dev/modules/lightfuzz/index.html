@@ -7,12 +7,12 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="OSINT automation for hackers" name="description"/>
 <meta content="TheTechromancer" name="author"/>
-<link href="https://blacklanternsecurity.github.io/bbot/Dev/scanning/presets/" rel="canonical"/>
-<link href="../" rel="prev"/>
-<link href="../presets_list/" rel="next"/>
+<link href="https://blacklanternsecurity.github.io/bbot/Dev/modules/lightfuzz/" rel="canonical"/>
+<link href="../custom_yara_rules/" rel="prev"/>
+<link href="../../contribution/" rel="next"/>
 <link href="../../favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.12" name="generator"/>
-<title>Overview - BBOT Docs</title>
+<title>Lightfuzz - BBOT Docs</title>
 <link href="../../assets/stylesheets/main.2afb09e1.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -26,7 +26,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#presets">
+<a class="md-skip" href="#lightfuzz">
           Skip to content
         </a>
 </div>
@@ -52,7 +52,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Overview
+              Lightfuzz
             
           </span>
 </div>
@@ -209,8 +209,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_1_2" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="">
 <span class="md-ellipsis">
     Scanning
@@ -218,22 +218,22 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_1_2_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_1_2_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_1_2">
 <span class="md-nav__icon md-icon"></span>
             Scanning
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../">
+<a class="md-nav__link" href="../../scanning/">
 <span class="md-ellipsis">
     Scanning Overview
     
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_2_2" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_1_2_2" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_2_2" id="__nav_1_2_2_label" tabindex="0">
 <span class="md-ellipsis">
     Presets
@@ -241,91 +241,22 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_1_2_2_label" class="md-nav" data-md-level="3">
+<nav aria-expanded="false" aria-labelledby="__nav_1_2_2_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_1_2_2">
 <span class="md-nav__icon md-icon"></span>
             Presets
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    Overview
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../scanning/presets/">
 <span class="md-ellipsis">
     Overview
     
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-to-use-presets-p">
-<span class="md-ellipsis">
-      How to use Presets (-p)
-    </span>
-</a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#preset-load-order">
-<span class="md-ellipsis">
-      Preset Load Order
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#validating-presets">
-<span class="md-ellipsis">
-      Validating Presets
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#advanced-usage">
-<span class="md-ellipsis">
-      Advanced Usage
-    </span>
-</a>
-<nav aria-label="Advanced Usage" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#custom-modules">
-<span class="md-ellipsis">
-      Custom Modules
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#environment-variables">
-<span class="md-ellipsis">
-      Environment Variables
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#conditions">
-<span class="md-ellipsis">
-      Conditions
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../presets_list/">
+<a class="md-nav__link" href="../../scanning/presets_list/">
 <span class="md-ellipsis">
     List of Presets
     
@@ -336,7 +267,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../events/">
+<a class="md-nav__link" href="../../scanning/events/">
 <span class="md-ellipsis">
     Events
     
@@ -344,7 +275,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../output/">
+<a class="md-nav__link" href="../../scanning/output/">
 <span class="md-ellipsis">
     Output
     
@@ -352,7 +283,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../tips_and_tricks/">
+<a class="md-nav__link" href="../../scanning/tips_and_tricks/">
 <span class="md-ellipsis">
     Tips and Tricks
     
@@ -360,7 +291,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../advanced/">
+<a class="md-nav__link" href="../../scanning/advanced/">
 <span class="md-ellipsis">
     Advanced Usage
     
@@ -368,7 +299,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../configuration/">
+<a class="md-nav__link" href="../../scanning/configuration/">
 <span class="md-ellipsis">
     Configuration
     
@@ -378,8 +309,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_1_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_1_3" type="checkbox"/>
 <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="">
 <span class="md-ellipsis">
     Modules
@@ -387,14 +318,14 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_1_3_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_1_3_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_1_3">
 <span class="md-nav__icon md-icon"></span>
             Modules
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../modules/list_of_modules/">
+<a class="md-nav__link" href="../list_of_modules/">
 <span class="md-ellipsis">
     List of Modules
     
@@ -402,7 +333,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../modules/nuclei/">
+<a class="md-nav__link" href="../nuclei/">
 <span class="md-ellipsis">
     Nuclei
     
@@ -410,20 +341,149 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../modules/custom_yara_rules/">
+<a class="md-nav__link" href="../custom_yara_rules/">
 <span class="md-ellipsis">
     Custom YARA Rules
     
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../modules/lightfuzz/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Lightfuzz
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     Lightfuzz
     
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#philosophy">
+<span class="md-ellipsis">
+      Philosophy
+    </span>
+</a>
+<nav aria-label="Philosophy" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-is-lightfuzz">
+<span class="md-ellipsis">
+      What is Lightfuzz?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-is-lightfuzz-not">
+<span class="md-ellipsis">
+      What is Lightfuzz NOT?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#false-positives">
+<span class="md-ellipsis">
+      False Positives
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deadly-module">
+<span class="md-ellipsis">
+      Deadly module
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modules">
+<span class="md-ellipsis">
+      Modules
+    </span>
+</a>
+<nav aria-label="Modules" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cmdi-command-injection">
+<span class="md-ellipsis">
+      cmdi (Command Injection)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#crypto-cryptography">
+<span class="md-ellipsis">
+      crypto (Cryptography)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nosqli-nosql-injection">
+<span class="md-ellipsis">
+      nosqli (NoSQL Injection)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#path-path-traversal">
+<span class="md-ellipsis">
+      path (Path Traversal)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#serial-deserialization">
+<span class="md-ellipsis">
+      serial (Deserialization)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sqli-sql-injection">
+<span class="md-ellipsis">
+      sqli (SQL Injection)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ssti-server-side-template-injection">
+<span class="md-ellipsis">
+      ssti (Server-side Template Injection)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#xss-cross-site-scripting">
+<span class="md-ellipsis">
+      xss (Cross-site Scripting)
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#presets">
+<span class="md-ellipsis">
+      Presets
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -694,150 +754,93 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="presets">Presets</h1>
-<p>Once you start customizing BBOT, your commands can start to get really long. Presets let you put all your scan settings in a single file:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span>./my_preset.yml
+<h1 id="lightfuzz">Lightfuzz</h1>
+<p><em>Lightfuzz is currently an experimental feature. There WILL be false positives (and, although we'll never know - false negatives), although the submodules are being actively worked on to reduce them. If you find false positives, please help us out by opening a GitHub issue with the details!</em></p>
+<h2 id="philosophy">Philosophy</h2>
+<h3 id="what-is-lightfuzz">What is Lightfuzz?</h3>
+<p>Lightfuzz is a lightweight web vulnerability scanner built into BBOT. It is designed to find "low-hanging fruit" type vulnerabilities without much overhead and at massive scale. </p>
+<h3 id="what-is-lightfuzz-not">What is Lightfuzz NOT?</h3>
+<p>Lightfuzz is not, does not attempt to be, and will never be, a replacement for a full-blown web application scanner. You should not, for example, be running Lightfuzz as a replacement for Burp Suite scanning. Burp Suite scanner will always find more (even though we can find a few things it can't).</p>
+<p>It will also not help you <em>exploit</em> vulnerabilities. It's job is to point out vulnerabilities, or likely vulnerabilities, or potential vulnerabilities, and then pass them off to you. A great deal of the overhead with traditional scanners comes in the confirmation phase, or in testing exploitation payloads. </p>
+<p>So for example, Lightfuzz may detect an XSS vulnerability for you. But its NOT going to help you figure out which tag you need to use to get around a security filter, or give you any kind of a final payload. It's simply going to tell you that the contents of a given GET parameter are being reflected and that it was able to render an unmodified HTML tag. The rest is up to you.</p>
+<h3 id="false-positives">False Positives</h3>
+<p>Significant work has gone into minimizing false positives. However, due to the nature of how Lightfuzz works, they are a reality. Random hiccups in network connectivity can cause them in some cases, odd WAF behavior can account for others. </p>
+<p>If you see a false positive that you feel is occuring too often or could easily be prevented, please open a GitHub issue and we will take a look!</p>
+<h3 id="deadly-module">Deadly module</h3>
+<p>Lightfuzz currently has the <code>deadly</code> flag. This is applied to the most aggressive modules to enforce an additional check, requiring explicit acknowledgement of the risk using the <code>--allow-deadly</code> command line flag.</p>
+<h2 id="modules">Modules</h2>
+<p>Lightfuzz is divided into numerous "submodules". These would typically be ran all together, but they can be configured to be run individually or in any desired configuration. This would be done with the aide of a <code>preset</code>, more on those in a moment.</p>
+<h3 id="cmdi-command-injection"><code>cmdi</code> (Command Injection)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Finds output-based on blind out-of-band (via `Interactsh`) command injections
 </code></pre></div>
-<p>A Preset is a YAML file that can include scan targets, modules, and config options like API keys.</p>
-<p>A typical preset looks like this:</p>
-<!-- BBOT SUBDOMAIN ENUM PRESET -->
-<div class="highlight" style="background: #0d1117"><span class="filename">subdomain-enum.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Enumerate subdomains via APIs, brute-force</span>
-
-<span style="color: #7EE787">flags</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">subdomain-enum</span>
-
-<span style="color: #7EE787">output_modules</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">subdomains</span>
+<h3 id="crypto-cryptography"><code>crypto</code> (Cryptography)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Identifies cryptographic parameters that have a tangable effect on the application
+- Can identify padding oracle vulnerabilities
+- Can identify hash length extention vulnerabilities
 </code></pre></div>
-<!-- END BBOT SUBDOMAIN ENUM PRESET -->
-<h2 id="how-to-use-presets-p">How to use Presets (<code>-p</code>)</h2>
-<p>BBOT has a ready-made collection of presets for common tasks like subdomain enumeration and web spidering. They live in <code>~/.bbot/presets</code>.</p>
-<p>To list them, you can do:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># list available presets</span>
-bbot<span style="color: #6E7681"> </span>-lp
+<h3 id="nosqli-nosql-injection"><code>nosqli</code> (NoSQL Injection)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Can identify some NoSQL Injection vulnerabilities
 </code></pre></div>
-<p>Enable them with <code>-p</code>:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># do a subdomain enumeration</span>
-bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span>subdomain-enum
-
-<span style="color: #8B949E; font-style: italic"># multiple presets - subdomain enumeration + web spider</span>
-bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span>subdomain-enum<span style="color: #6E7681"> </span>spider
-
-<span style="color: #8B949E; font-style: italic"># start with a preset but only enable modules that have the 'passive' flag</span>
-bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span>subdomain-enum<span style="color: #6E7681"> </span>-rf<span style="color: #6E7681"> </span>passive
-
-<span style="color: #8B949E; font-style: italic"># preset + manual config override</span>
-bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>www.evilcorp.com<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span>spider<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>web.spider_distance<span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">10</span>
+<h3 id="path-path-traversal"><code>path</code> (Path Traversal)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Can find arbitrary file read / local-file include vulnerabilities, based on relative path traversal or with absolute paths
 </code></pre></div>
-<p>You can build on the default presets, or create your own. Here's an example of a custom preset that builds on <code>subdomain-enum</code>:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">my_subdomains.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Do a subdomain enumeration + basic web scan + nuclei</span>
-
-<span style="color: #7EE787">target</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">evilcorp.com</span>
-
-<span style="color: #7EE787">include</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># include these default presets</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">subdomain-enum</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">web-basic</span>
-
-<span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># enable nuclei in addition to the other modules</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">nuclei</span>
-
-<span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># global config options</span>
-<span style="color: #6E7681">  </span><span style="color: #7EE787">web</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">    </span><span style="color: #7EE787">http_proxy</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">http://127.0.0.1:8080</span>
-<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># module config options</span>
-<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">    </span><span style="color: #8B949E; font-style: italic"># api keys</span>
-<span style="color: #6E7681">    </span><span style="color: #7EE787">securitytrails</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">      </span><span style="color: #7EE787">api_key</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">21a270d5f59c9b05813a72bb41707266</span>
-<span style="color: #6E7681">    </span><span style="color: #7EE787">virustotal</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">      </span><span style="color: #8B949E; font-style: italic"># multiple API keys are allowed</span>
-<span style="color: #6E7681">      </span><span style="color: #7EE787">api_key</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">        </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">4f41243847da693a4f356c0486114bc6</span>
-<span style="color: #6E7681">        </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">5bc6ed268ab6488270e496d3183a1a27</span>
+<h3 id="serial-deserialization"><code>serial</code> (Deserialization)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Can identify the active deserialization of a variety of deserialization types across several platforms
 </code></pre></div>
-<p>To execute your custom preset, you do:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span>./my_subdomains.yml
+<h3 id="sqli-sql-injection"><code>sqli</code> (SQL Injection)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Error Based SQLi Detection
+- Blind time-delay SQLi Detection
 </code></pre></div>
-<h2 id="preset-load-order">Preset Load Order</h2>
-<p>When you enable multiple presets, the order matters. In the case of a conflict, the last preset will always win. This means, for example, if you have a custom preset called <code>my_spider</code> that sets <code>web.spider_distance</code> to 1:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">my_spider.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #7EE787">web</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">    </span><span style="color: #7EE787">spider_distance</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">1</span>
+<h3 id="ssti-server-side-template-injection"><code>ssti</code> (Server-side Template Injection)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Can find basic server-side template injection
 </code></pre></div>
-<p>...and you enable it alongside the default <code>spider</code> preset in this order:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span>./my_spider.yml<span style="color: #6E7681"> </span>spider
+<h3 id="xss-cross-site-scripting"><code>xss</code> (Cross-site Scripting)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Can find a variety of XSS types, across several different contexts (between-tags, attribute, Javascript-based)
 </code></pre></div>
-<p>...the value of <code>web.spider_distance</code> will be overridden by <code>spider</code>. To ensure this doesn't happen, you would want to switch the order of the presets:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span>spider<span style="color: #6E7681"> </span>./my_spider.yml
-</code></pre></div>
-<h2 id="validating-presets">Validating Presets</h2>
-<p>To make sure BBOT is configured the way you expect, you can always check the <code>--current-preset</code> to show the final version of the config that will be used when BBOT executes:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># verify the preset is what you want</span>
-bbot<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span>./mypreset.yml<span style="color: #6E7681"> </span>--current-preset
-</code></pre></div>
-<h2 id="advanced-usage">Advanced Usage</h2>
-<p>BBOT Presets support advanced features like environment variable substitution and custom conditions.</p>
-<h3 id="custom-modules">Custom Modules</h3>
-<p>If you want to use a custom BBOT <code>.py</code> module, you can either move it into <code>bbot/modules</code> where BBOT is installed, or add its parent folder to <code>module_dirs</code> like so:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">custom_modules.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># load extra BBOT modules from this locaation</span>
-<span style="color: #7EE787">module_dirs</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">/home/user/custom_modules</span>
-</code></pre></div>
-<h3 id="environment-variables">Environment Variables</h3>
-<p>You can insert environment variables into your preset like this: <code>${env:&lt;variable&gt;}</code>:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">my_nuclei.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Do a nuclei scan</span>
-
-<span style="color: #7EE787">target</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">evilcorp.com</span>
-
-<span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">nuclei</span>
-
-<span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">    </span><span style="color: #7EE787">nuclei</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">      </span><span style="color: #8B949E; font-style: italic"># allow the nuclei templates to be specified at runtime via an environment variable</span>
-<span style="color: #6E7681">      </span><span style="color: #7EE787">tags</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">${env:NUCLEI_TAGS}</span>
-</code></pre></div>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #79C0FF">NUCLEI_TAGS</span><span style="color: #FF7B72; font-weight: bold">=</span>apache,nginx<span style="color: #6E7681"> </span>bbot<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span>./my_nuclei.yml
-</code></pre></div>
-<h3 id="conditions">Conditions</h3>
-<p>Sometimes, you might need to add custom logic to a preset. BBOT supports this via <code>conditions</code>. The <code>conditions</code> attribute allows you to specify a list of custom conditions that will be evaluated before the scan starts. This is useful for performing last-minute sanity checks, or changing the behavior of the scan based on custom criteria.</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">my_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Abort if nuclei templates aren't specified</span>
-
-<span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">nuclei</span>
-
-<span style="color: #7EE787">conditions</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">|</span>
-<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% if not config.modules.nuclei.templates %}</span>
-<span style="color: #6E7681">      </span><span style="color: #79C0FF; font-weight: bold">{{ abort("Don't forget to set your templates!") }}</span>
-<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% endif %}</span>
-</code></pre></div>
-<div class="highlight" style="background: #0d1117"><span class="filename">my_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">description</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Enable ffuf but only when the web spider isn't also enabled</span>
-
-<span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">ffuf</span>
-
-<span style="color: #7EE787">conditions</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">|</span>
-<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% if config.web.spider_distance &gt; 0 and config.web.spider_depth &gt; 0 %}</span>
-<span style="color: #6E7681">      </span><span style="color: #79C0FF; font-weight: bold">{{ warn("Disabling ffuf because the web spider is enabled") }}</span>
-<span style="color: #6E7681">      </span><span style="color: #79C0FF; font-weight: bold">{{ preset.exclude_module("ffuf") }}</span>
-<span style="color: #6E7681">    </span><span style="color: #79C0FF; font-weight: bold">{% endif %}</span>
-</code></pre></div>
-<p>Conditions use <a href="https://palletsprojects.com/p/jinja/">Jinja</a>, which means they can contain Python code. They run inside a sandboxed environment which has access to the following variables:</p>
+<h2 id="presets">Presets</h2>
+<p>Lightfuzz comes with a few pre-defined presets. The first thing to know is that, unless you really know BBOT inside and out, we recommend using one of them. This is because to be successful, Lightfuzz needs to change a lot of very important BBOT settings. These include:</p>
 <ul>
-<li><code>preset</code> - the current preset object</li>
-<li><code>config</code> - the current config (an alias for <code>preset.config</code>)</li>
-<li><code>warn(message)</code> - display a custom warning message to the user</li>
-<li><code>abort(message)</code> - abort the scan with an optional message</li>
+<li>Setting <code>url_querystring_remove</code> to False. By default, BBOT strips away querystings, so in order to FUZZ GET parameters, that default has to be disabled.
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>url_querystring_remove: False
+</code></pre></div></li>
+<li>Enabling several other complimentary modules. Specifically, <code>hunt</code> and <code>reflected_parameters</code> can be useful companion modules that also be useful when <code>WEB_PARAMETER</code> events are being emitted.</li>
 </ul>
-<p>If you aren't able to accomplish what you want with conditions, or if you need access to a new variable/function, please let us know on <a href="https://github.com/blacklanternsecurity/bbot/issues/new/choose">Github</a>.</p>
+<p>If you don't want to dive into those details, and we don't blame you, here are the built-in preset options and what you need to know about the differences.</p>
+<h1 id="-p-lightfuzz-medium">-p lightfuzz-medium</h1>
+<p>This is the default setting, and it enables all submodules. It changes all of the essential BBOT settings to make Lightfuzz work, without too many extras. However it is important to note that it <strong>DISABLES FUZZING POST REQUESTS</strong>. This is because this type of request is the most intrusive, and the most likely to cause problems, especially if it's ran against an internal network. </p>
+<h1 id="-p-lightfuzz-heavy">-p lightfuzz-heavy</h1>
+<ul>
+<li>Increases the web spider settings a bit from the default.</li>
+<li>Adds in the <strong>Param Miner</strong> suite of modules to try and find new parameters to fuzz via brute-force</li>
+<li>Enables fuzzing of POST parameters</li>
+</ul>
+<h1 id="-p-lightfuzz-superheavy">-p lightfuzz-superheavy</h1>
+<p>Everything included in <code>lightfuzz-heavy</code>, plus:</p>
+<ul>
+<li>Query string collapsing turned OFF. Normally, multiple instances of the same parameter (e.g., foo=bar and foo=bar2) are collapsed into one for fuzzing. With <code>lightfuzz-superheavy</code>, each instance is fuzzed individually.</li>
+<li>Force common headers enabled - Fuzz certain common header parameters, even if we didn't discover them</li>
+<li>'Speculate' GET parameters from JSON or XML response bodies</li>
+</ul>
+<p>These settings aren't typically desired as they add significant time to the scan.</p>
+<h1 id="-p-lightfuzz-xss">-p lightfuzz-xss</h1>
+<p>This is a special Lightfuzz preset that focuses entirely on XSS, to make XSS hunting as fast as possible. It is an example of how to make a preset that focuses on specific submodules. It also includes the <code>paramminer-getparams</code> module to help find undocumented parameters to fuzz. </p>
+<h1 id="-p-lightfuzz-light">-p lightfuzz-light</h1>
+<p>This preset excludes all extra modules, dials down all the settings, and tests only submodules for the most common vulnerabilities. </p>
+<h1 id="spider-preset">Spider preset</h1>
+<p>We also <em>strongly</em> recommend running Lightfuzz with the spider enabled, as this will dramatically increase the number of parameters that are discovered. If you don't, you will see a warning reminding you that things will work a lot better if you do.</p>
+<p>That can be done by simply also enabling either the <code>spider</code> or <code>spider-intense</code> preset.</p>
+<h1 id="usage">Usage</h1>
+<p>With the presets in mind, usage is incredibly simple. In most cases you will just do the following:</p>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz spider -t targets.txt --allow-deadly
+</code></pre></div>
+<p>It's really that simple. Almost all output from Lightfuzz will be in the form of a <code>FINDING</code>, as opposed to a <code>VULNERABILITY</code>, with a couple of exceptions. This is because, as was explained, the nature of the findings are that they are typically unconfirmed and will require work on your part to do so.</p>
+<p>If you wanted a specific submodule, you could make your own preset adjusting the <code>modules.lightfuzz.enabled_submodules</code> setting, or do so via the command line:</p>
+<p>Just XSS:
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz -t targets.txt -c modules.lightfuzz.enabled_submodules=[xss]  --allow-deadly
+</code></pre></div></p>
+<p>XSS and SQLi:
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz -t targets.txt -c modules.lightfuzz.enabled_submodules=[xss,sqli]  --allow-deadly
+</code></pre></div></p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
