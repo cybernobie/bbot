@@ -7,7 +7,7 @@ from bbot.modules.base import BaseModule
 class nuclei(BaseModule):
     watched_events = ["URL"]
     produced_events = ["FINDING", "VULNERABILITY", "TECHNOLOGY"]
-    flags = ["active", "aggressive"]
+    flags = ["active", "aggressive", "deadly"]
     meta = {
         "description": "Fast and customisable vulnerability scanner",
         "created_date": "2022-03-12",
@@ -15,7 +15,7 @@ class nuclei(BaseModule):
     }
 
     options = {
-        "version": "3.4.1",
+        "version": "3.4.2",
         "tags": "",
         "templates": "",
         "severity": "",
@@ -139,7 +139,9 @@ class nuclei(BaseModule):
         return True
 
     async def handle_batch(self, *events):
-        temp_target = self.helpers.make_target(*events)
+        temp_target = self.helpers.make_target()
+        for e in events:
+            temp_target.add(e.data, e)
         nuclei_input = [str(e.data) for e in events]
         async for severity, template, tags, host, url, name, extracted_results in self.execute_nuclei(nuclei_input):
             # this is necessary because sometimes nuclei is inconsistent about the data returned in the host field

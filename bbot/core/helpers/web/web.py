@@ -57,7 +57,7 @@ class WebHelper(EngineClient):
         self.ssl_verify = self.config.get("ssl_verify", False)
         engine_debug = self.config.get("engine", {}).get("debug", False)
         super().__init__(
-            server_kwargs={"config": self.config, "target": self.parent_helper.preset.target.minimal},
+            server_kwargs={"config": self.config, "target": self.parent_helper.preset.target},
             debug=engine_debug,
         )
 
@@ -95,7 +95,7 @@ class WebHelper(EngineClient):
             files (dict, optional): Dictionary of 'name': file-like-objects for multipart encoding upload.
             auth (tuple, optional): Auth tuple to enable Basic/Digest/Custom HTTP auth.
             timeout (float, optional): The maximum time to wait for the request to complete.
-            proxies (dict, optional): Dictionary mapping protocol schemes to proxy URLs.
+            proxy (str, optional): HTTP proxy URL.
             allow_redirects (bool, optional): Enables or disables redirection. Defaults to None.
             stream (bool, optional): Enables or disables response streaming.
             raise_error (bool, optional): Whether to raise exceptions for HTTP connect, timeout errors. Defaults to False.
@@ -349,6 +349,7 @@ class WebHelper(EngineClient):
             curl_command.append("-k")
 
         headers = kwargs.get("headers", {})
+        cookies = kwargs.get("cookies", {})
 
         ignore_bbot_global_settings = kwargs.get("ignore_bbot_global_settings", False)
 
@@ -362,10 +363,17 @@ class WebHelper(EngineClient):
             if "User-Agent" not in headers:
                 headers["User-Agent"] = user_agent
 
-            # only add custom headers if the URL is in-scope
+            # only add custom headers / cookies if the URL is in-scope
             if self.parent_helper.preset.in_scope(url):
                 for hk, hv in self.web_config.get("http_headers", {}).items():
-                    headers[hk] = hv
+                    # Only add the header if it doesn't already exist in the headers dictionary
+                    if hk not in headers:
+                        headers[hk] = hv
+
+                for ck, cv in self.web_config.get("http_cookies", {}).items():
+                    # don't clobber cookies
+                    if ck not in cookies:
+                        cookies[ck] = cv
 
         # add the timeout
         if "timeout" not in kwargs:

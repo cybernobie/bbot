@@ -214,6 +214,12 @@ class Scanner:
             self.warning(
                 "You have enabled custom HTTP headers. These will be attached to all in-scope requests and all requests made by httpx."
             )
+        # custom HTTP cookies warning
+        self.custom_http_cookies = self.web_config.get("http_cookies", {})
+        if self.custom_http_cookies:
+            self.warning(
+                "You have enabled custom HTTP cookies. These will be attached to all in-scope requests and all requests made by httpx."
+            )
 
         # url file extensions
         self.url_extension_blacklist = {e.lower() for e in self.config.get("url_extension_blacklist", [])}
@@ -365,7 +371,7 @@ class Scanner:
 
             # distribute seed events
             self.init_events_task = asyncio.create_task(
-                self.ingress_module.init_events(self.target.seeds.events),
+                self.ingress_module.init_events(self.target.seeds.event_seeds),
                 name=f"{self.name}.ingress_module.init_events()",
             )
 
@@ -1022,6 +1028,7 @@ class Scanner:
         root_event._id = self.id
         root_event.scope_distance = 0
         root_event.parent = root_event
+        root_event._dummy = False
         root_event.module = self._make_dummy_module(name="TARGET", _type="TARGET")
         return root_event
 
@@ -1229,11 +1236,19 @@ class Scanner:
     def _log_handlers(self):
         if self.__log_handlers is None:
             self.helpers.mkdir(self.home)
-            main_handler = GzipRotatingFileHandler(str(self.home / "scan.log"), when="d", interval=1, backupCount=14)
+            main_handler = GzipRotatingFileHandler(
+                str(self.home / "scan.log"), maxBytes=1024 * 1024 * 100, backupCount=100
+            )
             main_handler.addFilter(lambda x: x.levelno != logging.TRACE and x.levelno >= logging.VERBOSE)
-            debug_handler = GzipRotatingFileHandler(str(self.home / "debug.log"), when="d", interval=1, backupCount=14)
+            debug_handler = GzipRotatingFileHandler(
+                str(self.home / "debug.log"), maxBytes=1024 * 1024 * 100, backupCount=100
+            )
             debug_handler.addFilter(lambda x: x.levelno >= logging.DEBUG)
-            self.__log_handlers = [main_handler, debug_handler]
+            error_handler = GzipRotatingFileHandler(
+                str(self.home / "error.log"), maxBytes=1024 * 1024 * 100, backupCount=100
+            )
+            error_handler.addFilter(lambda x: x.levelno == logging.TRACE or x.levelno >= logging.ERROR)
+            self.__log_handlers = [main_handler, debug_handler, error_handler]
         return self.__log_handlers
 
     def _start_log_handlers(self):
@@ -1297,7 +1312,11 @@ class Scanner:
         try:
             yield
         except BaseException as e:
-            self._handle_exception(e, context=context, unhandled_is_critical=unhandled_is_critical)
+            try:
+                self._handle_exception(e, context=context, unhandled_is_critical=unhandled_is_critical)
+            except Exception as e2:
+                self.log.critical(f"Error in exception handler: {e2} {traceback.format_exc()}")
+                raise
 
     def _handle_exception(self, e, context="scan", finally_callback=None, unhandled_is_critical=False):
         if callable(context):

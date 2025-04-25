@@ -1,11 +1,9 @@
 import os  # noqa
-import sys
-import zlib
+import sys  # noqa
 import pytest
 import shutil  # noqa
 import asyncio  # noqa
 import logging
-import subprocess
 import tldextract
 import pytest_httpserver
 from pathlib import Path
@@ -16,8 +14,8 @@ from werkzeug.wrappers import Request
 from bbot.errors import *  # noqa: F401
 from bbot.core import CORE
 from bbot.scanner import Preset
+from bbot.core.helpers.misc import mkdir, rand_string
 from bbot.core.helpers.async_helpers import get_event_loop
-from bbot.core.helpers.misc import mkdir, rand_string, get_python_constraints
 
 
 log = logging.getLogger("bbot.test.fixtures")
@@ -48,25 +46,6 @@ def tempapkfile():
     with open(current_dir / "owasp_mastg.apk", "rb") as f:
         apk_file = f.read()
     return apk_file
-
-
-def read_gzipped_file(file_path):
-    """
-    Read and decompress a gzipped file, tolerating missing end markers.
-
-    Args:
-        file_path: Path to the gzipped file
-
-    Returns:
-        The decompressed content as a string
-    """
-    with open(file_path, "rb") as f:
-        data = f.read()
-        decompressor = zlib.decompressobj(
-            16 + zlib.MAX_WBITS
-        )  # This is needed because the file doesn't have an end marker
-        content = decompressor.decompress(data).decode("utf-8", errors="ignore")
-        return content
 
 
 @pytest.fixture
