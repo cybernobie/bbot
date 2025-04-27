@@ -9,10 +9,10 @@ import datetime
 import ipaddress
 import traceback
 
-from copy import copy
 from pathlib import Path
 from typing import Optional
 from zoneinfo import ZoneInfo
+from copy import copy, deepcopy
 from contextlib import suppress
 from radixtarget import RadixTarget
 from pydantic import BaseModel, field_validator
@@ -42,6 +42,7 @@ from bbot.core.helpers import (
     get_file_extension,
 )
 from bbot.models.helpers import utc_datetime_validator
+from bbot.core.helpers.web.envelopes import BaseEnvelope
 
 
 log = logging.getLogger("bbot.core.event")
@@ -636,6 +637,10 @@ class BaseEvent:
             log.warning(f"Tried to set invalid parent on {self}: (got: {repr(parent)} ({type(parent)}))")
 
     @property
+    def children(self):
+        return []
+
+    @property
     def parent_id(self):
         parent_id = getattr(self.get_parent(), "id", None)
         if parent_id is not None:
@@ -688,6 +693,13 @@ class BaseEvent:
             parents.append(parent)
             e = parent
         return parents
+
+    def clone(self):
+        # Create a shallow copy of the event first
+        cloned_event = copy(self)
+        # Re-assign a new UUID
+        cloned_event._uuid = uuid.uuid4()
+        return cloned_event
 
     def _host(self):
         return ""
@@ -870,7 +882,13 @@ class BaseEvent:
         j["discovery_path"] = self.discovery_path
         j["parent_chain"] = self.parent_chain
 
+        # parameter envelopes
+        parameter_envelopes = getattr(self, "envelopes", None)
+        if parameter_envelopes is not None:
+            j["envelopes"] = parameter_envelopes.to_dict()
+
         # normalize non-primitive python objects
+
         for k, v in list(j.items()):
             if k == "data":
                 continue
@@ -1370,12 +1388,56 @@ class URL_HINT(URL_UNVERIFIED):
 
 
 class WEB_PARAMETER(DictHostEvent):
+    @property
+    def children(self):
+        # if we have any subparams, raise a new WEB_PARAMETER for each one
+        children = []
+        envelopes = getattr(self, "envelopes", None)
+        if envelopes is not None:
+            subparams = sorted(list(self.envelopes.get_subparams()))
+
+            if envelopes.selected_subparam is None:
+                current_subparam = subparams[0]
+                envelopes.selected_subparam = current_subparam[0]
+                if len(subparams) > 1:
+                    for subparam, _ in subparams[1:]:
+                        clone = self.clone()
+                        clone.envelopes = deepcopy(envelopes)
+                        clone.envelopes.selected_subparam = subparam
+                        clone.parent = self
+                        children.append(clone)
+        return children
+
+    def sanitize_data(self, data):
+        original_value = data.get("original_value", None)
+        if original_value is not None:
+            try:
+                envelopes = BaseEnvelope.detect(original_value)
+                setattr(self, "envelopes", envelopes)
+            except ValueError as e:
+                log.verbose(f"Error detecting envelopes for {self}: {e}")
+        return data
+
     def _data_id(self):
         # dedupe by url:name:param_type
         url = self.data.get("url", "")
         name = self.data.get("name", "")
         param_type = self.data.get("type", "")
-        return f"{url}:{name}:{param_type}"
+        envelopes = getattr(self, "envelopes", "")
+        subparam = getattr(envelopes, "selected_subparam", "")
+
+        return f"{url}:{name}:{param_type}:{subparam}"
+
+    def _outgoing_dedup_hash(self, event):
+        return hash(
+            (
+                str(event.host),
+                event.data["url"],
+                event.data.get("name", ""),
+                event.data.get("type", ""),
+                event.data.get("envelopes", ""),
+            )
+        )
 
     def _url(self):
         return self.data["url"]
@@ -1812,7 +1874,6 @@ def make_event(
                     data = net.network_address
 
         event_class = globals().get(event_type, DefaultEvent)
-
         return event_class(
             data,
             event_type=event_type,

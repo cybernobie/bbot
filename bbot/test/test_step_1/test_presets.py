@@ -596,7 +596,7 @@ class TestModule1(BaseModule):
 from bbot.modules.output.base import BaseOutputModule
 
 class TestModule2(BaseOutputModule):
-    pass
+    watched_events = []
 """
         )
 
@@ -607,7 +607,7 @@ class TestModule2(BaseOutputModule):
 from bbot.modules.internal.base import BaseInternalModule
 
 class TestModule3(BaseInternalModule):
-    pass
+    watched_events = []
 """
         )
 
@@ -1079,8 +1079,6 @@ scan_name: bbot_test
 
 # regression test for https://github.com/blacklanternsecurity/bbot/issues/2337
 def test_preset_serialization():
-    from ipaddress import ip_address, ip_network
-
     preset = Preset("192.168.1.1")
     preset = preset.bake()
 
