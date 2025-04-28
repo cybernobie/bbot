@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.64awtru3.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style._4m1djmz.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -806,8 +806,10 @@
 <li>Enabling several other complimentary modules. Specifically, <code>hunt</code> and <code>reflected_parameters</code> can be useful companion modules that also be useful when <code>WEB_PARAMETER</code> events are being emitted.</li>
 </ul>
 <p>If you don't want to dive into those details, and we don't blame you, here are the built-in preset options and what you need to know about the differences.</p>
+<h1 id="-p-lightfuzz-light">-p lightfuzz-light</h1>
+<p>This is a minimal preset that checks for only the most common vulnerabilities. It enables a select few of lightfuzz's submodules, and is safest for larger scans.</p>
 <h1 id="-p-lightfuzz-medium">-p lightfuzz-medium</h1>
-<p>This is the default setting, and it enables all submodules. It changes all of the essential BBOT settings to make Lightfuzz work, without too many extras. However it is important to note that it <strong>DISABLES FUZZING POST REQUESTS</strong>. This is because this type of request is the most intrusive, and the most likely to cause problems, especially if it's ran against an internal network. </p>
+<p>This is the default setting. It enables all lightfuzz submodules, and includes all the necessary config options to make Lightfuzz work, without too many extras. However it is important to note that it <strong>DISABLES FUZZING POST REQUESTS</strong>. This is because this type of request is the most intrusive, and the most likely to cause problems, especially in an internal network. </p>
 <h1 id="-p-lightfuzz-heavy">-p lightfuzz-heavy</h1>
 <ul>
 <li>Increases the web spider settings a bit from the default.</li>
@@ -824,22 +826,20 @@
 <p>These settings aren't typically desired as they add significant time to the scan.</p>
 <h1 id="-p-lightfuzz-xss">-p lightfuzz-xss</h1>
 <p>This is a special Lightfuzz preset that focuses entirely on XSS, to make XSS hunting as fast as possible. It is an example of how to make a preset that focuses on specific submodules. It also includes the <code>paramminer-getparams</code> module to help find undocumented parameters to fuzz. </p>
-<h1 id="-p-lightfuzz-light">-p lightfuzz-light</h1>
-<p>This preset excludes all extra modules, dials down all the settings, and tests only submodules for the most common vulnerabilities. </p>
 <h1 id="spider-preset">Spider preset</h1>
 <p>We also <em>strongly</em> recommend running Lightfuzz with the spider enabled, as this will dramatically increase the number of parameters that are discovered. If you don't, you will see a warning reminding you that things will work a lot better if you do.</p>
 <p>That can be done by simply also enabling either the <code>spider</code> or <code>spider-intense</code> preset.</p>
 <h1 id="usage">Usage</h1>
 <p>With the presets in mind, usage is incredibly simple. In most cases you will just do the following:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz spider -t targets.txt --allow-deadly
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz-medium spider -t targets.txt --allow-deadly
 </code></pre></div>
 <p>It's really that simple. Almost all output from Lightfuzz will be in the form of a <code>FINDING</code>, as opposed to a <code>VULNERABILITY</code>, with a couple of exceptions. This is because, as was explained, the nature of the findings are that they are typically unconfirmed and will require work on your part to do so.</p>
 <p>If you wanted a specific submodule, you could make your own preset adjusting the <code>modules.lightfuzz.enabled_submodules</code> setting, or do so via the command line:</p>
 <p>Just XSS:
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz -t targets.txt -c modules.lightfuzz.enabled_submodules=[xss]  --allow-deadly
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz-medium -t targets.txt -c modules.lightfuzz.enabled_submodules=[xss]  --allow-deadly
 </code></pre></div></p>
 <p>XSS and SQLi:
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz -t targets.txt -c modules.lightfuzz.enabled_submodules=[xss,sqli]  --allow-deadly
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz-medium -t targets.txt -c modules.lightfuzz.enabled_submodules=[xss,sqli]  --allow-deadly
 </code></pre></div></p>
 </article>
 </div>
