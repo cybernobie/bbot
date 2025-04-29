@@ -100,6 +100,7 @@ class sqli(BaseLightfuzz):
                         self.results.append(
                             {
                                 "type": "FINDING",
+                                "name": "Lightfuzz - Possible SQL Injection",
                                 "description": f"Possible SQL Injection. {self.metadata()} Detection Method: [SQL Error Detection] Detected String: [{sqli_error_string}]",
                             }
                         )
@@ -119,6 +120,7 @@ class sqli(BaseLightfuzz):
                         self.results.append(
                             {
                                 "type": "FINDING",
+                                "name": "Lightfuzz - Possible SQL Injection",
                                 "description": f"Possible SQL Injection. {self.metadata()} Detection Method: [Single Quote/Two Single Quote, Code Change ({http_compare.baseline.status_code}->{single_quote[3].status_code}->{double_single_quote[3].status_code})]",
                             }
                         )
@@ -179,6 +181,7 @@ class sqli(BaseLightfuzz):
                     self.results.append(
                         {
                             "type": "FINDING",
+                            "name": "Lightfuzz - Possible Blind SQL Injection",
                             "description": f"Possible Blind SQL Injection. {self.metadata()} Detection Method: [Delay Probe ({p})]",
                         }
                     )

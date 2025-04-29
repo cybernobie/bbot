@@ -73,6 +73,7 @@ class lightfuzz(BaseModule):
                         "severity": "CRITICAL",
                         "host": str(details["event"].host),
                         "url": details["event"].data["url"],
+                        "name": "Lightfuzz - OS Command Injection",
                         "description": f"OS Command Injection (OOB Interaction) Type: [{details['type']}] Parameter Name: [{details['name']}] Probe: [{details['probe']}]",
                     },
                     "VULNERABILITY",

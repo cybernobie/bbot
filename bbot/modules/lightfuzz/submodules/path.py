@@ -122,6 +122,7 @@ class path(BaseLightfuzz):
                             self.results.append(
                                 {
                                     "type": "FINDING",
+                                    "name": "Lightfuzz - Possible Path Traversal",
                                     "description": f"POSSIBLE Path Traversal. {self.metadata()} Detection Method: [{path_technique}]",
                                 }
                             )
@@ -149,6 +150,7 @@ class path(BaseLightfuzz):
                 self.results.append(
                     {
                         "type": "FINDING",
+                        "name": "Lightfuzz - Possible Path Traversal",
                         "description": f"POSSIBLE Path Traversal. {self.metadata()} Detection Method: [Absolute Path: {path}]",
                     }
                 )

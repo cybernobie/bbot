@@ -75,6 +75,7 @@ class cmdi(BaseLightfuzz):
             self.results.append(
                 {
                     "type": "FINDING",
+                    "name": "Lightfuzz - Possible Command Injection",
                     "description": f"POSSIBLE OS Command Injection. {self.metadata()} Detection Method: [echo canary] CMD Probe Delimeters: [{' '.join(positive_detections)}]",
                 }
             )

@@ -112,6 +112,7 @@ class nosqli(BaseLightfuzz):
                                     self.results.append(
                                         {
                                             "type": "FINDING",
+                                            "name": "Lightfuzz - Possible NoSQL Injection",
                                             "description": f"Possible NoSQL Injection. {self.metadata()} Detection Method: [Quote/Escaped Quote + Conditional Affect] Differences: [{'.'.join(confirmation_probe_false_diff_reasons)}]",
                                         }
                                     )
@@ -176,6 +177,7 @@ class nosqli(BaseLightfuzz):
                                 self.results.append(
                                     {
                                         "type": "FINDING",
+                                        "name": "Lightfuzz - Possible NoSQL Injection",
                                         "description": f"Possible NoSQL Injection. {self.metadata()} Detection Method: [Parameter Name Operator Injection - Negation ([$ne])] Differences: [{'.'.join(nosqli_negate_diff_reasons)}]",
                                     }
                                 )

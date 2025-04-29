@@ -320,6 +320,7 @@ class crypto(BaseLightfuzz):
                 self.results.append(
                     {
                         "type": "FINDING",
+                        "name": "Lightfuzz - Possible Cryptographic Error",
                         "description": f"Possible Cryptographic Error. {self.metadata()} Strings: [{','.join(unique_matches)}] Detection Technique(s): [{','.join(matching_techniques)}]",
                         "context": context,
                     }
@@ -414,6 +415,7 @@ class crypto(BaseLightfuzz):
             self.results.append(
                 {
                     "type": "FINDING",
+                    "name": "Lightfuzz - Probable Cryptographic Parameter",
                     "description": f"Probable Cryptographic Parameter. {self.metadata()} Detection Technique(s): [{', '.join(confirmed_techniques)}]",
                     "context": context,
                 }
@@ -468,6 +470,7 @@ class crypto(BaseLightfuzz):
                             self.results.append(
                                 {
                                     "type": "FINDING",
+                                    "name": "Lightfuzz - Possible Length Extension Attack",
                                     "description": f"Possible {self.event.data['type']} parameter with {hash_instance.name.upper()} Hash as value. {self.metadata()}, linked to additional parameter [{additional_param_name}]",
                                     "context": context,
                                 }
