@@ -194,7 +194,10 @@ class ExcavateRule:
         """
         for results in yara_results.values():
             for result in results:
-                event_data = {"description": f"{discovery_context} {yara_rule_settings.description}"}
+                event_data = {
+                    "name": f"{discovery_context} {yara_rule_settings.description}",
+                    "description": f"{discovery_context} {yara_rule_settings.description}",
+                }
                 if yara_rule_settings.emit_match:
                     event_data["description"] += f" [{result}]"
                 await self.report(event_data, event, yara_rule_settings, discovery_context)
@@ -261,7 +264,8 @@ class ExcavateRule:
 
         # If a description is not set and is needed, provide a basic one
         if event_type == "FINDING" and "description" not in event_data.keys():
-            event_data["description"] = f"{discovery_context} {yara_rule_settings['self.description']}"
+            event_data["name"] = f"{discovery_context} {yara_rule_settings.description}"
+            event_data["description"] = f"{discovery_context} {yara_rule_settings.description}"
         subject = ""
         if isinstance(event_data, str):
             subject = f" {event_data}"
@@ -281,7 +285,9 @@ class CustomExtractor(ExcavateRule):
     async def process(self, yara_results, event, yara_rule_settings, discovery_context):
         for identifier, results in yara_results.items():
             for result in results:
-                event_data = {}
+                event_data = {
+                    "name": f"Custom Yara Rule [{self.name}]",
+                }
                 description_string = (
                     f" with description: [{yara_rule_settings.description}]" if yara_rule_settings.description else ""
                 )
@@ -718,7 +724,8 @@ class excavate(BaseInternalModule, BaseInterceptModule):
             for identifier in yara_results.keys():
                 for findings in yara_results[identifier]:
                     event_data = {
-                        "description": f"{discovery_context} {yara_rule_settings.description} ({identifier})"
+                        "name": "Possible Verbose Error Message",
+                        "description": f"{discovery_context} {yara_rule_settings.description} ({identifier})",
                     }
                     await self.report(event_data, event, yara_rule_settings, discovery_context, event_type="FINDING")
 
@@ -749,7 +756,8 @@ class excavate(BaseInternalModule, BaseInterceptModule):
             for identifier in yara_results.keys():
                 for findings in yara_results[identifier]:
                     event_data = {
-                        "description": f"{discovery_context} {yara_rule_settings.description} ({identifier})"
+                        "name": "Possible Serialized Object",
+                        "description": f"{discovery_context} {yara_rule_settings.description} ({identifier})",
                     }
                     await self.report(event_data, event, yara_rule_settings, discovery_context, event_type="FINDING")
 
@@ -795,7 +803,11 @@ class excavate(BaseInternalModule, BaseInterceptModule):
                     def abort_if(e):
                         return e.scope_distance > 0
 
-                    finding_data = {"host": str(host), "description": f"Non-HTTP URI: {parsed_url.geturl()}"}
+                    finding_data = {
+                        "host": str(host),
+                        "name": "Non-HTTP URI",
+                        "description": f"Non-HTTP URI: {parsed_url.geturl()}",
+                    }
                     await self.report(finding_data, event, yara_rule_settings, discovery_context, abort_if=abort_if)
                     protocol_data = {"protocol": parsed_url.scheme, "host": str(host)}
                     if port:

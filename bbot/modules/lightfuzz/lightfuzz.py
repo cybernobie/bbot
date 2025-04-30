@@ -100,7 +100,12 @@ class lightfuzz(BaseModule):
         await submodule_instance.fuzz()
         if len(submodule_instance.results) > 0:
             for r in submodule_instance.results:
-                event_data = {"host": str(event.host), "url": event.data["url"], "description": r["description"]}
+                event_data = {
+                    "host": str(event.host),
+                    "url": event.data["url"],
+                    "name": r["name"],
+                    "description": r["description"],
+                }
 
                 envelopes = getattr(event, "envelopes", None)
                 envelope_summary = getattr(envelopes, "summary", None)
