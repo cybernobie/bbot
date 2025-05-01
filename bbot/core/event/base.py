@@ -1089,7 +1089,7 @@ class ClosestHostEvent(DictHostEvent):
                 # inherit closest host+port
                 if parent.host:
                     self.data["host"] = str(parent.host)
-                    self.port = parent.port
+                    self._port = parent.port
                     # we do this to refresh the hash
                     self.data = self.data
                     break
