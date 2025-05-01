@@ -49,6 +49,7 @@ class host_header(BaseModule):
                     {
                         "host": str(matched_event.host),
                         "url": matched_event.data["url"],
+                        "name": "Host Header Spoofing",
                         "description": f"Spoofed Host header ({matched_technique}) [{protocol}] interaction",
                     },
                     "FINDING",
@@ -142,6 +143,7 @@ class host_header(BaseModule):
                     "host": str(event.host),
                     "url": url,
                     "description": description,
+                    "name": "Duplicate Host Header Tolerated",
                 },
                 "FINDING",
                 event,
@@ -184,6 +186,7 @@ class host_header(BaseModule):
                     "host": str(event.host),
                     "url": url,
                     "description": description,
+                    "name": "Possible Host Header Injection",
                 },
                 "FINDING",
                 event,

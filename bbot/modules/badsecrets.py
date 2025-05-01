@@ -69,6 +69,7 @@ class badsecrets(BaseModule):
                     if r["type"] == "SecretFound":
                         data = {
                             "severity": r["description"]["severity"],
+                            "name": "BadSecrets - Known Secret",
                             "description": f"Known Secret Found. Secret Type: [{r['description']['secret']}] Secret: [{r['secret']}] Product Type: [{r['description']['product']}] Product: [{self.helpers.truncate_string(r['product'], 2000)}] Detecting Module: [{r['detecting_module']}] Details: [{r['details']}]",
                             "url": event.data["url"],
                             "host": str(event.host),
@@ -91,6 +92,7 @@ class badsecrets(BaseModule):
                             )
                         else:
                             data = {
+                                "name": "BadSecrets - Cryptographic Product",
                                 "description": f"Cryptographic Product identified. Product Type: [{r['description']['product']}] Product: [{self.helpers.truncate_string(r['product'], 2000)}] Detecting Module: [{r['detecting_module']}]",
                                 "url": event.data["url"],
                                 "host": str(event.host),

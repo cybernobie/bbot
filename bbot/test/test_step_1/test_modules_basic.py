@@ -354,7 +354,14 @@ async def test_modules_basic_stats(helpers, events, bbot_scanner, httpx_mock, mo
             # quick emit events like FINDINGS behave differently than normal ones
             # hosts are not speculated from them
             await self.emit_event(
-                {"host": "www.evilcorp.com", "url": "http://www.evilcorp.com", "description": "asdf"}, "FINDING", event
+                {
+                    "host": "www.evilcorp.com",
+                    "url": "http://www.evilcorp.com",
+                    "description": "asdf",
+                    "name": "Finding",
+                },
+                "FINDING",
+                event,
             )
             await self.emit_event("https://asdf.evilcorp.com", "URL", event, tags=["status-200"])
 

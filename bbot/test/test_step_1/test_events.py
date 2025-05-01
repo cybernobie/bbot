@@ -335,24 +335,44 @@ async def test_events(events, helpers):
     assert "affiliate" in corrected_event4.tags
 
     test_vuln = scan.make_event(
-        {"host": "EVILcorp.com", "severity": "iNfo ", "description": "asdf"}, "VULNERABILITY", dummy=True
+        {"host": "EVILcorp.com", "severity": "iNfo ", "description": "asdf", "name": "Vulnerability"},
+        "VULNERABILITY",
+        dummy=True,
     )
     assert test_vuln.data["host"] == "evilcorp.com"
     assert test_vuln.data["severity"] == "INFO"
     test_vuln2 = scan.make_event(
-        {"host": "192.168.1.1", "severity": "iNfo ", "description": "asdf"}, "VULNERABILITY", dummy=True
+        {"host": "192.168.1.1", "severity": "iNfo ", "description": "asdf", "name": "Vulnerability"},
+        "VULNERABILITY",
+        dummy=True,
     )
     assert json.loads(test_vuln2.data_human)["severity"] == "INFO"
     assert test_vuln2.host.is_private
+    # must have severity
     with pytest.raises(ValidationError, match=".*validation error.*\nseverity\n.*Field required.*"):
-        test_vuln = scan.make_event({"host": "evilcorp.com", "description": "asdf"}, "VULNERABILITY", dummy=True)
+        test_vuln = scan.make_event(
+            {"host": "evilcorp.com", "description": "asdf", "name": "Vulnerability"}, "VULNERABILITY", dummy=True
+        )
+    # invalid host
     with pytest.raises(ValidationError, match=".*host.*\n.*Invalid host.*"):
         test_vuln = scan.make_event(
-            {"host": "!@#$", "severity": "INFO", "description": "asdf"}, "VULNERABILITY", dummy=True
+            {"host": "!@#$", "severity": "INFO", "description": "asdf", "name": "Vulnerability"},
+            "VULNERABILITY",
+            dummy=True,
         )
+    # invalid severity
     with pytest.raises(ValidationError, match=".*severity.*\n.*Invalid severity.*"):
         test_vuln = scan.make_event(
-            {"host": "evilcorp.com", "severity": "WACK", "description": "asdf"}, "VULNERABILITY", dummy=True
+            {"host": "evilcorp.com", "severity": "WACK", "description": "asdf", "name": "Vulnerability"},
+            "VULNERABILITY",
+            dummy=True,
+        )
+    # must have name
+    with pytest.raises(ValidationError, match=".*name.*\n.*Field required.*"):
+        test_vuln = scan.make_event(
+            {"host": "evilcorp.com", "severity": "INFO", "description": "asdf"},
+            "VULNERABILITY",
+            dummy=True,
         )
 
     # test tagging
@@ -941,13 +961,15 @@ def test_event_closest_host():
     event3 = scan.make_event({"path": "/tmp/asdf.txt"}, "FILESYSTEM", parent=event2)
     assert not event3.host
     # finding automatically uses the host from the second event
-    finding = scan.make_event({"description": "test"}, "FINDING", parent=event3)
+    finding = scan.make_event({"description": "test", "name": "Finding"}, "FINDING", parent=event3)
     assert finding.data["host"] == "www.evilcorp.com"
     assert finding.data["url"] == "http://www.evilcorp.com/asdf"
     assert finding.data["path"] == "/tmp/asdf.txt"
     assert finding.host == "www.evilcorp.com"
     # same with vuln
-    vuln = scan.make_event({"description": "test", "severity": "HIGH"}, "VULNERABILITY", parent=event3)
+    vuln = scan.make_event(
+        {"description": "test", "severity": "HIGH", "name": "Vulnerability"}, "VULNERABILITY", parent=event3
+    )
     assert vuln.data["host"] == "www.evilcorp.com"
     assert vuln.data["url"] == "http://www.evilcorp.com/asdf"
     assert vuln.data["path"] == "/tmp/asdf.txt"
@@ -957,19 +979,29 @@ def test_event_closest_host():
     event3 = scan.make_event("wat", "ASDF", parent=scan.root_event)
     assert not event3.host
     with pytest.raises(ValueError):
-        finding = scan.make_event({"description": "test"}, "FINDING", parent=event3)
-    finding = scan.make_event({"path": "/tmp/asdf.txt", "description": "test"}, "FINDING", parent=event3)
+        finding = scan.make_event({"description": "test", "name": "Finding"}, "FINDING", parent=event3)
+    finding = scan.make_event(
+        {"path": "/tmp/asdf.txt", "description": "test", "name": "Finding"}, "FINDING", parent=event3
+    )
     assert finding is not None
-    finding = scan.make_event({"host": "evilcorp.com", "description": "test"}, "FINDING", parent=event3)
+    finding = scan.make_event(
+        {"host": "evilcorp.com", "description": "test", "name": "Finding"}, "FINDING", parent=event3
+    )
     assert finding is not None
     with pytest.raises(ValueError):
-        vuln = scan.make_event({"description": "test", "severity": "HIGH"}, "VULNERABILITY", parent=event3)
+        vuln = scan.make_event(
+            {"description": "test", "severity": "HIGH", "name": "Vulnerability"}, "VULNERABILITY", parent=event3
+        )
     vuln = scan.make_event(
-        {"path": "/tmp/asdf.txt", "description": "test", "severity": "HIGH"}, "VULNERABILITY", parent=event3
+        {"path": "/tmp/asdf.txt", "description": "test", "severity": "HIGH", "name": "Vulnerability"},
+        "VULNERABILITY",
+        parent=event3,
     )
     assert vuln is not None
     vuln = scan.make_event(
-        {"host": "evilcorp.com", "description": "test", "severity": "HIGH"}, "VULNERABILITY", parent=event3
+        {"host": "evilcorp.com", "description": "test", "severity": "HIGH", "name": "Vulnerability"},
+        "VULNERABILITY",
+        parent=event3,
     )
     assert vuln is not None
 
@@ -1059,21 +1091,24 @@ def test_event_hashing():
     url_event = scan.make_event("https://api.example.com/", "URL_UNVERIFIED", parent=scan.root_event)
     host_event_1 = scan.make_event("www.example.com", "DNS_NAME", parent=url_event)
     host_event_2 = scan.make_event("test.example.com", "DNS_NAME", parent=url_event)
-    finding_data = {"description": "Custom Yara Rule [find_string] Matched via identifier [str1]"}
+    finding_data = {"description": "Custom Yara Rule [find_string] Matched via identifier [str1]", "name": "Finding"}
     finding1 = scan.make_event(finding_data, "FINDING", parent=host_event_1)
     finding2 = scan.make_event(finding_data, "FINDING", parent=host_event_2)
     finding3 = scan.make_event(finding_data, "FINDING", parent=host_event_2)
 
     assert finding1.data == {
         "description": "Custom Yara Rule [find_string] Matched via identifier [str1]",
+        "name": "Finding",
         "host": "www.example.com",
     }
     assert finding2.data == {
         "description": "Custom Yara Rule [find_string] Matched via identifier [str1]",
+        "name": "Finding",
         "host": "test.example.com",
     }
     assert finding3.data == {
         "description": "Custom Yara Rule [find_string] Matched via identifier [str1]",
+        "name": "Finding",
         "host": "test.example.com",
     }
     assert finding1.id != finding2.id

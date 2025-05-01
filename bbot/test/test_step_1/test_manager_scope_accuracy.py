@@ -115,6 +115,8 @@ async def test_manager_scope_accuracy(bbot_scanner, bbot_httpserver, bbot_other_
         if scan_callback is not None:
             scan_callback(scan)
         output_events = [e async for e in scan.async_start()]
+        # let modules initialize
+        await asyncio.sleep(0.5)
         return (
             output_events,
             dummy_module.events,
@@ -268,7 +270,9 @@ async def test_manager_scope_accuracy(bbot_scanner, bbot_httpserver, bbot_other_
 
         async def handle_event(self, event):
             await self.emit_event(
-                {"host": str(event.host), "description": "yep", "severity": "CRITICAL"}, "VULNERABILITY", parent=event
+                {"host": str(event.host), "description": "yep", "severity": "CRITICAL", "name": "Vulnerability"},
+                "VULNERABILITY",
+                parent=event,
             )
 
     def custom_setup(scan):

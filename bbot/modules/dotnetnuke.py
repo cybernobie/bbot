@@ -55,6 +55,8 @@ class dotnetnuke(BaseModule):
                         "host": str(event.host),
                         "url": url,
                         "description": description,
+                        "cves": ["CVE-2017-0929"],
+                        "name": "DotNetNuke Blind-SSRF",
                     },
                     "VULNERABILITY",
                     event,
@@ -106,6 +108,7 @@ class dotnetnuke(BaseModule):
                                 "description": description,
                                 "host": str(event.host),
                                 "url": probe_url,
+                                "name": "DotNetNuke Cookie Deserialization",
                             },
                             "VULNERABILITY",
                             event,
@@ -124,6 +127,7 @@ class dotnetnuke(BaseModule):
                             {
                                 "severity": "CRITICAL",
                                 "description": description,
+                                "name": "DotNetNuke Arbitrary File Read",
                                 "host": str(event.host),
                                 "url": f"{event.data['url']}/DesktopModules/dnnUI_NewsArticlesSlider/ImageHandler.ashx",
                             },
@@ -143,6 +147,7 @@ class dotnetnuke(BaseModule):
                             {
                                 "severity": "CRITICAL",
                                 "description": description,
+                                "name": "DotNetNuke Arbitrary File Read",
                                 "host": str(event.host),
                                 "url": f"{event.data['url']}/Desktopmodules/DNNArticle/GetCSS.ashx/?CP=%2fweb.config",
                             },
@@ -164,6 +169,7 @@ class dotnetnuke(BaseModule):
                                 {
                                     "severity": "CRITICAL",
                                     "description": description,
+                                    "name": "DotNetNuke Privilege Escalation",
                                     "host": str(event.host),
                                     "url": f"{event.data['url']}/Install/InstallWizard.aspx",
                                 },

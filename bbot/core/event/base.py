@@ -1552,6 +1552,7 @@ class VULNERABILITY(ClosestHostEvent):
         "HIGH": "🟥",
         "MEDIUM": "🟧",
         "LOW": "🟨",
+        "INFO": "🟦",
         "UNKNOWN": "⬜",
     }
 
@@ -1562,9 +1563,11 @@ class VULNERABILITY(ClosestHostEvent):
     class _data_validator(BaseModel):
         host: Optional[str] = None
         severity: str
+        name: str
         description: str
         url: Optional[str] = None
         path: Optional[str] = None
+        cves: Optional[list[str]] = None
         _validate_url = field_validator("url")(validators.validate_url)
         _validate_host = field_validator("host")(validators.validate_host)
         _validate_severity = field_validator("severity")(validators.validate_severity)
@@ -1579,6 +1582,7 @@ class FINDING(ClosestHostEvent):
 
     class _data_validator(BaseModel):
         host: Optional[str] = None
+        name: str
         description: str
         url: Optional[str] = None
         path: Optional[str] = None

@@ -235,7 +235,13 @@ class iis_shortnames(BaseModule):
 
             description = f"IIS Shortname Vulnerability Detected. Potentially Vulnerable Method/Techniques: [{','.join(technique_strings)}]"
             await self.emit_event(
-                {"severity": "LOW", "host": str(event.host), "url": normalized_url, "description": description},
+                {
+                    "severity": "LOW",
+                    "host": str(event.host),
+                    "url": normalized_url,
+                    "description": description,
+                    "name": "IIS Shortnames",
+                },
                 "VULNERABILITY",
                 event,
                 context="{module} detected low {event.type}: IIS shortname enumeration",

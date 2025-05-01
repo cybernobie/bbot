@@ -10,7 +10,7 @@ class ajaxpro(BaseModule):
 
     ajaxpro_regex = re.compile(r'<script.+src="([\/a-zA-Z0-9\._]+,[a-zA-Z0-9\._]+\.ashx)"')
     watched_events = ["HTTP_RESPONSE", "URL"]
-    produced_events = ["VULNERABILITY", "FINDING"]
+    produced_events = ["VULNERABILITY", "TECHNOLOGY"]
     flags = ["active", "safe", "web-thorough"]
     meta = {
         "description": "Check for potentially vulnerable Ajaxpro instances",
@@ -75,6 +75,8 @@ class ajaxpro(BaseModule):
                 await self.emit_event(
                     {
                         "host": str(event.host),
+                        "name": "Ajaxpro Deserialization RCE (CVE-2021-23758)",
+                        "cves": ["CVE-2021-23758"],
                         "severity": "CRITICAL",
                         "url": event.data if event.type == "URL" else event.data["url"],
                         "description": f"Ajaxpro Deserialization RCE (CVE-2021-23758) Trigger: [{full_url}]",

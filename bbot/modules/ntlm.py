@@ -120,6 +120,7 @@ class ntlm(BaseModule):
                         "host": str(event.host),
                         "url": url,
                         "description": f"NTLM AUTH: {ntlm_resp_decoded}",
+                        "name": "NTLM Authentication",
                     },
                     "FINDING",
                     parent=event,
