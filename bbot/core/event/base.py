@@ -1086,9 +1086,10 @@ class ClosestHostEvent(DictHostEvent):
                     parent_path = parent.data.get("path", None)
                     if parent_path is not None:
                         self.data["path"] = parent_path
-                # inherit closest host
+                # inherit closest host+port
                 if parent.host:
                     self.data["host"] = str(parent.host)
+                    self.port = parent.port
                     # we do this to refresh the hash
                     self.data = self.data
                     break
@@ -1099,6 +1100,7 @@ class ClosestHostEvent(DictHostEvent):
 
 class DictPathEvent(DictEvent):
     def sanitize_data(self, data):
+        data = super().sanitize_data(data)
         new_data = dict(data)
         new_data["path"] = str(new_data["path"])
         file_blobs = getattr(self.scan, "_file_blobs", False)
@@ -1557,6 +1559,7 @@ class VULNERABILITY(ClosestHostEvent):
     }
 
     def sanitize_data(self, data):
+        data = super().sanitize_data(data)
         self.add_tag(data["severity"].lower())
         return data
 
