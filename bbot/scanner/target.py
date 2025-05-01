@@ -216,12 +216,13 @@ class BBOTTarget:
     Provides high-level functions like in_scope(), which includes both whitelist and blacklist checks.
     """
 
-    def __init__(self, *seeds, whitelist=None, blacklist=None, strict_scope=False):
-        self.strict_scope = strict_scope
-        self.seeds = ScanSeeds(*seeds, strict_dns_scope=strict_scope)
+    def __init__(self, *seeds, whitelist=None, blacklist=None, strict_dns_scope=False):
+        self.strict_dns_scope = strict_dns_scope
+        self.seeds = ScanSeeds(*seeds, strict_dns_scope=strict_dns_scope)
+        self._orig_whitelist = whitelist
         if whitelist is None:
             whitelist = self.seeds.hosts
-        self.whitelist = ScanWhitelist(*whitelist, strict_dns_scope=strict_scope)
+        self.whitelist = ScanWhitelist(*whitelist, strict_dns_scope=strict_dns_scope)
         if blacklist is None:
             blacklist = []
         self.blacklist = ScanBlacklist(*blacklist)
@@ -230,9 +231,9 @@ class BBOTTarget:
     def json(self):
         return {
             "seeds": sorted(self.seeds.inputs),
-            "whitelist": sorted(self.whitelist.inputs),
+            "whitelist": (None if not self._orig_whitelist else sorted(self.whitelist.inputs)),
             "blacklist": sorted(self.blacklist.inputs),
-            "strict_scope": self.strict_scope,
+            "strict_dns_scope": self.strict_dns_scope,
             "hash": self.hash.hex(),
             "seed_hash": self.seeds.hash.hex(),
             "whitelist_hash": self.whitelist.hash.hex(),

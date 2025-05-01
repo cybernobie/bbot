@@ -62,6 +62,7 @@ class OAUTH(BaseModule):
             if token_endpoint:
                 finding_event = self.make_event(
                     {
+                        "name": "OpenID Connect Endpoint",
                         "description": f"OpenID Connect Endpoint (domain: {source_domain}) found at {url}",
                         "host": event.host,
                         "url": url,
@@ -101,6 +102,7 @@ class OAUTH(BaseModule):
                 description = f"Potentially Sprayable OAUTH Endpoint (domain: {source_domain}) at {url}"
                 oauth_finding = self.make_event(
                     {
+                        "name": "Potentially Sprayable OAUTH Endpoint",
                         "description": description,
                         "host": event.host,
                         "url": url,

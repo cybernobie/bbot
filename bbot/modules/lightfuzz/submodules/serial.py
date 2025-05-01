@@ -156,6 +156,7 @@ class serial(BaseLightfuzz):
                     self.results.append(
                         {
                             "type": "FINDING",
+                            "name": "Lightfuzz - Possible Unsafe Deserialization",
                             "description": f"POSSIBLE Unsafe Deserialization. {self.metadata()} Technique: [Error Resolution] Serialization Payload: [{type}]",
                         }
                     )
@@ -173,6 +174,7 @@ class serial(BaseLightfuzz):
                             self.results.append(
                                 {
                                     "type": "FINDING",
+                                    "name": "Lightfuzz - Possible Unsafe Deserialization",
                                     "description": f"POSSIBLE Unsafe Deserialization. {self.metadata()} Technique: [Differential Error Analysis] Error-String: [{serialization_error}] Payload: [{type}]",
                                 }
                             )

@@ -55,7 +55,6 @@ class Scanner:
             - "STARTING" (1): Status when the scan is initializing.
             - "RUNNING" (2): Status when the scan is in progress.
             - "FINISHING" (3): Status when the scan is in the process of finalizing.
-            - "CLEANING_UP" (4): Status when the scan is cleaning up resources.
             - "ABORTING" (5): Status when the scan is in the process of being aborted.
             - "ABORTED" (6): Status when the scan has been aborted.
             - "FAILED" (7): Status when the scan has encountered a failure.
@@ -90,7 +89,6 @@ class Scanner:
         "STARTING": 1,
         "RUNNING": 2,
         "FINISHING": 3,
-        "CLEANING_UP": 4,
         "ABORTING": 5,
         "ABORTED": 6,
         "FAILED": 7,
@@ -127,6 +125,7 @@ class Scanner:
 
         self._success = False
         self._scan_finish_status_message = None
+        self._marked_finished = False
 
         if scan_id is not None:
             self.id = str(scan_id)
@@ -318,7 +317,7 @@ class Scanner:
                 self._fail_setup(msg)
 
             total_modules = total_failed + len(self.modules)
-            success_msg = f"Setup succeeded for {len(self.modules):,}/{total_modules:,} modules."
+            success_msg = f"Setup succeeded for {len(self.modules) - 2:,}/{total_modules - 2:,} modules."
 
             self.success(success_msg)
             self._prepped = True
@@ -396,8 +395,6 @@ class Scanner:
                     new_activity = await self.finish()
                     if not new_activity:
                         self._success = True
-                        scan_finish_event = await self._mark_finished()
-                        yield scan_finish_event
                         break
 
                 await asyncio.sleep(0.1)
@@ -421,6 +418,8 @@ class Scanner:
                     self.critical(f"Unexpected error during scan:\n{traceback.format_exc()}")
 
         finally:
+            scan_finish_event = await self._mark_finished()
+            yield scan_finish_event
             tasks = self._cancel_tasks()
             self.debug(f"Awaiting {len(tasks):,} tasks")
             for task in tasks:
@@ -430,7 +429,7 @@ class Scanner:
             self.debug(f"Awaited {len(tasks):,} tasks")
             await self._report()
             await self._cleanup()
-
+            # report on final scan status
             await self.dispatcher.on_finish(self)
 
             self._stop_log_handlers()
@@ -444,6 +443,11 @@ class Scanner:
                 log_fn(self._scan_finish_status_message)
 
     async def _mark_finished(self):
+        if self._marked_finished:
+            return
+
+        self._marked_finished = True
+
         if self.status == "ABORTING":
             status = "ABORTED"
         elif not self._success:
@@ -456,20 +460,23 @@ class Scanner:
         self.duration_seconds = self.duration.total_seconds()
         self.duration_human = self.helpers.human_timedelta(self.duration)
 
-        self._scan_finish_status_message = f"Scan {self.name} completed in {self.duration_human} with status {status}"
+        self._scan_finish_status_message = (
+            f"Scan {self.name} completed in {self.duration_human} with status {self.status}"
+        )
 
         scan_finish_event = self.finish_event(self._scan_finish_status_message, status)
 
-        # queue final scan event with output modules
-        output_modules = [m for m in self.modules.values() if m._type == "output" and m.name != "python"]
-        for m in output_modules:
-            await m.queue_event(scan_finish_event)
-        # wait until output modules are flushed
-        while 1:
-            modules_finished = all(m.finished for m in output_modules)
-            if modules_finished:
-                break
-            await asyncio.sleep(0.05)
+        if not self._stopping:
+            # queue final scan event with output modules
+            output_modules = [m for m in self.modules.values() if m._type == "output" and m.name != "python"]
+            for m in output_modules:
+                await m.queue_event(scan_finish_event)
+            # wait until output modules are flushed
+            while 1:
+                modules_finished = all([m.finished for m in output_modules])
+                if modules_finished:
+                    break
+                await asyncio.sleep(0.05)
 
         self.status = status
         return scan_finish_event
@@ -643,7 +650,7 @@ class Scanner:
             total += len(q._queue)
         return total
 
-    def modules_status(self, _log=False):
+    def modules_status(self, _log=False, detailed=False):
         finished = True
         status = {"modules": {}}
 
@@ -713,7 +720,7 @@ class Scanner:
                     f"{self.name}: No events in queue ({self.stats.speedometer.speed:,} processed in the past {self.status_frequency} seconds)"
                 )
 
-            if self.log_level <= logging.DEBUG:
+            if detailed or self.log_level <= logging.DEBUG:
                 # status debugging
                 scan_active_status = []
                 scan_active_status.append(f"scan._finished_init: {self._finished_init}")
@@ -764,6 +771,7 @@ class Scanner:
             self._drain_queues()
             self.helpers.kill_children()
             self.debug("Finished aborting scan")
+            self.status = "ABORTED"
 
     async def finish(self):
         """Finalizes the scan by invoking the `finished()` method on all active modules if new activity is detected.
@@ -834,8 +842,8 @@ class Scanner:
         # ticker
         if self.ticker_task:
             tasks.append(self.ticker_task)
-        # dispatcher
-        tasks += self.dispatcher_tasks
+        # we don't cancel the dispatcher task because it still needs to report on the final scan status
+        # tasks += self.dispatcher_tasks
         # manager worker loops
         tasks += self._manager_worker_loop_tasks
         self.helpers.cancel_tasks_sync(tasks)
@@ -866,7 +874,8 @@ class Scanner:
 
         This method is called once at the end of the scan to perform resource cleanup
         tasks. It is executed regardless of whether the scan was aborted or completed
-        successfully. The scan status is set to "CLEANING_UP" during the execution.
+        successfully.
+
         After calling the `cleanup()` method for each module, it performs additional
         cleanup tasks such as removing the scan's home directory if empty and cleaning
         old scans.
@@ -877,7 +886,6 @@ class Scanner:
         # clean up self
         if not self._cleanedup:
             self._cleanedup = True
-            self.status = "CLEANING_UP"
             # clean up modules
             for mod in self.modules.values():
                 await mod._cleanup()
@@ -968,23 +976,29 @@ class Scanner:
         Block setting after status has been aborted
         """
         status = str(status).strip().upper()
+        self.debug(f"Setting scan status from {self.status} to {status}")
         if status in self._status_codes:
-            if self.status == "ABORTING" and not status == "ABORTED":
-                self.debug(f'Attempt to set invalid status "{status}" on aborted scan')
-            else:
-                if status != self._status:
-                    self._status = status
-                    self._status_code = self._status_codes[status]
-                    self.dispatcher_tasks.append(
-                        asyncio.create_task(
-                            self.dispatcher.catch(self.dispatcher.on_status, self._status, self.id),
-                            name=f"{self.name}.dispatcher.on_status({status})",
-                        )
-                    )
-                else:
-                    self.debug(f'Scan status is already "{status}"')
+            # if the scan has already been marked as ABORTED/FAILED/FINISHED, don't allow setting status again
+            if self._status_code >= self._status_codes["ABORTED"]:
+                self.debug(f'Attempt to set invalid status "{status}" on already finished scan')
+                return
+            if status == self._status:
+                self.debug(f'Scan status is already "{status}"')
+                return
+            self._status = status
+            self._status_code = self._status_codes[status]
+            # clean out old dispatcher tasks
+            for task in list(self.dispatcher_tasks):
+                if task.done():
+                    self.dispatcher_tasks.remove(task)
+            self.dispatcher_tasks.append(
+                asyncio.create_task(
+                    self.dispatcher.catch(self.dispatcher.on_status, self._status, self.id),
+                    name=f"{self.name}.dispatcher.on_status({status})",
+                )
+            )
         else:
-            self.debug(f'Attempt to set invalid status "{status}" on scan')
+            self.warning(f'Attempt to set invalid status "{status}" on scan')
 
     def make_event(self, *args, **kwargs):
         kwargs["scan"] = self

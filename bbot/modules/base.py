@@ -659,8 +659,8 @@ class BaseModule:
             - Each event is subject to a post-check via '_event_postcheck()' to decide whether it should be handled.
             - Special 'FINISHED' events trigger the 'finish()' method of the module.
         """
-        async with self.scan._acatch(context=self._worker, unhandled_is_critical=True):
-            try:
+        try:
+            async with self.scan._acatch(context=self._worker, unhandled_is_critical=True):
                 while not self.scan.stopping and not self.errored:
                     # hold the reigns if our outgoing queue is full
                     if self._qsize > 0 and self.outgoing_event_queue.qsize() >= self._qsize:
@@ -700,16 +700,18 @@ class BaseModule:
                                 self.debug(f"Finished handling {event}")
                         else:
                             self.debug(f"Not accepting {event} because {reason}")
-            except asyncio.CancelledError:
-                # this trace was used for debugging leaked CancelledErrors from inside httpx
-                # self.log.trace("Worker cancelled")
-                raise
-            except BaseException as e:
-                if self.helpers.in_exception_chain(e, (KeyboardInterrupt,)):
-                    self.scan.stop()
-                else:
-                    self.error(f"Critical failure in module {self.name}: {e}")
-                    self.error(traceback.format_exc())
+        except asyncio.CancelledError:
+            # this trace was used for debugging leaked CancelledErrors from inside httpx
+            # self.log.trace("Worker cancelled")
+            raise
+        except RuntimeError as e:
+            self.trace(f"RuntimeError in module {self.name}: {e}")
+        except BaseException as e:
+            if self.helpers.in_exception_chain(e, (KeyboardInterrupt,)):
+                self.scan.stop()
+            else:
+                self.error(f"Critical failure in module {self.name}: {e}")
+                self.error(traceback.format_exc())
         self.log.trace("Worker stopped")
 
     @property
@@ -1663,8 +1665,8 @@ class BaseInterceptModule(BaseModule):
     _intercept = True
 
     async def _worker(self):
-        async with self.scan._acatch(context=self._worker, unhandled_is_critical=True):
-            try:
+        try:
+            async with self.scan._acatch(context=self._worker, unhandled_is_critical=True):
                 while not self.scan.stopping and not self.errored:
                     try:
                         if self.incoming_event_queue is not False:
@@ -1720,16 +1722,19 @@ class BaseInterceptModule(BaseModule):
                     self.debug(f"Forwarding {event}")
                     await self.forward_event(event, kwargs)
 
-            except asyncio.CancelledError:
-                # this trace was used for debugging leaked CancelledErrors from inside httpx
-                # self.log.trace("Worker cancelled")
-                raise
-            except BaseException as e:
-                if self.helpers.in_exception_chain(e, (KeyboardInterrupt,)):
-                    self.scan.stop()
-                else:
-                    self.critical(f"Critical failure in intercept module {self.name}: {e}")
-                    self.critical(traceback.format_exc())
+        except asyncio.CancelledError:
+            # this trace was used for debugging leaked CancelledErrors from inside httpx
+            # self.log.trace("Worker cancelled")
+            raise
+        except RuntimeError as e:
+            self.trace(f"RuntimeError in intercept module {self.name}: {e}")
+        except BaseException as e:
+            if self.helpers.in_exception_chain(e, (KeyboardInterrupt,)):
+                self.scan.stop()
+            else:
+                self.critical(f"Critical failure in intercept module {self.name}: {e}")
+                self.critical(traceback.format_exc())
+
         self.log.trace("Worker stopped")
 
     async def get_incoming_event(self):

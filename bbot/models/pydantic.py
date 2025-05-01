@@ -1,7 +1,7 @@
 import json
 import logging
+from typing import Optional, List, Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Optional, List, Union, Annotated
 
 from bbot.models.helpers import utc_now_timestamp
 
@@ -73,8 +73,8 @@ class Event(BBOTBaseModel):
     # we store the host in reverse to allow for instant subdomain queries
     # this works because indexes are left-anchored, but we need to search starting from the right side
     reverse_host: Annotated[Optional[str], "indexed"] = ""
-    resolved_hosts: Union[List, None] = None
-    dns_children: Union[dict, None] = None
+    resolved_hosts: Optional[List] = None
+    dns_children: Optional[dict] = None
     web_spider_distance: int = 10
     scope_distance: int = 10
     scan: Annotated[str, "indexed"]
@@ -128,9 +128,9 @@ class Scan(BBOTBaseModel):
 
 class Target(BBOTBaseModel):
     name: str = "Default Target"
-    strict_scope: bool = False
+    strict_dns_scope: bool = False
     seeds: List = []
-    whitelist: List = []
+    whitelist: Optional[List] = None
     blacklist: List = []
     hash: Annotated[str, "indexed", "unique"]
     scope_hash: Annotated[str, "indexed"]

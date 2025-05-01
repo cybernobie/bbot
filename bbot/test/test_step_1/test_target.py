@@ -172,7 +172,7 @@ async def test_target_basic(bbot_scanner):
     bbottarget3 = BBOTTarget("evilcorp.com", whitelist=["1.2.3.4/24"], blacklist=["1.2.3.4"])
     bbottarget5 = BBOTTarget("evilcorp.com", "evilcorp.net", whitelist=["1.2.3.0/24"], blacklist=["1.2.3.4"])
     bbottarget6 = BBOTTarget(
-        "evilcorp.com", "evilcorp.net", whitelist=["1.2.3.0/24"], blacklist=["1.2.3.4"], strict_scope=True
+        "evilcorp.com", "evilcorp.net", whitelist=["1.2.3.0/24"], blacklist=["1.2.3.4"], strict_dns_scope=True
     )
     bbottarget8 = BBOTTarget("1.2.3.0/24", whitelist=["evilcorp.com", "evilcorp.net"], blacklist=["1.2.3.4"])
     bbottarget9 = BBOTTarget("evilcorp.com", "evilcorp.net", whitelist=["1.2.3.0/24"], blacklist=["1.2.3.4"])
@@ -203,7 +203,7 @@ async def test_target_basic(bbot_scanner):
     assert bbottarget1 != bbottarget2
     assert bbottarget2 != bbottarget1
 
-    # make sure strict_scope is considered in hash
+    # make sure strict_dns_scope is considered in hash
     assert bbottarget5 != bbottarget6
     assert bbottarget6 != bbottarget5
 
@@ -304,7 +304,7 @@ async def test_target_basic(bbot_scanner):
     assert target_dict["seeds"] == ["1.2.3.0/24", "bob@fdsa.evilcorp.net", "http://www.evilcorp.net/"]
     assert target_dict["whitelist"] == ["bob@www.evilcorp.com", "evilcorp.com", "evilcorp.net"]
     assert target_dict["blacklist"] == ["1.2.3.4", "4.3.2.0/24", "bob@asdf.evilcorp.net", "http://1.2.3.4/"]
-    assert target_dict["strict_scope"] is False
+    assert target_dict["strict_dns_scope"] is False
     assert target_dict["hash"] == "b36955a8238a71842fc5f23b11110c26ea07d451"
     assert target_dict["seed_hash"] == "560af51d1f3d69bc5c156fc270b28497fe52dec1"
     assert target_dict["whitelist_hash"] == "8ed0a7368e6d34630e1cfd419d2a73767debc4c4"
@@ -327,7 +327,7 @@ async def test_target_basic(bbot_scanner):
     target = RadixTarget("www.evilcorp.com", "evilcorp.com", acl_mode=True)
     assert set(target) == {"evilcorp.com"}
 
-    # make sure strict_scope doesn't mess us up
+    # make sure strict_dns_scope doesn't mess us up
     target = RadixTarget("evilcorp.co.uk", "www.evilcorp.co.uk", acl_mode=True, strict_dns_scope=True)
     assert set(target.hosts) == {"evilcorp.co.uk", "www.evilcorp.co.uk"}
     assert "evilcorp.co.uk" in target

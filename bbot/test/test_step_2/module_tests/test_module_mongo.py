@@ -118,6 +118,7 @@ class TestMongo(ModuleTestBase):
             for db_event in db_events_pydantic:
                 db_event.pop("reverse_host")
                 db_event.pop("inserted_at")
+                db_event.pop("archived")
             # They should match after removing reverse_host
             assert events_json == db_events_pydantic, "Events do not match"
 

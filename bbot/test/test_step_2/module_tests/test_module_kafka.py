@@ -50,6 +50,9 @@ class TestKafka(ModuleTestBase):
         # Wait for Kafka to be ready
         await self.wait_for_port_open(9092)
 
+        await asyncio.sleep(1)
+
+    async def check(self, module_test, events):
         from aiokafka import AIOKafkaConsumer
 
         self.consumer = AIOKafkaConsumer(
@@ -59,7 +62,6 @@ class TestKafka(ModuleTestBase):
         )
         await self.consumer.start()
 
-    async def check(self, module_test, events):
         try:
             events_json = [e.json() for e in events]
             events_json.sort(key=lambda x: x["timestamp"])

@@ -123,6 +123,7 @@ class trufflehog(BaseModule):
             verified_str = "Verified" if verified else "Possible"
             finding_type = "VULNERABILITY" if verified else "FINDING"
             data = {
+                "name": f"TruffleHog - {detector_name}",
                 "description": f"{verified_str} Secret Found. Detector Type: [{detector_name}] Decoder Type: [{decoder_name}] Details: [{source_metadata}]",
             }
             if host:

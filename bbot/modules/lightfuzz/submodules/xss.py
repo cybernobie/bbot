@@ -91,6 +91,7 @@ class xss(BaseLightfuzz):
             self.results.append(
                 {
                     "type": "FINDING",
+                    "name": "Lightfuzz - Possible Reflected XSS",
                     "description": f"Possible Reflected XSS. Parameter: [{self.event.data['name']}] Context: [{context}] Parameter Type: [{self.event.data['type']}]",
                 }
             )

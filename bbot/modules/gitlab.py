@@ -57,7 +57,11 @@ class gitlab(BaseModule):
             )
             description = f"GitLab server at {event.host}"
             await self.emit_event(
-                {"host": str(event.host), "description": description},
+                {
+                    "host": str(event.host),
+                    "description": description,
+                    "name": "GitLab Server",
+                },
                 "FINDING",
                 parent=event,
                 context=f"{{module}} detected {{event.type}}: {description}",

@@ -9,7 +9,7 @@ cwd = Path(__file__).parent.parent.parent
 
 
 def run_bbot_multiprocess(queue):
-    from bbot import Scanner
+    from bbot.scanner import Scanner
 
     scan = Scanner("http://127.0.0.1:8888", "blacklanternsecurity.com", modules=["httpx"])
     events = [e.json() for e in scan.start()]

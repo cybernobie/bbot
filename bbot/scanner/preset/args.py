@@ -230,7 +230,7 @@ class BBOTArgs:
         target.add_argument(
             "--strict-scope",
             action="store_true",
-            help="Don't consider subdomains of target/whitelist to be in-scope",
+            help="Don't consider subdomains of target/whitelist to be in-scope - exact matches only",
         )
         presets = p.add_argument_group(title="Presets")
         presets.add_argument(

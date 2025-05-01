@@ -33,6 +33,7 @@ class ssti(BaseLightfuzz):
                 self.results.append(
                     {
                         "type": "FINDING",
+                        "name": "Lightfuzz - Possible Server-side Template Injection",
                         "description": f"POSSIBLE Server-side Template Injection. {self.metadata()} Detection Method: [Integer Multiplication] Payload: [{probe_value}]",
                     }
                 )
