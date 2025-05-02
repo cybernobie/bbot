@@ -391,6 +391,14 @@ async def test_events(events, helpers):
     assert test_vuln.port == 80
     assert test_vuln.netloc == "evilcorp.com:80"
 
+    # technology should be lowercased
+    tech_event = scan.make_event(
+        {"host": "evilcorp.com", "technology": "HTTP", "url": "http://evilcorp.com/test"},
+        "TECHNOLOGY",
+        dummy=True,
+    )
+    assert tech_event.data["technology"] == "http"
+
     # test tagging
     ip_event_1 = scan.make_event("8.8.8.8", dummy=True)
     assert "private-ip" not in ip_event_1.tags
