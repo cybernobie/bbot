@@ -985,7 +985,7 @@ class Scanner:
 
         self.debug(f"Setting scan status from {self.status} to {status}")
         # if the scan has already been marked as ABORTED/FAILED/FINISHED, don't allow setting status again
-        if status_code < self._status_code:
+        if status_code <= self._status_code:
             self.debug(f'Attempt to set invalid status "{status}" on scan with status "{self.status}"')
             return
         self._status_code = status_code
