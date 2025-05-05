@@ -1019,6 +1019,7 @@ class Scanner:
         if self._root_event is None:
             self._root_event = self.make_root_event(f"Scan {self.name} started at {self.start_time}")
         self._root_event.data["status"] = self.status
+        self._root_event.data["status_code"] = self._status_code
         return self._root_event
 
     def finish_event(self, context=None, status=None):
