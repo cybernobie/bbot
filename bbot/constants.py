@@ -1,5 +1,3 @@
-
-
 SCAN_STATUSES = {
     "NOT_STARTED": 0,
     "STARTING": 1,
