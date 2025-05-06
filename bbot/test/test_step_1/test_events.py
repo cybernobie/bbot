@@ -398,6 +398,7 @@ async def test_events(events, helpers):
         dummy=True,
     )
     assert tech_event.data["technology"] == "http"
+    assert tech_event.port == 80
 
     # test tagging
     ip_event_1 = scan.make_event("8.8.8.8", dummy=True)

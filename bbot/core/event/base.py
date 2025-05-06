@@ -403,6 +403,8 @@ class BaseEvent:
     @property
     def port(self):
         self.host
+        if self._port:
+            return self._port
         if getattr(self, "parsed_url", None):
             if self.parsed_url.port is not None:
                 return self.parsed_url.port
@@ -410,7 +412,6 @@ class BaseEvent:
                 return 443
             elif self.parsed_url.scheme == "http":
                 return 80
-        return self._port
 
     @property
     def netloc(self):
@@ -1605,6 +1606,7 @@ class TECHNOLOGY(DictHostEvent):
         _validate_host = field_validator("host")(validators.validate_host)
 
     def _sanitize_data(self, data):
+        data = super()._sanitize_data(data)
         data["technology"] = data["technology"].lower()
         return data
 
@@ -1737,6 +1739,7 @@ class MOBILE_APP(DictEvent):
     _always_emit = True
 
     def _sanitize_data(self, data):
+        data = super()._sanitize_data(data)
         if isinstance(data, str):
             data = {"url": data}
         if "url" not in data:
