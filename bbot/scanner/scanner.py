@@ -335,9 +335,9 @@ class Scanner:
             pass
 
     async def async_start(self):
-        """ """
         self.start_time = datetime.now(ZoneInfo("UTC"))
         self.root_event.data["started_at"] = self.start_time.timestamp()
+        await self._set_status(SCAN_STATUS_STARTING)
         try:
             await self._prep()
 
@@ -354,18 +354,16 @@ class Scanner:
                 self._status_ticker(self.status_frequency), name=f"{self.name}._status_ticker()"
             )
 
-            self.status = SCAN_STATUS_STARTING
-
             if not self.modules:
                 self.error("No modules loaded")
-                self.status = SCAN_STATUS_FAILED
+                await self._set_status(SCAN_STATUS_FAILED)
                 return
             else:
                 self.hugesuccess(f"Starting scan {self.name}")
 
             await self.dispatcher.on_start(self)
 
-            self.status = SCAN_STATUS_RUNNING
+            await self._set_status(SCAN_STATUS_RUNNING)
             self._start_modules()
             self.verbose(f"{len(self.modules):,} modules started")
 
@@ -403,7 +401,7 @@ class Scanner:
 
         except BaseException as e:
             if self.helpers.in_exception_chain(e, (KeyboardInterrupt, asyncio.CancelledError)):
-                self.stop()
+                await self.async_stop()
                 self._success = True
             else:
                 try:
@@ -480,7 +478,7 @@ class Scanner:
                     break
                 await asyncio.sleep(0.05)
 
-        self.status = status
+        await self._set_status(status)
         return scan_finish_event
 
     def _start_modules(self):
@@ -754,7 +752,7 @@ class Scanner:
 
         return status
 
-    def stop(self):
+    async def async_stop(self):
         """Stops the in-progress scan and performs necessary cleanup.
 
         This method sets the scan's status to "ABORTING," cancels any pending tasks, and drains event queues. It also kills child processes spawned during the scan.
@@ -764,7 +762,7 @@ class Scanner:
         """
         if not self._stopping:
             self._stopping = True
-            self.status = "ABORTING"
+            await self._set_status(SCAN_STATUS_ABORTING)
             self.hugewarning("Aborting scan")
             self.trace()
             self._cancel_tasks()
@@ -773,7 +771,10 @@ class Scanner:
             self._drain_queues()
             self.helpers.kill_children()
             self.debug("Finished aborting scan")
-            self.status = "ABORTED"
+            await self._set_status(SCAN_STATUS_ABORTED)
+
+    def stop(self):
+        asyncio.create_task(self.async_stop())
 
     async def finish(self):
         """Finalizes the scan by invoking the `finished()` method on all active modules if new activity is detected.
@@ -972,8 +973,7 @@ class Scanner:
             self._omitted_event_types = self.config.get("omit_event_types", [])
         return self._omitted_event_types
 
-    @status.setter
-    def status(self, status):
+    async def _set_status(self, status):
         """
         Block setting after status has been aborted
         """
@@ -989,16 +989,8 @@ class Scanner:
             self.debug(f'Attempt to set invalid status "{status}" on scan with status "{self.status}"')
             return
         self._status_code = status_code
-        # clean out old dispatcher tasks
-        for task in list(self.dispatcher_tasks):
-            if task.done():
-                self.dispatcher_tasks.remove(task)
-        self.dispatcher_tasks.append(
-            asyncio.create_task(
-                self.dispatcher.catch(self.dispatcher.on_status, self.status, self.id),
-                name=f"{self.name}.dispatcher.on_status({status})",
-            )
-        )
+        with self.dispatcher.catch():
+            await self.dispatcher.on_status(self.status, self.id)
 
     def make_event(self, *args, **kwargs):
         kwargs["scan"] = self

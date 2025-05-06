@@ -708,7 +708,7 @@ class BaseModule:
             self.trace(f"RuntimeError in module {self.name}: {e}")
         except BaseException as e:
             if self.helpers.in_exception_chain(e, (KeyboardInterrupt,)):
-                self.scan.stop()
+                await self.scan.async_stop()
             else:
                 self.error(f"Critical failure in module {self.name}: {e}")
                 self.error(traceback.format_exc())
@@ -1730,7 +1730,7 @@ class BaseInterceptModule(BaseModule):
             self.trace(f"RuntimeError in intercept module {self.name}: {e}")
         except BaseException as e:
             if self.helpers.in_exception_chain(e, (KeyboardInterrupt,)):
-                self.scan.stop()
+                await self.scan.async_stop()
             else:
                 self.critical(f"Critical failure in intercept module {self.name}: {e}")
                 self.critical(traceback.format_exc())
