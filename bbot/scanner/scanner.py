@@ -988,6 +988,7 @@ class Scanner:
         if status_code <= self._status_code:
             self.debug(f'Attempt to set invalid status "{status}" on scan with status "{self.status}"')
             return
+
         self._status_code = status_code
         with self.dispatcher.catch():
             await self.dispatcher.on_status(self.status, self.id)
