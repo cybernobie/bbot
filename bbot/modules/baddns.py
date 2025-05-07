@@ -37,7 +37,6 @@ class baddns(BaseModule):
             self.enabled_submodules = ["CNAME", "MX", "TXT"]
 
     async def setup(self):
-        self.preset.core.logger.include_logger(logging.getLogger("baddns"))
         self.custom_nameservers = self.config.get("custom_nameservers", []) or None
         if self.custom_nameservers:
             self.custom_nameservers = self.helpers.chain_lists(self.custom_nameservers)
@@ -53,6 +52,12 @@ class baddns(BaseModule):
                 return False
         self.debug(f"Enabled BadDNS Submodules: [{','.join(self.enabled_submodules)}]")
         return True
+
+    @property
+    def log(self):
+        if self._log is None:
+            self._log = logging.getLogger(f"bbot.modules.{self.name}")
+        return self._log
 
     async def handle_event(self, event):
         tasks = []

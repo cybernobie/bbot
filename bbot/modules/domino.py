@@ -1,6 +1,5 @@
 from .base import BaseModule
 
-import asyncio
 import logging
 from domino.DOMino import Domino
 from domino.lib.errors import DominoError
@@ -43,49 +42,53 @@ class domino(BaseModule):
             self.rules = None
 
         self.playwright = await async_playwright().start()
-        self.browser_instance = await self.playwright.chromium.launch(headless=True)
-        self.logger = logging.getLogger("domino")
-        self.preset.core.logger.include_logger(self.logger)
+
         self.suppress_parameter_discovery_reports = self.config.get("suppress_parameter_discovery_reports", True)
         return True
 
+    @property
+    def log(self):
+        if self._log is None:
+            self._log = logging.getLogger(f"bbot.modules.{self.name}")
+        return self._log
+
     async def handle_event(self, event):
+        browser_instance = await self.playwright.chromium.launch(headless=True)
+        self.debug(f"Domino starting browser instance for {event.data}")
         try:
-            d = Domino(url=event.data, logger=self.logger, json_mode=True, selected_rules=self.rules)
-            results = await d.run(self.playwright, self.browser_instance)
+            d = Domino(url=event.data, logger=self.log, json_mode=True, selected_rules=self.rules)
+            results = await d.run(self.playwright, browser_instance)
         except DominoError as e:
             self.hugewarning(f"Error running Domino, setting error state: {e}")
             self.errored = True
             return
 
-        if not results:
-            return
+        if results:
+            for result in results:
+                details = result.get("details", [])
+                details_string = f" Details: [{','.join(details)}]" if details else ""
 
-        for result in results:
-            details = result.get("details", [])
-            details_string = f" Details: [{','.join(details)}]" if details else ""
+                interactions = result.get("interactions", [])
+                interactions_string = f"Interactions: [{','.join(interactions)}]" if interactions else ""
 
-            interactions = result.get("interactions", [])
-            interactions_string = f"Interactions: [{','.join(interactions)}]" if interactions else ""
+                data = {
+                    "description": f"{result['rule_name']}. Description: {result['description']}.{details_string} Detection URL: [{result['detection_url']}] {interactions_string}",
+                    "host": str(event.host),
+                }
 
-            data = {
-                "description": f"{result['rule_name']}. Description: {result['description']}.{details_string} Detection URL: [{result['detection_url']}] {interactions_string}",
-                "host": str(event.host),
-            }
+                if result["severity"] == "high":
+                    data["severity"] = "high"
+                    await self.emit_event(data, "VULNERABILITY", event)
+                else:
+                    if self.suppress_parameter_discovery_reports and "GET Parameter Access" in result["rule_name"]:
+                        continue
+                    await self.emit_event(data, "FINDING", event)
+        self.debug(f"Domino browsers instance shutting down for {event.data}")
+        await browser_instance.close()
+        self.debug(f"DOMino browser shutdown complete for {event.data}")
 
-            if result["severity"] == "high":
-                data["severity"] = "high"
-                await self.emit_event(data, "VULNERABILITY", event)
-            else:
-                if self.suppress_parameter_discovery_reports and "GET Parameter Access" in result["rule_name"]:
-                    continue
-                await self.emit_event(data, "FINDING", event)
-
-    async def finish(self):
-        await self.browser_instance.close()
+    async def cleanup(self):
         await self.playwright.stop()
-        await asyncio.sleep(0.5)
-
 
     async def filter_event(self, event):
         if "status-200" not in event.tags:

@@ -24,13 +24,18 @@ class baddns_direct(BaseModule):
     scope_distance_modifier = 1
 
     async def setup(self):
-        self.preset.core.logger.include_logger(logging.getLogger("baddns"))
         self.custom_nameservers = self.config.get("custom_nameservers", []) or None
         if self.custom_nameservers:
             self.custom_nameservers = self.helpers.chain_lists(self.custom_nameservers)
         self.only_high_confidence = self.config.get("only_high_confidence", False)
         self.signatures = load_signatures()
         return True
+
+    @property
+    def log(self):
+        if self._log is None:
+            self._log = logging.getLogger(f"bbot.modules.{self.name}")
+        return self._log
 
     def select_modules(self):
         selected_modules = []
