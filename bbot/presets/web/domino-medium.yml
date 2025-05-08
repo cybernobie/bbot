@@ -25,3 +25,8 @@ config:
         - remote-include-get-parameters
         - jquery
         - eval
+        - transform
+        - get-parameter-transform
+        - html-injection
+        - remote-include
+        - remote-include-get-parameters

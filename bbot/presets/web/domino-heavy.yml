@@ -23,6 +23,16 @@ config:
         - xss-js
         - get-parameter-discovery
         - get-parameter-reflection
+        - transform
+        - get-parameter-transform
+        - html-injection
+        - jquery
+        - eval
+        - hash-decode
+        - postmessage
+        - remote-include
+        - remote-include-get-parameters
+        - prototype-pollution
       suppress_parameter_discovery_reports: False
     wayback:
       urls: True
