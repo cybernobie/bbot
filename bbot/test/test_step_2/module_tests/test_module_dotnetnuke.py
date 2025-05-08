@@ -92,7 +92,7 @@ MAPI=1
         dnn_installwizard_privesc_detection = False
 
         for e in events:
-            if e.type == "TECHNOLOGY" and "DotNetNuke" in e.data["technology"]:
+            if e.type == "TECHNOLOGY" and "dotnetnuke" in e.data["technology"]:
                 dnn_technology_detection = True
 
             if (
@@ -165,7 +165,7 @@ class TestDotnetnuke_blindssrf(ModuleTestBase):
         dnn_dnnimagehandler_blindssrf = False
 
         for e in events:
-            if e.type == "TECHNOLOGY" and "DotNetNuke" in e.data["technology"]:
+            if e.type == "TECHNOLOGY" and "dotnetnuke" in e.data["technology"]:
                 dnn_technology_detection = True
 
             if e.type == "VULNERABILITY" and "DotNetNuke Blind-SSRF (CVE 2017-0929)" in e.data["description"]:
