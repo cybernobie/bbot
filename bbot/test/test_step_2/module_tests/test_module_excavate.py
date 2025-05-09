@@ -1409,9 +1409,16 @@ class TestExcavateBadURLs(ModuleTestBase):
         module_test.set_expect_requests({"uri": "/"}, {"response_data": self.bad_url_data})
 
     def check(self, module_test, events):
+        import gzip
+
         debug_log_content = open(module_test.scan.home / "debug.log").read()
+        for archived_debug_log in module_test.scan.home.glob("debug.log.*.gz"):
+            gzipped_content = open(archived_debug_log).read()
+            ungzipped_content = gzip.decompress(gzipped_content).decode("utf-8")
+            debug_log_content += ungzipped_content
+
         # make sure our logging is working
-        assert "Setting scan status to STARTING" in debug_log_content
+        assert "Setting scan status to RUNNING" in debug_log_content
         # make sure we don't have any URL validation errors
         assert "Error Parsing reconstructed URL" not in debug_log_content
         assert "Error sanitizing event data" not in debug_log_content
