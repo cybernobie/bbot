@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.mmp9oqxl.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.__f5k06i.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -801,10 +801,18 @@ Is the same as:
 <span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># These are attached to all in-scope HTTP requests</span>
 <span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Note that some modules (e.g. github) may end up sending these to out-of-scope resources</span>
 <span style="color: #6E7681">  </span><span style="color: #7EE787">http_headers</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">{}</span>
-<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># HTTP retries (for Python requests; API calls, etc.)</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># How many times to retry API requests</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Note that this is a separate mechanism on top of HTTP retries</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># which will retry API requests that don't return a successful status code</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">api_retries</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">2</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># HTTP retries - try again if the raw connection fails</span>
 <span style="color: #6E7681">  </span><span style="color: #7EE787">http_retries</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">1</span>
 <span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># HTTP retries (for httpx)</span>
 <span style="color: #6E7681">  </span><span style="color: #7EE787">httpx_retries</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">1</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Default sleep interval when rate limited by 429 (and retry-after isn't provided)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">429_sleep_interval</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">30</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Maximum sleep interval when rate limited by 429 (and an excessive retry-after is provided)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">429_max_sleep_interval</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">60</span>
 <span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Enable/disable debug messages for web requests/responses</span>
 <span style="color: #6E7681">  </span><span style="color: #7EE787">debug</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">false</span>
 <span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Maximum number of HTTP redirects to follow</span>
@@ -928,6 +936,31 @@ Is the same as:
 <span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">bz2</span>
 <span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">7z</span>
 <span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">rar</span>
+
+<span style="color: #7EE787">parameter_blacklist</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">__VIEWSTATE</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">__EVENTARGUMENT</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">__EVENTVALIDATION</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">__EVENTTARGET</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">__EVENTARGUMENT</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">__VIEWSTATEGENERATOR</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">__SCROLLPOSITIONY</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">__SCROLLPOSITIONX</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">ASP.NET_SessionId</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">PHPSESSID</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">__cf_bm</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">f5_cspm</span>
+
+<span style="color: #7EE787">parameter_blacklist_prefixes</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">TS01</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">BIGipServer</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">incap_</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">visid_incap_</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">AWSALB</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">utm_</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">ApplicationGatewayAffinity</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">JSESSIONID</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">ARRAffinity</span>
 
 <span style="color: #8B949E; font-style: italic"># Don't output these types of events (they are still distributed to modules)</span>
 <span style="color: #7EE787">omit_event_types</span><span style="color: #E6EDF3">:</span>
@@ -1294,6 +1327,54 @@ Is the same as:
 <td>bool</td>
 <td>Attempt to discover iis 'magic' special folders</td>
 <td>True</td>
+</tr>
+<tr>
+<td>modules.lightfuzz.disable_post</td>
+<td>bool</td>
+<td>Disable processing of POST parameters, avoiding form submissions.</td>
+<td>False</td>
+</tr>
+<tr>
+<td>modules.lightfuzz.enabled_submodules</td>
+<td>list</td>
+<td>A list of submodules to enable. Empty list enabled all modules.</td>
+<td>['sqli', 'cmdi', 'xss', 'path', 'ssti', 'crypto', 'serial', 'nosqli']</td>
+</tr>
+<tr>
+<td>modules.lightfuzz.force_common_headers</td>
+<td>bool</td>
+<td>Force emit commonly exploitable parameters that may be difficult to detect</td>
+<td>False</td>
+</tr>
+<tr>
+<td>modules.medusa.snmp_versions</td>
+<td>list</td>
+<td>List of SNMP versions to attempt against the SNMP server (default ['1', '2C'])</td>
+<td>['1', '2C']</td>
+</tr>
+<tr>
+<td>modules.medusa.snmp_wordlist</td>
+<td>str</td>
+<td>Wordlist url for SNMP community strings, newline separated (default https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/SNMP/snmp.txt)</td>
+<td>https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/SNMP/common-snmp-community-strings.txt</td>
+</tr>
+<tr>
+<td>modules.medusa.threads</td>
+<td>int</td>
+<td>Number of communities to be tested concurrently (default 5)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>modules.medusa.timeout_s</td>
+<td>int</td>
+<td>Wait time for the SNMP response(s) once at the end of all attempts (default 5)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>modules.medusa.wait_microseconds</td>
+<td>int</td>
+<td>Wait time after every SNMP request in microseconds (default 200)</td>
+<td>200</td>
 </tr>
 <tr>
 <td>modules.ntlm.try_all</td>
@@ -1740,12 +1821,6 @@ Is the same as:
 <td></td>
 </tr>
 <tr>
-<td>modules.dehashed.username</td>
-<td>str</td>
-<td>Email Address associated with your API key</td>
-<td></td>
-</tr>
-<tr>
 <td>modules.dnsbimi.emit_raw_dns_records</td>
 <td>bool</td>
 <td>Emit RAW_DNS_RECORD events</td>
@@ -1896,6 +1971,12 @@ Is the same as:
 <td>True</td>
 </tr>
 <tr>
+<td>modules.github_usersearch.api_key</td>
+<td>str</td>
+<td>Github token</td>
+<td></td>
+</tr>
+<tr>
 <td>modules.github_workflows.api_key</td>
 <td>str</td>
 <td>Github token</td>
@@ -2004,6 +2085,12 @@ Is the same as:
 <td></td>
 </tr>
 <tr>
+<td>modules.shodan_idb.retries</td>
+<td>NoneType</td>
+<td>How many times to retry API requests (e.g. after a 429 error). Overrides the global web.api_retries setting.</td>
+<td>None</td>
+</tr>
+<tr>
 <td>modules.subdomainradar.api_key</td>
 <td>str</td>
 <td>SubDomainRadar.io API key</td>
@@ -2055,7 +2142,7 @@ Is the same as:
 <td>modules.trufflehog.version</td>
 <td>str</td>
 <td>trufflehog version</td>
-<td>3.88.20</td>
+<td>3.88.31</td>
 </tr>
 <tr>
 <td>modules.urlscan.urls</td>
@@ -2478,9 +2565,9 @@ Is the same as:
 <td></td>
 </tr>
 <tr>
-<td>modules.excavate.retain_querystring</td>
+<td>modules.excavate.speculate_params</td>
 <td>bool</td>
-<td>Keep the querystring intact on emitted WEB_PARAMETERS</td>
+<td>Enable speculative parameter extraction from JSON and XML content</td>
 <td>False</td>
 </tr>
 <tr>

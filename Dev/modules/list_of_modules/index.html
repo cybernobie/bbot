@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.mmp9oqxl.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.__f5k06i.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -765,17 +765,6 @@
 <td>2022-07-05</td>
 </tr>
 <tr>
-<td>dastardly</td>
-<td>scan</td>
-<td>No</td>
-<td>Lightweight web application security scanner</td>
-<td>active, aggressive, deadly, slow, web-thorough</td>
-<td>HTTP_RESPONSE</td>
-<td>FINDING, VULNERABILITY</td>
-<td>@domwhewell-sage</td>
-<td>2023-12-11</td>
-</tr>
-<tr>
 <td>dnsbrute</td>
 <td>scan</td>
 <td>No</td>
@@ -952,6 +941,28 @@
 <td>2022-04-15</td>
 </tr>
 <tr>
+<td>lightfuzz</td>
+<td>scan</td>
+<td>No</td>
+<td>Find Web Parameters and Lightly Fuzz them using a heuristic based scanner</td>
+<td>active, aggressive, deadly, web-thorough</td>
+<td>URL, WEB_PARAMETER</td>
+<td>FINDING, VULNERABILITY</td>
+<td>@liquidsec</td>
+<td>2024-06-28</td>
+</tr>
+<tr>
+<td>medusa</td>
+<td>scan</td>
+<td>No</td>
+<td>Medusa SNMP bruteforcing with v1, v2c and R/W check.</td>
+<td>active, aggressive, deadly</td>
+<td>PROTOCOL</td>
+<td>VULNERABILITY</td>
+<td>@christianfl</td>
+<td>2025-05-16</td>
+</tr>
+<tr>
 <td>newsletters</td>
 <td>scan</td>
 <td>No</td>
@@ -1038,6 +1049,17 @@
 <td>OPEN_TCP_PORT</td>
 <td>@TheTechromancer</td>
 <td>2024-05-15</td>
+</tr>
+<tr>
+<td>reflected_parameters</td>
+<td>scan</td>
+<td>No</td>
+<td>Highlight parameters that reflect their contents in response body</td>
+<td>active, safe, web-thorough</td>
+<td>WEB_PARAMETER</td>
+<td>FINDING</td>
+<td>@liquidsec</td>
+<td>2024-10-29</td>
 </tr>
 <tr>
 <td>robots</td>
@@ -1154,7 +1176,7 @@
 <td>scan</td>
 <td>No</td>
 <td>Summarize affiliate domains at the end of a scan</td>
-<td>affiliates, passive, report, safe</td>
+<td>affiliates, passive, safe</td>
 <td>*</td>
 <td></td>
 <td>@TheTechromancer</td>
@@ -1187,7 +1209,7 @@
 <td>scan</td>
 <td>No</td>
 <td>Query ripe and bgpview.io for ASNs</td>
-<td>passive, report, safe, subdomain-enum</td>
+<td>passive, safe, subdomain-enum</td>
 <td>IP_ADDRESS</td>
 <td>ASN</td>
 <td>@TheTechromancer</td>
@@ -1522,6 +1544,17 @@
 <td>CODE_REPOSITORY</td>
 <td>@domwhewell-sage</td>
 <td>2023-12-14</td>
+</tr>
+<tr>
+<td>github_usersearch</td>
+<td>scan</td>
+<td>Yes</td>
+<td>Query Github's API for users with emails matching in scope domains that may not be discoverable by listing members of the organization.</td>
+<td>code-enum, passive, safe</td>
+<td>DNS_NAME</td>
+<td>EMAIL_ADDRESS, SOCIAL</td>
+<td>@domwhewell-sage</td>
+<td>2025-05-10</td>
 </tr>
 <tr>
 <td>github_workflows</td>
