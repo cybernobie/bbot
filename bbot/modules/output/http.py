@@ -15,6 +15,7 @@ class HTTP(BaseOutputModule):
         "bearer": "",
         "username": "",
         "password": "",
+        "headers": {},
         "timeout": 10,
     }
     options_desc = {
@@ -23,6 +24,7 @@ class HTTP(BaseOutputModule):
         "bearer": "Authorization Bearer token",
         "username": "Username (basic auth)",
         "password": "Password (basic auth)",
+        "headers": "Additional headers to send with the request",
         "timeout": "HTTP timeout",
     }
 
@@ -30,7 +32,12 @@ class HTTP(BaseOutputModule):
         self.url = self.config.get("url", "")
         self.method = self.config.get("method", "POST")
         self.timeout = self.config.get("timeout", 10)
+<<<<<<< Updated upstream
         self.headers = {}
+=======
+        self.siem_friendly = self.config.get("siem_friendly", False)
+        self.headers = self.config.get("headers", {})
+>>>>>>> Stashed changes
         bearer = self.config.get("bearer", "")
         if bearer:
             self.headers["Authorization"] = f"Bearer {bearer}"
