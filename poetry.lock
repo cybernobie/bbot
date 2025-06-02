@@ -2889,14 +2889,14 @@ zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
 name = "uvicorn"
-version = "0.34.2"
+version = "0.34.3"
 description = "The lightning-fast ASGI server."
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "uvicorn-0.34.2-py3-none-any.whl", hash = "sha256:deb49af569084536d269fe0a6d67e3754f104cf03aba7c11c40f01aadf33c403"},
-    {file = "uvicorn-0.34.2.tar.gz", hash = "sha256:0e929828f6186353a80b58ea719861d2629d766293b6d19baf086ba31d4f3328"},
+    {file = "uvicorn-0.34.3-py3-none-any.whl", hash = "sha256:16246631db62bdfbf069b0645177d6e8a77ba950cfedbfd093acef9444e4d885"},
+    {file = "uvicorn-0.34.3.tar.gz", hash = "sha256:35919a9a979d7a59334b6b10e05d77c1d0d574c50e0fc98b8b1a0f165708b55a"},
 ]
 
 [package.dependencies]
@@ -2905,7 +2905,7 @@ h11 = ">=0.8"
 typing-extensions = {version = ">=4.0", markers = "python_version < \"3.11\""}
 
 [package.extras]
-standard = ["colorama (>=0.4) ; sys_platform == \"win32\"", "httptools (>=0.6.3)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.14.0,!=0.15.0,!=0.15.1) ; sys_platform != \"win32\" and sys_platform != \"cygwin\" and platform_python_implementation != \"PyPy\"", "watchfiles (>=0.13)", "websockets (>=10.4)"]
+standard = ["colorama (>=0.4) ; sys_platform == \"win32\"", "httptools (>=0.6.3)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.15.1) ; sys_platform != \"win32\" and sys_platform != \"cygwin\" and platform_python_implementation != \"PyPy\"", "watchfiles (>=0.13)", "websockets (>=10.4)"]
 
 [[package]]
 name = "verspec"
@@ -3131,6 +3131,10 @@ groups = ["main"]
 files = [
     {file = "yara_python-4.5.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:20aee068c8f14e8ebb40ebf03e7e2c14031736fbf6f32fca58ad89d211e4aaa0"},
     {file = "yara_python-4.5.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:9899c3a80e6c543585daf49c5b06ba5987e2f387994a5455d841262ea6e8577c"},
+    {file = "yara_python-4.5.2-cp310-cp310-macosx_14_0_arm64.whl", hash = "sha256:399bb09f81d38876a06e269f68bbe810349aa0bb47fe79866ea3fc58ce38d30f"},
+    {file = "yara_python-4.5.2-cp310-cp310-macosx_14_0_x86_64.whl", hash = "sha256:c78608c6bf3d2c379514b1c118a104874df1844bf818087e1bf6bfec0edfd1aa"},
+    {file = "yara_python-4.5.2-cp310-cp310-macosx_15_0_arm64.whl", hash = "sha256:f25db30f8ae88a4355e5090a5d6191ee6f2abfdd529b3babc68a1faeba7c2ac8"},
+    {file = "yara_python-4.5.2-cp310-cp310-macosx_15_0_x86_64.whl", hash = "sha256:f2866c0b8404086c5acb68cab20854d439009a1b02077aca22913b96138d2f6a"},
     {file = "yara_python-4.5.2-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:9fc5abddf8767ca923a5a88b38b8057d4fab039323d5c6b2b5be6cba5e6e7350"},
     {file = "yara_python-4.5.2-cp310-cp310-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:bc2216bc73d4918012a4b270a93f9042445c7246b4a668a1bea220fbf64c7990"},
     {file = "yara_python-4.5.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b5558325eb7366f610a06e8c7c4845062d6880ee88f1fbc35e92fae333c3333c"},
