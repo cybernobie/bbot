@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.cbykyds8.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.yczo71bq.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -381,6 +381,14 @@
 <a class="md-nav__link" href="../../modules/custom_yara_rules/">
 <span class="md-ellipsis">
     Custom YARA Rules
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../modules/lightfuzz/">
+<span class="md-ellipsis">
+    Lightfuzz
     
   </span>
 </a>
@@ -790,9 +798,9 @@ event type      event data          source module    tags
 </tr>
 <tr>
 <td>DNS_NAME</td>
-<td>61</td>
+<td>62</td>
 <td>44</td>
-<td>anubisdb, asset_inventory, azure_realm, azure_tenant, baddns, baddns_zone, bevigil, binaryedge, bucket_amazon, bucket_azure, bucket_digitalocean, bucket_firebase, bucket_google, bufferoverrun, builtwith, c99, censys, certspotter, chaos, credshed, crt, crt_db, dehashed, digitorus, dnsbimi, dnsbrute, dnsbrute_mutations, dnscaa, dnscommonsrv, dnsdumpster, dnstlsrpt, emailformat, fullhunt, github_codesearch, hackertarget, hunterio, leakix, myssl, nmap_xml, oauth, otx, passivetotal, pgp, portscan, rapiddns, securitytrails, securitytxt, shodan_dns, shodan_idb, sitedossier, skymem, speculate, subdomaincenter, subdomainradar, subdomains, trickest, urlscan, viewdns, virustotal, wayback, zoomeye</td>
+<td>anubisdb, asset_inventory, azure_realm, azure_tenant, baddns, baddns_zone, bevigil, binaryedge, bucket_amazon, bucket_azure, bucket_digitalocean, bucket_firebase, bucket_google, bufferoverrun, builtwith, c99, censys, certspotter, chaos, credshed, crt, crt_db, dehashed, digitorus, dnsbimi, dnsbrute, dnsbrute_mutations, dnscaa, dnscommonsrv, dnsdumpster, dnstlsrpt, emailformat, fullhunt, github_codesearch, github_usersearch, hackertarget, hunterio, leakix, myssl, nmap_xml, oauth, otx, passivetotal, pgp, portscan, rapiddns, securitytrails, securitytxt, shodan_dns, shodan_idb, sitedossier, skymem, speculate, subdomaincenter, subdomainradar, subdomains, trickest, urlscan, viewdns, virustotal, wayback, zoomeye</td>
 <td>anubisdb, azure_tenant, bevigil, binaryedge, bufferoverrun, builtwith, c99, censys, certspotter, chaos, crt, crt_db, digitorus, dnsbrute, dnsbrute_mutations, dnscaa, dnscommonsrv, dnsdumpster, dnsresolve, fullhunt, hackertarget, hunterio, leakix, myssl, ntlm, oauth, otx, passivetotal, rapiddns, securitytrails, shodan_dns, shodan_idb, sitedossier, speculate, sslcert, subdomaincenter, subdomainradar, trickest, urlscan, vhost, viewdns, virustotal, wayback, zoomeye</td>
 </tr>
 <tr>
@@ -805,9 +813,9 @@ event type      event data          source module    tags
 <tr>
 <td>EMAIL_ADDRESS</td>
 <td>1</td>
-<td>10</td>
+<td>11</td>
 <td>emails</td>
-<td>credshed, dehashed, dnscaa, dnstlsrpt, emailformat, hunterio, pgp, securitytxt, skymem, sslcert</td>
+<td>credshed, dehashed, dnscaa, dnstlsrpt, emailformat, github_usersearch, hunterio, pgp, securitytxt, skymem, sslcert</td>
 </tr>
 <tr>
 <td>FILESYSTEM</td>
@@ -819,9 +827,9 @@ event type      event data          source module    tags
 <tr>
 <td>FINDING</td>
 <td>2</td>
-<td>28</td>
+<td>29</td>
 <td>asset_inventory, web_report</td>
-<td>ajaxpro, baddns, baddns_direct, baddns_zone, badsecrets, bucket_amazon, bucket_azure, bucket_digitalocean, bucket_firebase, bucket_google, bypass403, dastardly, git, gitlab, host_header, hunt, newsletters, ntlm, nuclei, paramminer_cookies, paramminer_getparams, shodan_idb, smuggler, speculate, telerik, trufflehog, url_manipulation, wpscan</td>
+<td>ajaxpro, baddns, baddns_direct, baddns_zone, badsecrets, bucket_amazon, bucket_azure, bucket_digitalocean, bucket_firebase, bucket_google, bypass403, git, gitlab, host_header, hunt, lightfuzz, newsletters, ntlm, nuclei, paramminer_cookies, paramminer_getparams, reflected_parameters, shodan_idb, smuggler, speculate, telerik, trufflehog, url_manipulation, wpscan</td>
 </tr>
 <tr>
 <td>GEOLOCATION</td>
@@ -839,9 +847,9 @@ event type      event data          source module    tags
 </tr>
 <tr>
 <td>HTTP_RESPONSE</td>
-<td>20</td>
+<td>19</td>
 <td>1</td>
-<td>ajaxpro, asset_inventory, badsecrets, dastardly, dotnetnuke, excavate, filedownload, gitlab, host_header, newsletters, nmap_xml, ntlm, paramminer_cookies, paramminer_getparams, paramminer_headers, speculate, telerik, trufflehog, wappalyzer, wpscan</td>
+<td>ajaxpro, asset_inventory, badsecrets, dotnetnuke, excavate, filedownload, gitlab, host_header, newsletters, nmap_xml, ntlm, paramminer_cookies, paramminer_getparams, paramminer_headers, speculate, telerik, trufflehog, wappalyzer, wpscan</td>
 <td>httpx</td>
 </tr>
 <tr>
@@ -888,9 +896,9 @@ event type      event data          source module    tags
 </tr>
 <tr>
 <td>PROTOCOL</td>
+<td>2</td>
 <td>1</td>
-<td>1</td>
-<td>nmap_xml</td>
+<td>medusa, nmap_xml</td>
 <td>fingerprintx</td>
 </tr>
 <tr>
@@ -910,9 +918,9 @@ event type      event data          source module    tags
 <tr>
 <td>SOCIAL</td>
 <td>6</td>
-<td>3</td>
+<td>4</td>
 <td>dockerhub, github_org, gitlab, gowitness, postman, speculate</td>
-<td>dockerhub, gitlab, social</td>
+<td>dockerhub, github_usersearch, gitlab, social</td>
 </tr>
 <tr>
 <td>STORAGE_BUCKET</td>
@@ -930,9 +938,9 @@ event type      event data          source module    tags
 </tr>
 <tr>
 <td>URL</td>
-<td>21</td>
+<td>22</td>
 <td>2</td>
-<td>ajaxpro, asset_inventory, baddns_direct, bypass403, ffuf, generic_ssrf, git, gowitness, httpx, iis_shortnames, ntlm, nuclei, portfilter, robots, smuggler, speculate, telerik, url_manipulation, vhost, wafw00f, web_report</td>
+<td>ajaxpro, asset_inventory, baddns_direct, bypass403, ffuf, generic_ssrf, git, gowitness, httpx, iis_shortnames, lightfuzz, ntlm, nuclei, portfilter, robots, smuggler, speculate, telerik, url_manipulation, vhost, wafw00f, web_report</td>
 <td>gowitness, httpx</td>
 </tr>
 <tr>
@@ -966,9 +974,9 @@ event type      event data          source module    tags
 <tr>
 <td>VULNERABILITY</td>
 <td>2</td>
-<td>13</td>
+<td>14</td>
 <td>asset_inventory, web_report</td>
-<td>ajaxpro, baddns, baddns_direct, baddns_zone, badsecrets, dastardly, dotnetnuke, generic_ssrf, nuclei, shodan_idb, telerik, trufflehog, wpscan</td>
+<td>ajaxpro, baddns, baddns_direct, baddns_zone, badsecrets, dotnetnuke, generic_ssrf, lightfuzz, medusa, nuclei, shodan_idb, telerik, trufflehog, wpscan</td>
 </tr>
 <tr>
 <td>WAF</td>
@@ -986,9 +994,9 @@ event type      event data          source module    tags
 </tr>
 <tr>
 <td>WEB_PARAMETER</td>
-<td>5</td>
+<td>7</td>
 <td>4</td>
-<td>hunt, paramminer_cookies, paramminer_getparams, paramminer_headers, web_parameters</td>
+<td>hunt, lightfuzz, paramminer_cookies, paramminer_getparams, paramminer_headers, reflected_parameters, web_parameters</td>
 <td>excavate, paramminer_cookies, paramminer_getparams, paramminer_headers</td>
 </tr>
 </tbody>

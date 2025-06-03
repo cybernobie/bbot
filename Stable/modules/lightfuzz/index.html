@@ -7,12 +7,12 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="OSINT automation for hackers" name="description"/>
 <meta content="TheTechromancer" name="author"/>
-<link href="https://blacklanternsecurity.github.io/bbot/Stable/modules/nuclei/" rel="canonical"/>
-<link href="../list_of_modules/" rel="prev"/>
-<link href="../custom_yara_rules/" rel="next"/>
+<link href="https://blacklanternsecurity.github.io/bbot/Stable/modules/lightfuzz/" rel="canonical"/>
+<link href="../custom_yara_rules/" rel="prev"/>
+<link href="../../contribution/" rel="next"/>
 <link href="../../favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.12" name="generator"/>
-<title>Nuclei - BBOT Docs</title>
+<title>Lightfuzz - BBOT Docs</title>
 <link href="../../assets/stylesheets/main.2afb09e1.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -26,7 +26,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#nuclei">
+<a class="md-skip" href="#lightfuzz">
           Skip to content
         </a>
 </div>
@@ -52,7 +52,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Nuclei
+              Lightfuzz
             
           </span>
 </div>
@@ -332,18 +332,34 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../nuclei/">
+<span class="md-ellipsis">
+    Nuclei
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../custom_yara_rules/">
+<span class="md-ellipsis">
+    Custom YARA Rules
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
-    Nuclei
+    Lightfuzz
     
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
-    Nuclei
+    Lightfuzz
     
   </span>
 </a>
@@ -354,67 +370,98 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#overview">
+<a class="md-nav__link" href="#philosophy">
 <span class="md-ellipsis">
-      Overview
+      Philosophy
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#default-behavior">
-<span class="md-ellipsis">
-      Default Behavior
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#specifying-custom-templates">
-<span class="md-ellipsis">
-      Specifying custom templates
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#configuration-and-options">
-<span class="md-ellipsis">
-      Configuration and Options
-    </span>
-</a>
-<nav aria-label="Configuration and Options" class="md-nav">
+<nav aria-label="Philosophy" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#modes">
+<a class="md-nav__link" href="#what-is-lightfuzz">
 <span class="md-ellipsis">
-      Modes
+      What is Lightfuzz?
     </span>
 </a>
-<nav aria-label="Modes" class="md-nav">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-is-lightfuzz-not">
+<span class="md-ellipsis">
+      What is Lightfuzz NOT?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#false-positives">
+<span class="md-ellipsis">
+      False Positives
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deadly-module">
+<span class="md-ellipsis">
+      Deadly module
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#modules">
+<span class="md-ellipsis">
+      Modules
+    </span>
+</a>
+<nav aria-label="Modules" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#manual">
+<a class="md-nav__link" href="#cmdi-command-injection">
 <span class="md-ellipsis">
-      Manual
+      cmdi (Command Injection)
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#severe">
+<a class="md-nav__link" href="#crypto-cryptography">
 <span class="md-ellipsis">
-      Severe
+      crypto (Cryptography)
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#technology">
+<a class="md-nav__link" href="#path-path-traversal">
 <span class="md-ellipsis">
-      Technology
+      path (Path Traversal)
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#budget">
+<a class="md-nav__link" href="#serial-deserialization">
 <span class="md-ellipsis">
-      Budget
+      serial (Deserialization)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sqli-sql-injection">
+<span class="md-ellipsis">
+      sqli (SQL Injection)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ssti-server-side-template-injection">
+<span class="md-ellipsis">
+      ssti (Server-side Template Injection)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#xss-cross-site-scripting">
+<span class="md-ellipsis">
+      xss (Cross-site Scripting)
     </span>
 </a>
 </li>
@@ -422,40 +469,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#nuclei-pass-through-options">
+<a class="md-nav__link" href="#presets">
 <span class="md-ellipsis">
-      Nuclei pass-through options
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-commands">
-<span class="md-ellipsis">
-      Example Commands
+      Presets
     </span>
 </a>
 </li>
 </ul>
 </nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../custom_yara_rules/">
-<span class="md-ellipsis">
-    Custom YARA Rules
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../lightfuzz/">
-<span class="md-ellipsis">
-    Lightfuzz
-    
-  </span>
-</a>
 </li>
 </ul>
 </nav>
@@ -726,165 +747,90 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="nuclei">Nuclei</h1>
-<h2 id="overview">Overview</h2>
-<p>BBOT integrates with <a href="https://github.com/projectdiscovery/nuclei">Nuclei</a>, an open-source web vulnerability scanner by Project Discovery. This is one of the ways BBOT makes it possible to go from a single target domain/IP all the way to confirmed vulnerabilities, in one scan.</p>
-<p><img alt="Nuclei Killchain" src="https://github.com/blacklanternsecurity/bbot/assets/24899338/7174c4ba-4a6e-4596-bb89-5a0c5f5abe74"/></p>
+<h1 id="lightfuzz">Lightfuzz</h1>
+<p><em>Lightfuzz is currently an experimental feature. There WILL be false positives (and, although we'll never know - false negatives), although the submodules are being actively worked on to reduce them. If you find false positives, please help us out by opening a GitHub issue with the details!</em></p>
+<h2 id="philosophy">Philosophy</h2>
+<h3 id="what-is-lightfuzz">What is Lightfuzz?</h3>
+<p>Lightfuzz is a lightweight web vulnerability scanner built into BBOT. It is designed to find "low-hanging fruit" type vulnerabilities without much overhead and at massive scale. </p>
+<h3 id="what-is-lightfuzz-not">What is Lightfuzz NOT?</h3>
+<p>Lightfuzz is not, does not attempt to be, and will never be, a replacement for a full-blown web application scanner. You should not, for example, be running Lightfuzz as a replacement for Burp Suite scanning. Burp Suite scanner will always find more (even though we can find a few things it can't).</p>
+<p>It will also not help you <em>exploit</em> vulnerabilities. It's job is to point out vulnerabilities, or likely vulnerabilities, or potential vulnerabilities, and then pass them off to you. A great deal of the overhead with traditional scanners comes in the confirmation phase, or in testing exploitation payloads. </p>
+<p>So for example, Lightfuzz may detect an XSS vulnerability for you. But its NOT going to help you figure out which tag you need to use to get around a security filter, or give you any kind of a final payload. It's simply going to tell you that the contents of a given GET parameter are being reflected and that it was able to render an unmodified HTML tag. The rest is up to you.</p>
+<h3 id="false-positives">False Positives</h3>
+<p>Significant work has gone into minimizing false positives. However, due to the nature of how Lightfuzz works, they are a reality. Random hiccups in network connectivity can cause them in some cases, odd WAF behavior can account for others. </p>
+<p>If you see a false positive that you feel is occuring too often or could easily be prevented, please open a GitHub issue and we will take a look!</p>
+<h3 id="deadly-module">Deadly module</h3>
+<p>Lightfuzz currently has the <code>deadly</code> flag. This is applied to the most aggressive modules to enforce an additional check, requiring explicit acknowledgement of the risk using the <code>--allow-deadly</code> command line flag.</p>
+<h2 id="modules">Modules</h2>
+<p>Lightfuzz is divided into numerous "submodules". These would typically be ran all together, but they can be configured to be run individually or in any desired configuration. This would be done with the aide of a <code>preset</code>, more on those in a moment.</p>
+<h3 id="cmdi-command-injection"><code>cmdi</code> (Command Injection)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Finds output-based on blind out-of-band (via `Interactsh`) command injections
+</code></pre></div>
+<h3 id="crypto-cryptography"><code>crypto</code> (Cryptography)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Identifies cryptographic parameters that have a tangable effect on the application
+- Can identify padding oracle vulnerabilities
+- Can identify hash length extention vulnerabilities
+</code></pre></div>
+<h3 id="path-path-traversal"><code>path</code> (Path Traversal)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Can find arbitrary file read / local-file include vulnerabilities, based on relative path traversal or with absolute paths
+</code></pre></div>
+<h3 id="serial-deserialization"><code>serial</code> (Deserialization)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Can identify the active deserialization of a variety of deserialization types across several platforms
+</code></pre></div>
+<h3 id="sqli-sql-injection"><code>sqli</code> (SQL Injection)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Error Based SQLi Detection
+- Blind time-delay SQLi Detection
+</code></pre></div>
+<h3 id="ssti-server-side-template-injection"><code>ssti</code> (Server-side Template Injection)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Can find basic server-side template injection
+</code></pre></div>
+<h3 id="xss-cross-site-scripting"><code>xss</code> (Cross-site Scripting)</h3>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>- Can find a variety of XSS types, across several different contexts (between-tags, attribute, Javascript-based)
+</code></pre></div>
+<h2 id="presets">Presets</h2>
+<p>Lightfuzz comes with a few pre-defined presets. The first thing to know is that, unless you really know BBOT inside and out, we recommend using one of them. This is because to be successful, Lightfuzz needs to change a lot of very important BBOT settings. These include:</p>
 <ul>
-<li>The BBOT Nuclei module ingests <strong>[URL]</strong> events and emits events of type <strong>[VULNERABILITY]</strong> or <strong>[FINDING]</strong></li>
-<li>Vulnerabilities will inherit their severity from the Nuclei templates</li>
-<li>Nuclei templates of severity INFO will be emitted as <strong>[FINDINGS]</strong></li>
+<li>Setting <code>url_querystring_remove</code> to False. By default, BBOT strips away querystings, so in order to FUZZ GET parameters, that default has to be disabled.
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>url_querystring_remove: False
+</code></pre></div></li>
+<li>Enabling several other complimentary modules. Specifically, <code>hunt</code> and <code>reflected_parameters</code> can be useful companion modules that also be useful when <code>WEB_PARAMETER</code> events are being emitted.</li>
 </ul>
-<h2 id="default-behavior">Default Behavior</h2>
+<p>If you don't want to dive into those details, and we don't blame you, here are the built-in preset options and what you need to know about the differences.</p>
+<h1 id="-p-lightfuzz-light">-p lightfuzz-light</h1>
+<p>This is a minimal preset that checks for only the most common vulnerabilities. It enables a select few of lightfuzz's submodules, and is safest for larger scans.</p>
+<h1 id="-p-lightfuzz-medium">-p lightfuzz-medium</h1>
+<p>This is the default setting. It enables all lightfuzz submodules, and includes all the necessary config options to make Lightfuzz work, without too many extras. However it is important to note that it <strong>DISABLES FUZZING POST REQUESTS</strong>. This is because this type of request is the most intrusive, and the most likely to cause problems, especially in an internal network. </p>
+<h1 id="-p-lightfuzz-heavy">-p lightfuzz-heavy</h1>
 <ul>
-<li>By default, only "directory URLs" (URLs ending in a slash) will be scanned, but ALL templates will be used (<strong>BE CAREFUL!</strong>)</li>
-<li>Because it's so aggressive, Nuclei is considered a <strong>deadly</strong> module. This means you need to use the flag <strong>--allow-deadly</strong> to turn it on.</li>
+<li>Increases the web spider settings a bit from the default.</li>
+<li>Adds in the <strong>Param Miner</strong> suite of modules to try and find new parameters to fuzz via brute-force</li>
+<li>Enables fuzzing of POST parameters</li>
 </ul>
-<h2 id="specifying-custom-templates">Specifying custom templates</h2>
-<p>You can specify individual nuclei templates by setting the <code>modules.nuclei.templates</code> to their comma-separated filenames:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>nuclei<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.nuclei.templates<span style="color: #FF7B72; font-weight: bold">=</span>http/takeovers/airee-takeover.yaml,http/takeovers/cargo-takeover.yaml
+<h1 id="-p-lightfuzz-superheavy">-p lightfuzz-superheavy</h1>
+<p>Everything included in <code>lightfuzz-heavy</code>, plus:</p>
+<ul>
+<li>Query string collapsing turned OFF. Normally, multiple instances of the same parameter (e.g., foo=bar and foo=bar2) are collapsed into one for fuzzing. With <code>lightfuzz-superheavy</code>, each instance is fuzzed individually.</li>
+<li>Force common headers enabled - Fuzz certain common header parameters, even if we didn't discover them</li>
+<li>'Speculate' GET parameters from JSON or XML response bodies</li>
+</ul>
+<p>These settings aren't typically desired as they add significant time to the scan.</p>
+<h1 id="-p-lightfuzz-xss">-p lightfuzz-xss</h1>
+<p>This is a special Lightfuzz preset that focuses entirely on XSS, to make XSS hunting as fast as possible. It is an example of how to make a preset that focuses on specific submodules. It also includes the <code>paramminer-getparams</code> module to help find undocumented parameters to fuzz. </p>
+<h1 id="spider-preset">Spider preset</h1>
+<p>We also <em>strongly</em> recommend running Lightfuzz with the spider enabled, as this will dramatically increase the number of parameters that are discovered. If you don't, you will see a warning reminding you that things will work a lot better if you do.</p>
+<p>That can be done by simply also enabling either the <code>spider</code> or <code>spider-intense</code> preset.</p>
+<h1 id="usage">Usage</h1>
+<p>With the presets in mind, usage is incredibly simple. In most cases you will just do the following:</p>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz-medium spider -t targets.txt --allow-deadly
 </code></pre></div>
-<p>...or via the config:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">  </span><span style="color: #7EE787">nuclei</span><span style="color: #E6EDF3">:</span>
-<span style="color: #6E7681">    </span><span style="color: #7EE787">templates</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">http/takeovers/airee-takeover.yaml,http/takeovers/cargo-takeover.yaml</span>
-</code></pre></div>
-<h2 id="configuration-and-options">Configuration and Options</h2>
-<p>The Nuclei module has many configuration options:</p>
-<!-- BBOT MODULE OPTIONS NUCLEI -->
-<table>
-<thead>
-<tr>
-<th>Config Option</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>modules.nuclei.batch_size</td>
-<td>int</td>
-<td>Number of targets to send to Nuclei per batch (default 200)</td>
-<td>200</td>
-</tr>
-<tr>
-<td>modules.nuclei.budget</td>
-<td>int</td>
-<td>Used in budget mode to set the number of allowed requests per host</td>
-<td>1</td>
-</tr>
-<tr>
-<td>modules.nuclei.concurrency</td>
-<td>int</td>
-<td>maximum number of templates to be executed in parallel (default 25)</td>
-<td>25</td>
-</tr>
-<tr>
-<td>modules.nuclei.directory_only</td>
-<td>bool</td>
-<td>Filter out 'file' URL event (default True)</td>
-<td>True</td>
-</tr>
-<tr>
-<td>modules.nuclei.etags</td>
-<td>str</td>
-<td>tags to exclude from the scan</td>
-<td></td>
-</tr>
-<tr>
-<td>modules.nuclei.mode</td>
-<td>str</td>
-<td>manual | technology | severe | budget. Technology: Only activate based on technology events that match nuclei tags (nuclei -as mode). Manual (DEFAULT): Fully manual settings. Severe: Only critical and high severity templates without intrusive. Budget: Limit Nuclei to a specified number of HTTP requests</td>
-<td>manual</td>
-</tr>
-<tr>
-<td>modules.nuclei.module_timeout</td>
-<td>int</td>
-<td>Max time in seconds to spend handling each batch of events</td>
-<td>21600</td>
-</tr>
-<tr>
-<td>modules.nuclei.ratelimit</td>
-<td>int</td>
-<td>maximum number of requests to send per second (default 150)</td>
-<td>150</td>
-</tr>
-<tr>
-<td>modules.nuclei.retries</td>
-<td>int</td>
-<td>number of times to retry a failed request (default 0)</td>
-<td>0</td>
-</tr>
-<tr>
-<td>modules.nuclei.severity</td>
-<td>str</td>
-<td>Filter based on severity field available in the template.</td>
-<td></td>
-</tr>
-<tr>
-<td>modules.nuclei.silent</td>
-<td>bool</td>
-<td>Don't display nuclei's banner or status messages</td>
-<td>False</td>
-</tr>
-<tr>
-<td>modules.nuclei.tags</td>
-<td>str</td>
-<td>execute a subset of templates that contain the provided tags</td>
-<td></td>
-</tr>
-<tr>
-<td>modules.nuclei.templates</td>
-<td>str</td>
-<td>template or template directory paths to include in the scan</td>
-<td></td>
-</tr>
-<tr>
-<td>modules.nuclei.version</td>
-<td>str</td>
-<td>nuclei version</td>
-<td>3.4.2</td>
-</tr>
-</tbody>
-</table>
-<!-- END BBOT MODULE OPTIONS NUCLEI -->
-<p>Most of these you probably will <strong>NOT</strong> want to change. In particular, we advise against changing the version of Nuclei, as it's possible the latest version won't work right with BBOT.</p>
-<p>We also do not recommend changing <strong>directory_only</strong> mode. This will cause Nuclei to process every URL. Because BBOT is recursive, this can get very out-of-hand very quickly, depending on which other modules are in use.</p>
-<h3 id="modes">Modes</h3>
-<p>The modes with the Nuclei module are generally in place to help you limit the number of templates you are scanning with, to make your scans quicker.</p>
-<h4 id="manual">Manual</h4>
-<p>This is the default setting, and will use all templates. However, if you're looking to do something particular, you might pair this with some of the pass-through options shown in the next setting.</p>
-<h4 id="severe">Severe</h4>
-<p><strong>severe</strong> mode uses only high/critical severity templates. It also excludes the intrusive tag. This is intended to be a shortcut for times when you need to rapidly identify high severity vulnerabilities but can't afford the full scan. Because most templates are INFO, LOW, or MEDIUM, your scan will finish much faster.</p>
-<h4 id="technology">Technology</h4>
-<p>This is equivalent to the Nuclei '-as' scan option. It only use templates that match detected technologies, using wappalyzer-based signatures. This can be a nice way to run a light-weight scan that still has a chance to find some good vulnerabilities.</p>
-<h4 id="budget">Budget</h4>
-<p>Budget mode is unique to BBOT.</p>
-<p>For larger scans with thousands of targets, doing a FULL Nuclei scan (1000s of Requests) for each is not realistic.
-As an alternative to the other modes, you can take advantage of Nuclei's "collapsible" template feature.</p>
-<p>For only the cost of one (or more) "extra" request(s) per host, it can activate several hundred modules. These are modules which happen to look at a BaseUrl, and typically look for a specific string or other attribute. Nuclei is smart about reusing the request data when it can, and we can use this to our advantage.</p>
-<p>The budget parameter is the # of extra requests per host you are willing to send to "feed" Nuclei templates (defaults to 1).
-For those times when vulnerability scanning isn't the main focus, but you want to look for easy wins.</p>
-<p>Of course, there is a rapidly diminishing return when you set he value to more than a handful. Eventually, this becomes 1 template per 1 budget value increase. However, in the 1-10 range there is a lot of value. This graphic should give you a rough visual idea of this concept.</p>
-<p><img alt="Nuclei Budget Mode" src="https://github.com/blacklanternsecurity/bbot/assets/24899338/08a3429c-5a73-437b-84de-27c07d85a529"/></p>
-<h3 id="nuclei-pass-through-options">Nuclei pass-through options</h3>
-<p>Most of the rest of the options are usually passed straight through to Nuclei when its executed. You can do things like set specific <strong>tags</strong> to include, (or exclude with <strong>etags</strong>), exactly how you'd do with Nuclei directly. You can also limit the templates with <strong>severity</strong>.</p>
-<p>The <strong>ratelimit</strong> and <strong>concurrency</strong> settings default to the same defaults that Nuclei does. These are relatively sane settings, but if you are in a sensitive environment it can certainly help to turn them down.</p>
-<p><strong>templates</strong> will allow you to set your own templates directory. This can be very useful if you have your own custom templates that you want to use with BBOT.</p>
-<h3 id="example-commands">Example Commands</h3>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># Scan a SINGLE target with a basic port scan and web modules</span>
-bbot<span style="color: #6E7681"> </span>-f<span style="color: #6E7681"> </span>web-basic<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>portscan<span style="color: #6E7681"> </span>nuclei<span style="color: #6E7681"> </span>--allow-deadly<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>app.evilcorp.com
-</code></pre></div>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># Scanning MULTIPLE targets</span>
-bbot<span style="color: #6E7681"> </span>-f<span style="color: #6E7681"> </span>web-basic<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>portscan<span style="color: #6E7681"> </span>nuclei<span style="color: #6E7681"> </span>--allow-deadly<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>app1.evilcorp.com<span style="color: #6E7681"> </span>app2.evilcorp.com<span style="color: #6E7681"> </span>app3.evilcorp.com
-</code></pre></div>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># Scanning MULTIPLE targets while performing subdomain enumeration</span>
-bbot<span style="color: #6E7681"> </span>-f<span style="color: #6E7681"> </span>subdomain-enum<span style="color: #6E7681"> </span>web-basic<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>portscan<span style="color: #6E7681"> </span>nuclei<span style="color: #6E7681"> </span>--allow-deadly<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>app1.evilcorp.com<span style="color: #6E7681"> </span>app2.evilcorp.com<span style="color: #6E7681"> </span>app3.evilcorp.com
-</code></pre></div>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># Scanning MULTIPLE targets on a BUDGET</span>
-bbot<span style="color: #6E7681"> </span>-f<span style="color: #6E7681"> </span>subdomain-enum<span style="color: #6E7681"> </span>web-basic<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>portscan<span style="color: #6E7681"> </span>nuclei<span style="color: #6E7681"> </span>--allow-deadly<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.nuclei.mode<span style="color: #FF7B72; font-weight: bold">=</span>budget<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>app1.evilcorp.com<span style="color: #6E7681"> </span>app2.evilcorp.com<span style="color: #6E7681"> </span>app3.evilcorp.com
-</code></pre></div>
+<p>It's really that simple. Almost all output from Lightfuzz will be in the form of a <code>FINDING</code>, as opposed to a <code>VULNERABILITY</code>, with a couple of exceptions. This is because, as was explained, the nature of the findings are that they are typically unconfirmed and will require work on your part to do so.</p>
+<p>If you wanted a specific submodule, you could make your own preset adjusting the <code>modules.lightfuzz.enabled_submodules</code> setting, or do so via the command line:</p>
+<p>Just XSS:
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz-medium -t targets.txt -c modules.lightfuzz.enabled_submodules=[xss]  --allow-deadly
+</code></pre></div></p>
+<p>XSS and SQLi:
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot -p lightfuzz-medium -t targets.txt -c modules.lightfuzz.enabled_submodules=[xss,sqli]  --allow-deadly
+</code></pre></div></p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
