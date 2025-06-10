@@ -32,13 +32,22 @@ if __name__ == "__main__":
 
 <!-- BBOT HELP OUTPUT -->
 ```text
-usage: bbot [-h] [-t TARGET [TARGET ...]] [-w WHITELIST [WHITELIST ...]] [-b BLACKLIST [BLACKLIST ...]] [--strict-scope] [-p [PRESET ...]]
-               [-c [CONFIG ...]] [-lp] [-m MODULE [MODULE ...]] [-l] [-lmo] [-em MODULE [MODULE ...]] [-f FLAG [FLAG ...]] [-lf]
-               [-rf FLAG [FLAG ...]] [-ef FLAG [FLAG ...]] [--allow-deadly] [-n SCAN_NAME] [-v] [-d] [-s] [--force] [-y] [--fast-mode]
-               [--dry-run] [--current-preset] [--current-preset-full] [-mh MODULE] [-o DIR] [-om MODULE [MODULE ...]] [-lo] [--json] [--brief]
-               [--event-types EVENT_TYPES [EVENT_TYPES ...]] [--exclude-cdn] [--no-deps | --force-deps | --retry-deps | --ignore-failed-deps |
-               --install-all-deps] [--version] [--proxy HTTP_PROXY] [-H CUSTOM_HEADERS [CUSTOM_HEADERS ...]]
-               [-C CUSTOM_COOKIES [CUSTOM_COOKIES ...]] [--custom-yara-rules CUSTOM_YARA_RULES] [--user-agent USER_AGENT]
+usage: bbot [-h] [-t TARGET [TARGET ...]] [-w WHITELIST [WHITELIST ...]]
+               [-b BLACKLIST [BLACKLIST ...]] [--strict-scope]
+               [-p [PRESET ...]] [-c [CONFIG ...]] [-lp]
+               [-m MODULE [MODULE ...]] [-l] [-lmo] [-em MODULE [MODULE ...]]
+               [-f FLAG [FLAG ...]] [-lf] [-rf FLAG [FLAG ...]]
+               [-ef FLAG [FLAG ...]] [--allow-deadly] [-n SCAN_NAME] [-v] [-d]
+               [-s] [--force] [-y] [--fast-mode] [--dry-run]
+               [--current-preset] [--current-preset-full] [-mh MODULE]
+               [-o DIR] [-om MODULE [MODULE ...]] [-lo] [--json] [--brief]
+               [--event-types EVENT_TYPES [EVENT_TYPES ...]] [--exclude-cdn]
+               [--no-deps | --force-deps | --retry-deps |
+               --ignore-failed-deps | --install-all-deps] [--version]
+               [--proxy HTTP_PROXY] [-H CUSTOM_HEADERS [CUSTOM_HEADERS ...]]
+               [-C CUSTOM_COOKIES [CUSTOM_COOKIES ...]]
+               [--custom-yara-rules CUSTOM_YARA_RULES]
+               [--user-agent USER_AGENT]
 
 Bighuge BLS OSINT Tool
 
@@ -70,7 +79,7 @@ Modules:
   -em, --exclude-modules MODULE [MODULE ...]
                         Exclude these modules.
   -f, --flags FLAG [FLAG ...]
-                        Enable modules by flag. Choices: active,affiliates,aggressive,baddns,cloud-enum,code-enum,deadly,email-enum,iis-shortnames,passive,portscan,report,safe,service-enum,slow,social-enum,subdomain-enum,subdomain-hijack,web-basic,web-paramminer,web-screenshots,web-thorough
+                        Enable modules by flag. Choices: active,affiliates,aggressive,baddns,cloud-enum,code-enum,deadly,email-enum,iis-shortnames,passive,portscan,safe,service-enum,slow,social-enum,subdomain-enum,subdomain-hijack,web-basic,web-paramminer,web-screenshots,web-thorough
   -lf, --list-flags     List available flags.
   -rf, --require-flags FLAG [FLAG ...]
                         Only enable modules with these flags (e.g. -rf passive)
